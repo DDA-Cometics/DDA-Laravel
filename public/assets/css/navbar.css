@@ -1,0 +1,186 @@
+#main-container {
+    background-color: #DC85A7;
+}
+
+#brand {
+    font-family: 'Monomaniac One', cursive;
+    width: 100% ;
+    color: #FFF;
+    text-align: center;
+    text-shadow: 0px 6.891px 6.891px rgba(0, 0, 0, 0.25);
+    font-size: 40.457px;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 5.337px;
+    text-transform: uppercase;
+}
+#ButtonNavbar {
+    border: 2px solid #DC85A7 ;
+    border-radius: 8px;
+    background-color:azure;
+    margin-right: 15px;
+    color: #DC85A7; 
+}
+#text1{
+    color: #DC85A7;
+    text-align: center;
+    font-family: Noto Sans;
+    font-size: 14px;       
+}
+a:hover {
+    text-decoration: none;
+}
+#ButtonNavbar:focus {
+    color: #DC85A7;
+    background-color:darkcyan;
+}
+#ButtonNavbar:hover{
+    background-color: red;
+}
+#ButtonNavbar:hover #text1{
+    color: rgb(255, 255, 255);
+}  
+#SearchNavbar {
+    position: relative;
+}
+#iconSearch{
+    position: absolute;
+    left: 160px;
+    color:darkgray;
+}
+#iconSearch:hover{
+    color:rgb(0, 119, 255);
+}
+
+  /* Giỏ hàng */
+  #CartNavbar {
+      position: relative;
+  }
+  #iconCart {
+      position: absolute;
+      left: 40px;
+      top: 20px;
+      text-align: center;
+      transform: translateY(-50%);
+      font-size: 20px;
+      font-family: Noto Sans;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 4.20px;
+      word-wrap: break-word;
+      color: black;
+      right: 30px;
+      width: 110px;
+  }
+  #cartIcon:hover {
+      color: rgb(255, 0, 43);
+  }
+  #cartLink:hover #iconCart {
+    color: rgb(216, 19, 19);
+    }   
+  a:hover {
+      text-decoration: none;
+  }
+
+  #cartIcon {
+      position: absolute;
+      color: azure;
+      font-size: 35px;
+  }
+
+  /* Thành search */
+  #SearchNavbar {
+    position: relative;
+    }
+    #iconSearch{
+        position: absolute;
+        left: 160px;
+        color:darkgray;
+    }
+
+    /* Profile */
+    #ProfileNavbar {
+        position: relative;
+    }
+    #profileIcon {
+        color: azure;
+        font-size: 24px;
+        border: 1px solid black;
+        width: 40px;
+        height: 40px;
+        border-radius: 170px;
+        text-align: center;
+        padding: 6px;
+        top: -5px;
+        position: absolute;
+        cursor: pointer;
+    }
+    .iconText {
+        display: none;
+        position: absolute;
+        transform: translateX(-50%);
+        text-align: center;
+        color: black;
+        top:70px;
+        left: 25px;
+        width: 200px;
+    }
+    #iconProfile {
+        position: absolute;
+        bottom: -40px;
+        font-size: 20px;
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 4.20px;
+        word-wrap: break-word;
+        top:45px;
+       left: 25px;
+        width: 200px;
+    }
+    #textBelowIcon {
+        bottom: -70px;
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: 900;
+        font-size: 20px;
+        width: 100px;
+    }
+    #triangleIcon {
+        position: absolute;
+        top: 28px;
+        left: 15.4px;
+        display: none;
+        color: black;
+        margin-top: 3px;
+    }
+    #ProfileNavbar.showText .iconText,
+    #ProfileNavbar.logout .iconText,
+    #ProfileNavbar.showText #triangleIcon {
+        display: block;
+    }
+    #iconSignin {
+        margin-top: 3px;
+        color: white;
+        font-size:30px ;
+    }
+    .iconText2 {
+        padding-left: 10px  ;
+        margin-top: 10px;
+        color: black;
+    }
+    .iconText2:hover ,#iconSignin:hover {
+        color:pink;     
+    }       
+    #iconText:focus{
+        background-color:darkcyan;
+        color: red;           
+    }
+    #iconSignin:hover {
+      color: rgb(70, 109, 229);
+    }
+    #ProfileNavbar:hover #textBelowIcon {
+        color: rgb(70, 109, 229);
+      }
+    /*  */
+
+    

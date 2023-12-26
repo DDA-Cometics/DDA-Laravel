@@ -6,6 +6,8 @@ use App\Services\Interfaces\IVoucherService;
 use App\Services\Implements\VoucherService;
 use App\Services\Interfaces\IProductService;
 use App\Services\Implements\ProductService;
+use App\Services\Interfaces\IUserService;
+use App\Services\Implements\UserService;
 use Illuminate\Support\ServiceProvider;
 
 class ServiceLayerProvider extends ServiceProvider
@@ -25,6 +27,10 @@ class ServiceLayerProvider extends ServiceProvider
             \App\Services\Implements\ProductService::class
         );
         
+        $this->app->singleton(
+            IUserService::class,
+            UserService::class
+        );
 
     }
 

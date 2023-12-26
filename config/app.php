@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -170,7 +170,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         // Custom providers
         App\Providers\RepositoryProvider::class,
-        App\Providers\ServiceLayerProvider::class
+        App\Providers\ServiceLayerProvider::class,
+
+        // User providers
+        
+
     ])->toArray(),
 
     /*

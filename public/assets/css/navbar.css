@@ -165,7 +165,6 @@ a:hover {
     }
     .iconText2 {
         padding-left: 10px  ;
-        margin-top: 10px;
         color: black;
     }
     .iconText2:hover ,#iconSignin:hover {
@@ -176,11 +175,9 @@ a:hover {
         color: red;           
     }
     #iconSignin:hover {
-      color: rgb(70, 109, 229);
+      color: red;
     }
     #ProfileNavbar:hover #textBelowIcon {
-        color: rgb(70, 109, 229);
+        color: rgb(216, 19, 19);
       }
     /*  */
-
-    

@@ -1,5 +1,7 @@
 <style>
-    
+
+
+
 .card {
   position: relative;
   width: 273px;

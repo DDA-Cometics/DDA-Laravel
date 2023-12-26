@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 function generateDiscountHeader($text) {
     echo '
 <div class="container-fluid" id="borderHr">
@@ -12,4 +12,4 @@ function generateDiscountHeader($text) {
 </div>
 ';
 }
-?>
+?> -->

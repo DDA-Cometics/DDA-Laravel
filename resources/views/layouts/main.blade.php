@@ -8,7 +8,8 @@
     @yield('css')
     <link rel="stylesheet" href="{{ asset('assets/css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/js/navbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/navbar.js') }}">
+    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap">  
@@ -92,19 +93,6 @@
           </form>
           ';
       }
-      function generateDiscountHeader($text) {
-          echo '
-      <div class="container-fluid" id="borderHr">
-          <div class="row d-flex text-center">
-                  <div class="col ml-2"><hr id="hr"></div>
-                  <div class="col">
-                      <h2>' . $text . '</h2>
-                  </div>
-                  <div class="col mr-2"><hr id="hr"></div>
-                </div>
-      </div>
-      ';
-      }
     ?>  
 
     {{-- navbar --}}
@@ -153,7 +141,6 @@
         @yield('content')
     </div>
   {{-- .......................... --}}
-  <?php generateDiscountHeader("ABOUT US")?>
 <div class="container">
     <div class="row">
         <div class="col">

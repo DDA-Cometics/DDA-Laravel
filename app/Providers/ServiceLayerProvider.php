@@ -8,6 +8,8 @@ use App\Services\Interfaces\IProductService;
 use App\Services\Implements\ProductService;
 use App\Services\Interfaces\IUserService;
 use App\Services\Implements\UserService;
+use App\Services\Interfaces\IDetailProductService;
+use App\Services\Implements\DetailProductService;
 use Illuminate\Support\ServiceProvider;
 
 class ServiceLayerProvider extends ServiceProvider
@@ -30,6 +32,10 @@ class ServiceLayerProvider extends ServiceProvider
         $this->app->singleton(
             IUserService::class,
             UserService::class
+        );
+        $this->app->singleton(
+            IDetailProductService::class,
+            DetailProductService::class
         );
 
     }

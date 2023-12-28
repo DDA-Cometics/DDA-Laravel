@@ -212,7 +212,7 @@
                           <a href="https://www.instagram.com"><i id="icon" class="fa-brands fa-square-instagram"></i></a>
                           <a href="https://www.youtube.com"><i id="icon" class="fa-brands fa-youtube"></i></a>
                       </div>
-  
+                      
                   </div>
               </div>
               <div class="col"></div>

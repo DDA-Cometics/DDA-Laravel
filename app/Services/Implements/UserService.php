@@ -14,7 +14,7 @@ class UserService implements IUserService
     ) {
     }
 
-    function login(): Collection
+    function login(array $data): Collection
     {
         return $this->UserRepository->login();
     }

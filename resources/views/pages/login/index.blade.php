@@ -18,7 +18,7 @@
                 <h2>Sign In</h2>
                 <label>Required (*)</label>
                 <!-- Form Login -->
-                <form action="" method="post">
+                <form action="/login?login" method="post">
                     <div>
                         <div class="form-group">
                             <input type="email" id="email" name="email" placeholder="Email Address (*)" required>
@@ -56,7 +56,7 @@
                 <div class="row">
                     <div class="col">
                         <!-- Form Registerqw -->
-                        <form action="" method="post">
+                        <form action="/register" method="post">
                             <div class="form-group">
                                 <input type="text" id="first" name="firstName" placeholder="First name (*)" required>
                             </div>

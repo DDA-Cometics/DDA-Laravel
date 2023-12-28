@@ -13,7 +13,13 @@ Route::get('', [HomeController::class, "index"]);
 Route::post('/product/create', [ProductController::class, "create"]);
 Route::get('/login', [login_registerController::class, "index"]);
 Route::get('/register', [login_registerController::class, "index"]);
-Route::get('/admin', [AdminController::class, "index"]);
 Route::get('/detailproduct', [DetailProductController::class, "index"]);
 // Route::method('/đường dẫn',[Tên controller::class, "Function thực hiện trả về view nằm ở Controller"]);
+
+Route::get('/admin', [AdminController::class, "userManagement"]);
+Route::get('/userManagement', [AdminController::class, "userManagement"]);
+Route::get('/productManagement', [AdminController::class, "productManagement"]);
+Route::get('/voucherManagement', [AdminController::class, "voucherManagement"]);
+Route::get('/showChartManagement', [AdminController::class, "showChartManagement"]);
+
 

@@ -1,0 +1,31 @@
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .btn {
+        cursor: pointer;
+        padding: 5px 10px;
+    }
+
+    #removeBtn {
+        background-color: #ff6f6f;
+        color: #fff;
+    }
+
+    #editBtn {
+        background-color: #4caf50;
+        color: #fff;
+    }

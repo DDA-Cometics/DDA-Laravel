@@ -121,9 +121,10 @@
       </div>
       <div class="row">
           <div class="col-7">
-              <?php echo ButtonNavbar("USER MANAGEMENT", "userManagement", 142) ?>
-              <?php echo ButtonNavbar("PRODUCT MANAGEMENT", "productManagement", 160) ?>
-              <?php echo ButtonNavbar("EVENT MANAGEMENT", "eventManagement", 152) ?>
+              <?php echo ButtonNavbar("USER MANAGEMENT", "/userManagement", 142) ?>
+              <?php echo ButtonNavbar("PRODUCT MANAGEMENT", "/productManagement", 160) ?>
+              <?php echo ButtonNavbar("VOUCHERS MANAGEMENT", "/voucherManagement", 152) ?>
+              <?php echo ButtonNavbar("SHOW CHART", "/showChartManagement", 100) ?>
           </div>
           <div class="col-5 ">
               <div class="row">

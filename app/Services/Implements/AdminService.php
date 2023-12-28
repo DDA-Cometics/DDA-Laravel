@@ -10,6 +10,22 @@ class AdminService implements IAdminService {
     function __construct(
         private IAdminRepository $AdminRepository
     ){}
-    
+    function getProduct(): Collection
+    {
+        return $this->AdminRepository->getProduct();
+    }
+    function getUser(): Collection
+    {
+        return $this->AdminRepository->getUser();
+    }
+    function getVoucher(): Collection
+    {
+        return $this->AdminRepository->getVoucher();
+    }
+    function create(array $data): mixed
+    {
+
+        return $this->AdminRepository->create($data);
+    }
     
 }

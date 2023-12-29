@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rule;
+
 use Illuminate\Support\Facades\Validator;
 use App\Models\Product;
 
@@ -51,6 +53,31 @@ class ProductController extends Controller
         $idProduct = $id->all();
         $this->productService->delete($idProduct);
         // Điều hướng về trang chủ sau khi xóa sản phẩm thành công
+        return redirect('/productManagement');
+    }
+    
+
+    function updateP(Request $request)
+    {
+        // $validator = Validator::make($request->all(), [
+        //     'image' => ['required', 'url'],
+        //     'product_name' => ['required', 'string', 'max:255'],
+        //     'size' => ['required', 'numeric'],
+        //     'price' => ['required', 'numeric', 'min:0'],
+        //     'description' => ['required', 'string'],
+        //     'category' => ['required', 'string'],
+        // ]);
+
+        // if ($validator->fails()) {
+        //     return redirect('/productManagement')
+        //     ->withErrors($validator)
+        //         ->withInput();
+        // }
+
+        $productIdUpdate= $request->input('id');
+        $data = $request->all();
+        $this->productService->update($productIdUpdate, $data  );
+
         return redirect('/productManagement');
     }
 }

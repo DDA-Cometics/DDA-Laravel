@@ -59,7 +59,19 @@ abstract class BaseRepository implements IBaseRepository {
 
     public function update($id, array $attributes = []): mixed
     {
-        return $this->model->update($id, $attributes);
+        // return $this->model->update($id, $attributes);
+        $model = $this->model->find($id);
+
+        if ($model) {
+            // Cập nhật dữ liệu
+            $model->update($attributes);
+
+            // Trả về model đã được cập nhật
+            return $model;
+        }
+
+        // Hoặc có thể trả về một giá trị khác để thể hiện kết quả cập nhật
+        return null;
     }
 
     public function updateWhere(array $attributes, array $params): mixed

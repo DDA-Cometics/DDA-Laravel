@@ -68,14 +68,24 @@ class AdminController extends Controller
 
         return redirect('/userManagement');
     }
-    function update(Request $id, Request $attributes){
+    function update(Request $request){
+        // // Lấy dữ liệu từ request, ví dụ trường 'id'
+        // $userIdToUpdate = $id;
+        // $data = $attributes->all();
+
+        // // Gọi hàm delete từ AdminService để xóa người dùng
+        // $this->AdminService->update($userIdToUpdate, $data);
+
+        // return redirect('/userManagement');
         // Lấy dữ liệu từ request, ví dụ trường 'id'
-        $userIdToUpdate = $id->all();
-        $data = $attributes->all();
+    $userIdToUpdate = $request->input('id');
 
-        // Gọi hàm delete từ AdminService để xóa người dùng
-        $this->AdminService->update($userIdToUpdate, $data);
+    // Lấy các trường cần cập nhật từ request
+    $data = $request->except(['_token', '_method', 'id']);
 
-        return redirect('/userManagement');
+    // Gọi hàm update từ AdminService để cập nhật người dùng
+    $this->AdminService->update($userIdToUpdate, $data);
+
+    return redirect('/userManagement');
     }   
 }

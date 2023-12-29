@@ -20,7 +20,7 @@ Route::get('/admin', [AdminController::class, "userManagement"]);
 Route::post('/userManagement/create', [AdminController::class, "create"]);
 Route::get('/userManagement', [AdminController::class, "userManagement"]);
 Route::delete('/userManagement/delete', [AdminController::class, "delete"]);
-Route::put('/userManagement/update', [AdminController::class, "update"]);
+Route::put('/userManagement/update/{id}', [AdminController::class, "update"]);
 Route::get('/productManagement', [AdminController::class, "productManagement"]);
 Route::get('/voucherManagement', [AdminController::class, "voucherManagement"]);
 Route::get('/showChartManagement', [AdminController::class, "showChartManagement"]);

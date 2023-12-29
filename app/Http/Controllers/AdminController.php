@@ -50,7 +50,7 @@ class AdminController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('/productManagement') // Điều hướng nếu dữ liệu không hợp lệ
+            return redirect('/userManagement') // Điều hướng nếu dữ liệu không hợp lệ
                 ->withErrors($validator)
                 ->withInput();
         }

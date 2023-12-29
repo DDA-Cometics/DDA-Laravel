@@ -1,12 +1,6 @@
 #headAboutUs,#bodyAboutUs{
     display: none;
 }
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-}
 
 .container {
     padding-top: 20px;
@@ -14,6 +8,7 @@ body {
 
 
 h4 {
+    text-align: center;
     color: #333;
 }
 
@@ -47,14 +42,7 @@ h4 {
     margin-bottom: 20px;
 }
 
-.d-flex {
-    display: flex;
-  
-}
 
-.col-4 {
-    padding: 0;
-}
 
 .product-details {
     margin-top: 20px;
@@ -103,25 +91,15 @@ h4 {
     margin: 0 10px;
 }
 
-.custom-button {
-    background-color: pink;
-    color: white;
-    font-weight: bold;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.custom-button:hover {
-    background-color: #ff66b2;
-}
-
-.cart-button {
+select{
     width: 150px;
-    margin-left: 10px;
+    border: none;
+    border-bottom: 1px solid black;
 }
-
+select:hover{
+    border: none;
+    border-bottom: 1px solid rgb(185, 185, 185);
+}
 
 @media (max-width: 768px) {
     .quantity-container {

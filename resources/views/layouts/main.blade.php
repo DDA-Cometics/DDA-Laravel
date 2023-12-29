@@ -107,6 +107,7 @@
       </div>
       <div class="row">
           <div class="col-7">
+              <?php echo ButtonNavbar("H O M E", "/", 90) ?>
               <?php echo ButtonNavbar("BEST SELLERS", "bestSellerPage", 120) ?>
               <?php echo ButtonNavbar("NEW", "newPage", 120) ?>
               <?php echo ButtonNavbar("SKINCARE", "skincarePage", 120) ?>

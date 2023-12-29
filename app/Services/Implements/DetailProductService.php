@@ -20,4 +20,8 @@ class DetailProductService implements IDetailProductService {
 
         return $this->DetailProductRepository->create($data);
     }
+    function findById($id):mixed
+    {
+        return $this->DetailProductRepository->findById($id);
+    }
 }

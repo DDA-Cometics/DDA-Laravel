@@ -29,7 +29,6 @@ class User extends Model
 class Voucher extends Model
 {
     use HasFactory;
-
     protected $table = "vouchers";
     protected $fillable = ["id","discount","description","active_datetime","expired_datetime","delete_at"];
 }

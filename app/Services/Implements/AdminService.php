@@ -27,5 +27,14 @@ class AdminService implements IAdminService {
 
         return $this->AdminRepository->create($data);
     }
-    
+    function delete($id): mixed
+    {
+
+        return $this->AdminRepository->delete($id);
+    }
+    function update($id,array $data): mixed
+    {
+
+        return $this->AdminRepository->update($id,$data);
+    }
 }

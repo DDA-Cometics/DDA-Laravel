@@ -21,5 +21,9 @@ Route::get('/userManagement', [AdminController::class, "userManagement"]);
 Route::get('/productManagement', [AdminController::class, "productManagement"]);
 Route::get('/voucherManagement', [AdminController::class, "voucherManagement"]);
 Route::get('/showChartManagement', [AdminController::class, "showChartManagement"]);
+Route::delete('/product/delete', [ProductController::class, "delete"]);
+Route::get('/create', 'ProductController@create')->name('product.create');
+Route::post('/save', 'ProductController@save')->name('product.save');
+// Route::delete('/product/delete', 'ProductController@delete')->name('product.delete');
 
 

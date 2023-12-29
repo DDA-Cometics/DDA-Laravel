@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Services\Interfaces\IAdminService;
+use Illuminate\Support\Facades\Validator;
+
 // use App\Services\Interfaces\IProductService;
 
 use Illuminate\Http\Request;

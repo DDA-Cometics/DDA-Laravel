@@ -6,4 +6,5 @@ use Illuminate\Database\Eloquent\Collection;
 interface IProductService {
     function sortPrices(): Collection;
     function create(array $data): mixed;
+    function delete($id): mixed;
 }

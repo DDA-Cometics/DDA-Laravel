@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Log;
 use App\Services\Interfaces\IAdminService;
-// use App\Services\Interfaces\IProductService;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 
@@ -36,6 +35,24 @@ class AdminController extends Controller
         return view("pages.admin.showchart");
     }
     function create(Request $request){
+        $validator = Validator::make($request->all(), [
+            'image' => 'required|url',
+            'last_name' => 'required|string|max:255',
+            'first_name' => 'required|string',
+            'account_name' => 'required|string',
+            'password' => 'required|string',
+            'role' => 'required|string|max:255',
+            'address' => 'required|string',
+            'phone_number' => 'required|string',
+            'email' => 'required|email|max:255',
+            'date' => 'required|date',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/productManagement') // Điều hướng nếu dữ liệu không hợp lệ
+                ->withErrors($validator)
+                ->withInput();
+        }
         //Insert product into database
         $data= $request->all();
         $this->AdminService->create($data);

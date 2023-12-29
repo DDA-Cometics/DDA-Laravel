@@ -16,6 +16,15 @@
         form.classList.toggle("d-none");
         form.classList.toggle("d-flex");
     }
+    document.addEventListener('DOMContentLoaded', function() {
+    // Kiểm tra nếu có thông báo lỗi hiển thị trên form
+    const errorSpans = document.querySelectorAll('.error');
+
+    if (errorSpans.length > 0) {
+        // Nếu có lỗi xuất hiện, thực hiện hàm toggleForm()
+        toggleForm();
+    }
+});
 </script>
 <button id="showForm1" class="Btn" onclick="toggleForm()">
     <div class="sign">+</div>
@@ -27,18 +36,30 @@
     <div class="form-inp">
         <label for="last_name">Last Name:</label>
         <input type="text" id="last_name" name="last_name">
+        @if ($errors->has('last_name'))
+            <span class="error">{{ $errors->first('last_name') }}</span>
+            @endif
     </div>
     <div class="form-inp">
         <label for="first_name">First Name:</label>
         <input type="text" id="first_name" name="first_name">
+        @if ($errors->has('first_name'))
+            <span class="error">{{ $errors->first('first_name') }}</span>
+            @endif
     </div>
     <div class="form-inp">
         <label for="account_name">Account Name:</label>
         <input type="text" id="account_name" name="account_name">
+        @if ($errors->has('account_name'))
+            <span class="error">{{ $errors->first('account_name') }}</span>
+            @endif
     </div>
     <div class="form-inp">
         <label for="password">Password:</label>
         <input type="password" id="password" name="password">
+        @if ($errors->has('password'))
+            <span class="error">{{ $errors->first('password') }}</span>
+            @endif
     </div>
     <div class="form-inp">
         <label for="role">Role:</label>
@@ -51,22 +72,37 @@
     <div class="form-inp">
         <label for="address">Address:</label>
         <input type="text" id="address" name="address">
+        @if ($errors->has('address'))
+            <span class="error">{{ $errors->first('address') }}</span>
+            @endif
     </div>
     <div class="form-inp">
         <label for="phone_number">Phone Numbers:</label>
         <input type="tel" id="phone_number" name="phone_number">
+        @if ($errors->has('phone_number'))
+            <span class="error">{{ $errors->first('phone_number') }}</span>
+            @endif
     </div>
     <div class="form-inp">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email">
+        @if ($errors->has('email'))
+            <span class="error">{{ $errors->first('email') }}</span>
+            @endif
     </div>
     <div class="form-inp">
         <label for="date">BirthDay:</label>
         <input type="date" id="date" name="date">
+        @if ($errors->has('date'))
+            <span class="error">{{ $errors->first('date') }}</span>
+            @endif
     </div>
     <div class="form-inp">
         <label for="image">Image:</label>
         <input type="text" id="image" name="image">
+        @if ($errors->has('image'))
+            <span class="error">{{ $errors->first('image') }}</span>
+            @endif
     </div>
 
     <button id="submit-button" type="submit" class="mb-3">Create</button>

@@ -1,4 +1,4 @@
-#container{
+#container,#controForm{
     position: fixed;
     top: 0;
     width: 100%;
@@ -11,7 +11,22 @@
     
 }
 
-#formUser {
+.containerForm2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 600px; /* Đặt chiều rộng của form */
+    padding: 25px;  
+    background-color: #fffffff3; /* Màu pink, bạn có thể thay đổi giá trị hex hoặc tên màu khác */
+    box-shadow: 0px 15px 60px pink;
+    outline: 1px solid rgba(255, 192, 203, 0.549);
+    border-radius: 10px;
+    color: pink;
+}
+
+
+
+#formUser,#formUser2{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

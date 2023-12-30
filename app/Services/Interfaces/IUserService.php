@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 interface IUserService
 {
-    function login(): Collection;
+    function login(array $data): Collection;
+    function register(array $data): mixed;
 }

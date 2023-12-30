@@ -1,0 +1,226 @@
+#container,
+#controForm {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 192, 203, 0.562);
+    margin-left: -15px;
+
+}
+
+.containerForm2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 600px;
+    /* Đặt chiều rộng của form */
+    padding: 25px;
+    background-color: #fffffff3;
+    /* Màu pink, bạn có thể thay đổi giá trị hex hoặc tên màu khác */
+    box-shadow: 0px 15px 60px pink;
+    outline: 1px solid rgba(255, 192, 203, 0.549);
+    border-radius: 10px;
+    color: pink;
+}
+
+
+
+#formUser,
+#formUser2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 600px;
+    /* Đặt chiều rộng của form */
+    padding: 25px;
+    background-color: #fffffff3;
+    /* Màu pink, bạn có thể thay đổi giá trị hex hoặc tên màu khác */
+    box-shadow: 0px 15px 60px pink;
+    outline: 1px solid rgba(255, 192, 203, 0.549);
+    border-radius: 10px;
+    color: pink;
+}
+
+.form-inp {
+    width: calc(50% - 10px);
+    /* 50% width cho mỗi cột với khoảng cách 10px giữa chúng */
+    margin-bottom: 15px;
+}
+
+.form-inp label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #000000;
+    /* Màu pink */
+}
+
+.form-inp input,
+.form-inp select {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid #480909;
+    border-radius: 8px;
+    color: rgb(255, 0, 43);
+    outline: none;
+}
+
+.form-inp input:focus,
+.form-inp select:focus {
+    border: 1px solid rgb(255, 0, 81);
+}
+
+#submit-button,
+#cancel-button {
+    width: 100%;
+    color: #000000;
+    /* Màu pink */
+    background-color: transparent;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 12px 0;
+    border: 0;
+    outline: 1px solid #000000;
+    border-radius: 8px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all ease-in-out .3s;
+}
+
+#submit-button:hover {
+    background-color: rgb(0, 255, 204);
+    /* Màu pink */
+    color: rgb(0, 0, 0);
+    outline: 1px solid rgb(0, 252, 176);
+    box-shadow: 0px 0px 10px 0px rgb(0, 252, 176);
+
+}
+
+#cancel-button:hover {
+    background-color: rgb(241, 14, 52);
+    color: white;
+    outline: 1px solid rgb(241, 14, 52);
+    box-shadow: 0px 0px 10px 0px rgb(241, 14, 52);
+}
+
+#createnew-button {
+    margin-top: 30px;
+    width: 10%;
+    color: #000000;
+    /* Màu pink */
+    background-color: transparent;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 12px 0;
+    border: 0;
+    outline: 1px solid #fd007f;
+    /* Màu pink */
+    border-radius: 8px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all ease-in-out .3s;
+}
+
+#createnew-button:focus {
+    background-color: #fd007f;
+}
+
+#showForm1 {
+    margin-top: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: auto;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(228, 213, 213, 0.199);
+    background: #e48baa;
+}
+
+/* plus sign */
+.sign {
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* text */
+.text {
+
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+        color: rgb(249, 247, 249);
+        font-size: 1.4em;
+        font-weight: 500;
+        transition-duration: .3s;
+    }
+    
+    /* hover effect on button width */
+    #showForm1:hover {
+        width: 125px;
+        transition-duration: .3s;
+    
+    }
+    
+    #showForm1:hover .sign {
+        width: 30%;
+        transition-duration: .3s;
+        padding-left: 15px;
+    }
+    
+    /* hover effect button's text */
+    #showForm1:hover .text {
+        opacity: 1;
+        width: 70%;
+        transition-duration: .3s;
+        padding-right: 15px;
+    }
+    
+    /* button click effect*/
+    #showForm1:active {
+        transform: translate(2px, 2px);
+    }
+    #removeBtn,#editBtn {
+    width: 100px;
+    color: #000000; /* Màu pink */
+    background-color: transparent;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 12px 0;
+    border: 0;
+    outline: 1px solid #000000;
+    border-radius: 8px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all ease-in-out .3s;
+    margin-top: 4px;
+}
+
+#removeBtn:hover {
+    background-color: rgb(241, 14, 52);
+    box-shadow: 0px 0px 10px 0px  rgb(241, 14, 52);
+    outline: 1px solid rgb(241, 14, 52);
+    color: white;
+}
+#editBtn:hover{
+    outline: 1px solid rgb(0, 252, 176);
+    background-color: rgb(0, 255, 204); 
+    box-shadow: 0px 0px 10px 0px  rgb(0, 252, 176);
+    color: rgb(0, 0, 0);
+}

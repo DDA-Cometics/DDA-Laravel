@@ -101,6 +101,26 @@ select:hover{
     border-bottom: 1px solid rgb(185, 185, 185);
 }
 
+#newsPrice{
+    color: #F40707; 
+    font-size: 26px; 
+    font-family: Noto Serif; 
+    font-weight: 400; 
+    text-transform: capitalize;
+     letter-spacing: 0.91px;
+      word-wrap: break-word;
+}
+#Star{
+   border: 1px black solid;
+}
+#newOld{
+    color: #000; 
+    font-size:  26px;
+    font-family: Noto Serif;
+    font-weight: 400;
+    text-decoration: line-through;
+}
+
 @media (max-width: 768px) {
     .quantity-container {
         width: 100%;

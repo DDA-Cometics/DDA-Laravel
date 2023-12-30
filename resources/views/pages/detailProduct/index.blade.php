@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 ">
-                <div class="d-flex justify-content-center" style="display:flex; justify-content:center">
+                <div class="d-flex justify-content-center">
                     <img id="mainImage" src="{{ $products->image }}" alt="Sữa tắm" class="img-fluid mb-3">
                 </div>
                 <div class="d-flex justify-content-center">
@@ -37,7 +37,7 @@
                 <div class="d-flex align-items-center">
                     <div class="w-100">
                        <h4 id="nameProduct">{{ $products->product_name }}</h4><br>
-                        <div class="custom-border" style=" border: 1px black solid"></div>
+                        <div class="custom-border " id="Star"></div>
                         <div class="d-flex">
                             <div class="mr-3">
                                 <img src="https://res.cloudinary.com/duas1juqs/image/upload/v1703472124/Web%20DDA%20COMECTIC/dghewvbdzpk2f4ojc7wy.png"
@@ -55,12 +55,10 @@
                         </div><br>
                         <div class="d-flex">
                             
-                            <div class="mr-3"
-                                style="color: #000; font-size: 26px; font-family: Noto Serif; font-weight: 400;"><del
-                                    style="text-decoration: line-through">$ {{ $products->price }}</del>
+                            <div class="mr-3" id="newOld">$ {{ $products->price }}
                             </div>
                             <div
-                                style="color: #F40707; font-size: 26px; font-family: Noto Serif; font-weight: 400; text-transform: capitalize; letter-spacing: 0.91px; word-wrap: break-word">
+                                id="newsPrice">
                                 $ {{ $products->price / 2 }}</div>
                         </div><br>
                         <div>

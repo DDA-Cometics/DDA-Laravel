@@ -127,7 +127,7 @@
         // Chuyển hướng đến trang detail với ID của sản phẩm
         window.location.href = '/detailproduct?id=' + productId;
     }
-</script>
+   </script>
   <div class="banner" id="banner">
     <img src="https://res.cloudinary.com/duas1juqs/image/upload/v1703164519/Web%20DDA%20COMECTIC/yrnoriupxwfqjtaos6un.jpg" alt="">
     <div class="discountBanner">

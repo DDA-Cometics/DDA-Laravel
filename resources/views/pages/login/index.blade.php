@@ -52,73 +52,100 @@
             </div>
             <div class="column" id="log2">
                 <h2>Create Account</h2>
-                <br>
-                <div class="row">
-                    <div class="col">
-                        <!-- Form Registerqw -->
-                        <form action="/register" method="post">
+                <form action="/register" id="register" method="post">
+                    @csrf
+                    <br>
+                    <div class="row">
+                        <div class="col">
+
+                            <!-- Form Register -->
                             <div class="form-group">
-                                <input type="text" id="first" name="firstName" placeholder="First name (*)" required>
+                                <input type="text" id="first_name" name="first_name" placeholder="First name (*)" required>
+                                @if ($errors->has('first_name'))
+                                <span class="error">{{ $errors->first('first_name') }}</span>
+                                @endif
                             </div>
                             <div class="form-group">
-                                <input type="email" id="mail" name="email" placeholder="Email Address (*)" required>
+                                <input type="email" id="email" name="email" placeholder="Email Address (*)" required>
+                                @if ($errors->has('email'))
+                                <span class="error">{{ $errors->first('email') }}</span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <input type="password" id="password" name="password" placeholder="Password (*)" required>
+                                @if ($errors->has('password'))
+                                <span class="error">{{ $errors->first('password') }}</span>
+                                @endif
                             </div>
-                    </div>
+                            <div class="form-group">
+                                <input type="text" id="number" name="phone_number" placeholder="Phone number (*)" required>
+                                @if ($errors->has('phone_number'))
+                                <span class="error">{{ $errors->first('phone_number') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="image" name="image" placeholder="Image (*)" required>
+                                @if ($errors->has('image'))
+                                <span class="error">{{ $errors->first('image') }}</span>
+                                @endif
+                            </div>
+                        </div>
 
-                    <div class="col">
-                        <div class="form-group">
-                            <input type="text" id="lastName" name="lastName" placeholder="Last name (*)" required>
+                        <div class="col">
+                            <div class="form-group">
+                                <input type="text" id="last_name" name="last_name" placeholder="Last name (*)" required>
+                                @if ($errors->has('last_name'))
+                                <span class="error">{{ $errors->first('last_name') }}</span>
+                                @endif
+                            </div>
+                           
+                            <div class="form-group">
+                                <input type="email" id="confirmEmail" name="confirm_email" placeholder="Confirm email (*)" required>
+                                @if ($errors->has('confirm_email'))
+                                <span class="error">{{ $errors->first('confirm_email') }}</span>
+                                @endif
+                            </div>
+                          
+
+
+                            <div class="form-group">
+                                <input type="password" id="confirmPassword" name="confirm_password" placeholder="Confirm password (*)" required>
+
+                                @if ($errors->has('confirm_password'))
+                                <span class="error">{{ $errors->first('confirm_password') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="address" name="address" placeholder="Address (*)" required>
+                                @if ($errors->has('address'))
+                                <span class="error">{{ $errors->first('address') }}</span>
+                                @endif
+                            </div>
+                         
+                            
+                            <div class="form-group">
+                                <input type="text" id="account_name" name="account_name" placeholder="Account name (*)" required>
+                                @if ($errors->has('account_name'))
+                                <span class="error">{{ $errors->first('account_name') }}</span>
+                                @endif
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="email" id="confirmEmail" name="confirmEmail" placeholder="Confirm email (*)" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password (*)" required>
-                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <p id="tex">Date of birth* <br>We want to wish you a happy birthday! When you provide your birthday, we will also use this information to personalize our marketing efforts</p>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <select class="time" id="date">
-                            <option disabled selected>Date</option>
-                            <?php for ($day = 1; $day <= 30; $day++) { ?>
-                                <option value="<?php echo $day; ?>"><?php echo $day; ?></option>
-                            <?php } ?>
-                        </select>
+                    <div class="row">
+                        <p id="tex">Date of birth* <br>We want to wish you a happy birthday! When you provide your birthday, we will also use this information to personalize our marketing efforts</p>
                     </div>
-                    <div class="col">
-                        <select class="time" id="month">
-                            <option disabled selected>Month</option>
-                            <?php for ($month = 1; $month <= 12; $month++) { ?>
-                                <option value="<?php echo $month; ?>"><?php echo $month; ?></option>
-                            <?php } ?>
-                        </select>
+                    <div class="row">
+                        <input type="date" id="date" name="date" placeholder="date (*)" required>
+                        @if ($errors->has('date'))
+                        <span class="error">{{ $errors->first('date') }}</span>
+                        @endif
                     </div>
-                    <div class="col">
-                        <select class="time" id="year">
-                            <option disabled selected>Year</option>
-                            <?php for ($year = 1950; $year <= 2024; $year++) { ?>
-                                <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                            <?php } ?>
-                        </select>
+                    <br>
+
+                    
+                    <div class="row">
+                        <button id="buttonn2" type="submit">Create an account</button>
                     </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="form-group">
-                        <input type="text" id="number" name="numb" placeholder="Phone number (*)" required>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <button id="buttonn2" type="submit">Create an account</button>
-                </div>
                 </form>
             </div>
         </div>

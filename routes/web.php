@@ -7,6 +7,7 @@ use App\Http\Controllers\login_registerController;
 use App\Http\Controllers\VoucherController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DetailProductController;
+use App\Models\login_register;
 
 Route::get('/vouchers', [VoucherController::class, "index"]);
 Route::get('', [HomeController::class, "index"]);
@@ -28,5 +29,6 @@ Route::delete('/product/delete', [ProductController::class, "delete"]);
 Route::get('/create', 'ProductController@create')->name('product.create');
 Route::post('/save', 'ProductController@save')->name('product.save');
 Route::put('/productManagement/update/{id}', [ProductController::class, 'updateP']);
+Route::post('/register', [login_registerController::class, "register"]);
 
 

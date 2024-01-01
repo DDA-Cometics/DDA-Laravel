@@ -126,11 +126,7 @@
     border-radius: 5px;
 }
 
-#number {
-    margin-left: 14px;
-    width: 490px;
-    height: 40px;
-}
+
 
 #log2 {
     margin-bottom: 10px;
@@ -162,4 +158,13 @@
 }
 #headAboutUs,#bodyAboutUs{
     display: none;
+}
+#date{
+    width: 150px;
+    border-radius: 5px;
+    justify-content: center;
+    text-align: center;
+    margin-left: 16px;
+    
+
 }

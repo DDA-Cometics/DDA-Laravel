@@ -7,6 +7,5 @@ use Illuminate\Database\Eloquent\Collection;
 
 interface IUserRepository extends IBaseRepository
 {
-    function login(): Collection;
-    
+    function login($email, $password): Collection;
 }

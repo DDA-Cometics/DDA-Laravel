@@ -84,8 +84,8 @@
               <i class="fa-solid fa-user" id="profileIcon">
               </i>
               <i id="triangleIcon" class="fa-solid fa-caret-down"></i>
-              <a href="profile" id="iconProfile" class="iconText">Profile</a>
-              <a href="/" id="textBelowIcon" class="iconText">Logout</a>
+              <a href="/profile" id="iconProfile" class="iconText">Profile</a>
+              <a href="/logout" id="textBelowIcon" class="iconText">Logout</a>
               
           </form>
       ';

@@ -29,6 +29,8 @@ Route::delete('/product/delete', [ProductController::class, "delete"]);
 Route::get('/create', 'ProductController@create')->name('product.create');
 Route::post('/save', 'ProductController@save')->name('product.save');
 Route::put('/productManagement/update/{id}', [ProductController::class, 'updateP']);
-Route::post('/register', [login_registerController::class, "register"]);
+Route::post('/register/register', [login_registerController::class, "register"]);
+Route::post('/login/login', [login_registerController::class, "login"]);
+Route::get('/logout', [login_registerController::class, "logout"]);
 
 

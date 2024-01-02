@@ -13,12 +13,19 @@ class UserRepository extends BaseRepository implements IUserRepository
         return User::class;
     }
 
-    // Dưới đây là Implement
-    public function login(): Collection
+    public function login($email, $password): Collection
     {
-        // return Product::select('*')->get();
-        return user::where('display_flag', true)->get();
+        $user = User::where('email', $email)->first();
+        $userData = new Collection();
+
+        if ($user && $password === $user->password) {
+            $userData->push($user);
+        }
+
+        return $userData;
     }
+
+
 
     //...............................................
 }

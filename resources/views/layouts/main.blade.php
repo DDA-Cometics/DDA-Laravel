@@ -84,8 +84,8 @@
               <i class="fa-solid fa-user" id="profileIcon">
               </i>
               <i id="triangleIcon" class="fa-solid fa-caret-down"></i>
-              <a href="profile" id="iconProfile" class="iconText">Profile</a>
-              <a href="/" id="textBelowIcon" class="iconText">Logout</a>
+              <a href="/profile" id="iconProfile" class="iconText">Profile</a>
+              <a href="/logout" id="textBelowIcon" class="iconText">Logout</a>
               
           </form>
       ';
@@ -128,15 +128,17 @@
                     <div class="col-3">
                         <?php echo CartNavbar() ?>
                     </div>
-                    <!-- Check Login để quyết định hiển thị -->
-                    <!-- <div class="col-4">
-                      <?php echo ProfileNavbar() ?>                      
-                  </div> -->
-                    <div class="col-4">
-                        <?php echo ProfileNavbarLogin() ?>
-
-                    </div>
-                    <!-- ..................... -->
+                    @if(session()->has('user_data'))
+                        <div class="col-4">
+                            <?php echo ProfileNavbar() ?>
+                        </div>
+            
+                    @else
+                        <div class="col-4">
+                            <?php echo ProfileNavbarLogin() ?>
+                        </div>
+                    @endif
+          
                 </div>
             </div>
         </div><br>

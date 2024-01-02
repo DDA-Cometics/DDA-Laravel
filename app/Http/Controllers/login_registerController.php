@@ -3,10 +3,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Services\Interfaces\IUserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Services\Implements\UserService;
+use Illuminate\Support\Facades\Session;
 
 class login_registerController extends Controller
 {
@@ -16,7 +18,12 @@ class login_registerController extends Controller
     {
         $this->userService = $userService;
     }
+    public function logout(Request $request)
+    {
+        $request->session()->flush(); // Xóa toàn bộ dữ liệu trong session
 
+        return redirect('/'); // Chuyển hướng người dùng đến trang chính sau khi logout
+    }
     public function index(Request $request)
     {
         return view("pages.login.index");
@@ -62,4 +69,38 @@ class login_registerController extends Controller
         // Store the user...
         // return redirect('/login');
     }
+    public function login(Request $request)
+    {
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $response = $this->userService->login($email, $password);
+
+        if ($response->isNotEmpty()) {
+            // Lấy thông tin người dùng từ đối tượng User trong Collection
+            $user = $response->first();
+
+            // Tạo một mảng dữ liệu user từ thông tin của đối tượng User
+            $userData = [
+                'email' => $user->email,
+                'last_name' => $user->last_name,
+                'first_name' => $user->first_name,
+                'id' => $user->id,
+                'user_phone' => $user->phone_number,
+                'account_name' => $user->account_name,
+                'address' => $user->address,
+                'role' => $user->role,
+            ];
+            
+            // Lưu thông tin người dùng vào session và chuyển hướng đến trang chủ
+            session()->put('user_data', $userData);
+            if ($userData['role']=="admin"){
+                return redirect('/admin');
+            }
+            return redirect('/');
+        }
+
+        // Trường hợp đăng nhập thất bại, chuyển hướng đến trang đăng nhập với thông báo lỗi
+        return redirect('/login')->with('error', 'Login Failed!');
+    }
+
 }

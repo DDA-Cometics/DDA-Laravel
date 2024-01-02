@@ -195,7 +195,7 @@
           $totalItems = count($products);
           $slides = ceil($totalItems / 4);
       @endphp
-
+    
       @for ($i = 0; $i < $slides; $i++)
           <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
               <div class="card-wrapper container-sm d-flex justify-content-around">

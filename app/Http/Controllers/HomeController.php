@@ -14,4 +14,8 @@ class HomeController extends Controller
         $product = $this->productService->sortPrices();
         return view("pages.home.index", ["products" => $product]);
     }
+    function bestseller() {
+        $product = $this->productService->sortPrices();
+        return view("pages.bestseller.index", ["products" => $product]);
+    }
 }

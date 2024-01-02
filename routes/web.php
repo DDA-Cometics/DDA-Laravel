@@ -30,5 +30,4 @@ Route::get('/create', 'ProductController@create')->name('product.create');
 Route::post('/save', 'ProductController@save')->name('product.save');
 Route::put('/productManagement/update/{id}', [ProductController::class, 'updateP']);
 Route::post('/register', [login_registerController::class, "register"]);
-
-
+Route::get('/bestSellerPage', [HomeController::class, "bestseller"]);

@@ -17,7 +17,17 @@ class ProductService implements IProductService {
     }
     function create(array $data): mixed
     {
-
+        
         return $this->ProductRepository->create($data);
+    }
+    function delete($id): mixed
+    {
+
+        return $this->ProductRepository->delete($id);
+    }
+    function update($id,array $data): mixed
+    {
+        
+        return $this->ProductRepository->update($id,$data);
     }
 }

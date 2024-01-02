@@ -6,25 +6,30 @@
 @endsection
 
 @section('content')
-
 <div class="container" id="containerLog">
     <div class="row">
         <div class="row">
-            <a id="titleLog" href="/">Home ></a>
-            <a id="titleLog" href="">Sign in &amp; Register</a>
+            <a class="titleLog" href="/">Home ></a>
+            <a class="titleLog" href="">Sign in &amp; Register</a>
         </div>
+
         <div class="row">
             <div class="column" id="log">
                 <h2>Sign In</h2>
                 <label>Required (*)</label>
+                @if (isset($successMessage))
+                <div class="alert alert-success">
+                    {{ $successMessage }}
+                </div>
+                @endif
                 <!-- Form Login -->
                 <form action="/login?login" method="post">
                     <div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Email Address (*)" required>
+                            <input type="email" id="emailSignIn" name="email" placeholder="Email Address (*)" required>
                         </div>
                         <div class="form-group">
-                            <input type="password" id="password" name="password" placeholder="Password (*)" required>
+                            <input type="password" id="passwordSignIn" name="password" placeholder="Password (*)" required>
                         </div>
                         <div id="form-check">
                             <label>
@@ -46,18 +51,23 @@
                         </div>
                         <p id="tex">When you use Facebook or Google to login to our site, be advised that your data is governed by Facebook’s or Google’s privacy policy and terms of use.</p>
                     </div>
+                </form>
             </div>
-            </form>
             <div class="col">
             </div>
             <div class="column" id="log2">
+                @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+                @endif
                 <h2>Create Account</h2>
+                
                 <form action="/register" id="register" method="post">
                     @csrf
                     <br>
                     <div class="row">
                         <div class="col">
-
                             <!-- Form Register -->
                             <div class="form-group">
                                 <input type="text" id="first_name" name="first_name" placeholder="First name (*)" required>
@@ -66,13 +76,13 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <input type="email" id="email" name="email" placeholder="Email Address (*)" required>
+                                <input type="email" id="emailSignUp" name="email" placeholder="Email Address (*)" required>
                                 @if ($errors->has('email'))
                                 <span class="error">{{ $errors->first('email') }}</span>
                                 @endif
                             </div>
                             <div class="form-group">
-                                <input type="password" id="password" name="password" placeholder="Password (*)" required>
+                                <input type="password" id="passwordSignUp" name="password" placeholder="Password (*)" required>
                                 @if ($errors->has('password'))
                                 <span class="error">{{ $errors->first('password') }}</span>
                                 @endif
@@ -90,7 +100,6 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="col">
                             <div class="form-group">
                                 <input type="text" id="last_name" name="last_name" placeholder="Last name (*)" required>
@@ -98,19 +107,14 @@
                                 <span class="error">{{ $errors->first('last_name') }}</span>
                                 @endif
                             </div>
-                           
                             <div class="form-group">
                                 <input type="email" id="confirmEmail" name="confirm_email" placeholder="Confirm email (*)" required>
                                 @if ($errors->has('confirm_email'))
                                 <span class="error">{{ $errors->first('confirm_email') }}</span>
                                 @endif
                             </div>
-                          
-
-
                             <div class="form-group">
                                 <input type="password" id="confirmPassword" name="confirm_password" placeholder="Confirm password (*)" required>
-
                                 @if ($errors->has('confirm_password'))
                                 <span class="error">{{ $errors->first('confirm_password') }}</span>
                                 @endif
@@ -121,8 +125,6 @@
                                 <span class="error">{{ $errors->first('address') }}</span>
                                 @endif
                             </div>
-                         
-                            
                             <div class="form-group">
                                 <input type="text" id="account_name" name="account_name" placeholder="Account name (*)" required>
                                 @if ($errors->has('account_name'))
@@ -140,9 +142,6 @@
                         <span class="error">{{ $errors->first('date') }}</span>
                         @endif
                     </div>
-                    <br>
-
-                    
                     <div class="row">
                         <button id="buttonn2" type="submit">Create an account</button>
                     </div>
@@ -151,4 +150,5 @@
         </div>
     </div>
 </div>
+<br>
 @endsection

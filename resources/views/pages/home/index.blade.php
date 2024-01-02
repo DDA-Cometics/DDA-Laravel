@@ -76,7 +76,7 @@ function generateProductCard($id, $name, $size, $price, $description, $category,
                     </div>
                     <div class="row">
                         <div class="col">
-                        <button class="btn mb-3" id="buynowBtn">Buy Now</button>
+                            <button class="btn mb-3" id="buynowBtn" onclick="redirectToDetail(' . $id . ')">Buy Now</button>
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@ function favoritesProductCard($id, $name, $size, $price, $description, $category
                     </div>
                     <div class="row">
                         <div class="col">
-                        <button class="btn mb-3" id="buynowBtn">Buy Now</button>
+                            <button class="btn mb-3" id="buynowBtn" onclick="redirectToDetail(' . $id . ')">Buy Now</button>
                         </div>
                     </div>
                 </div>
@@ -132,18 +132,23 @@ function discountBanner($n)
 function ButtonBuyNow()
 {
     echo '<button class="btn mr-5" id="buynowBtn">Buy Now</button>';
-}
-function ButtonSignUp()
-{
-    echo '<a href="register"><button id="buttonSignUp" type="button">REGISTER</button></a>';
-}
-function ButtonSignIn()
-{
-    echo '<a href="login"><button id="buttonSignIn" type="button">SIGN IN</button></a>';
-}
-?>
 
-<div class="banner" id="banner">
+    }
+    function ButtonSignUp(){
+        echo '<a href="register"><button id="buttonSignUp" type="button">REGISTER</button></a>';
+    }
+    function ButtonSignIn(){
+        echo '<a href="login"><button id="buttonSignIn" type="button">SIGN IN</button></a>';
+    }
+  ?>
+  <script>
+    function redirectToDetail(productId) {
+        // Chuyển hướng đến trang detail với ID của sản phẩm
+        window.location.href = '/detailproduct?id=' + productId;
+    }
+   </script>
+  <div class="banner" id="banner">
+
     <img src="https://res.cloudinary.com/duas1juqs/image/upload/v1703164519/Web%20DDA%20COMECTIC/yrnoriupxwfqjtaos6un.jpg" alt="">
     <div class="discountBanner">
         <?php discountBanner(50) ?>

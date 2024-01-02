@@ -138,6 +138,7 @@
                             <?php echo ProfileNavbarLogin() ?>
                         </div>
                     @endif
+                    
           
                 </div>
             </div>

@@ -130,16 +130,18 @@
                   <div class="col-3">
                       <?php echo CartNavbar() ?>
                   </div>
-                  <!-- Check Login để quyết định hiển thị -->
-                  <!-- <div class="col-4">
-
-                      <?php echo ProfileNavbar() ?>                      
-                  </div> -->
-                    <div class="col-4">
-                        <?php echo ProfileNavbarLogin() ?>
-
-                    </div>
-                    <!-- ..................... -->
+                    @if(session()->has('user_data'))
+                        <div class="col-4">
+                            <?php echo ProfileNavbar() ?>
+                        </div>
+             
+                    @else
+                        <div class="col-4">
+                            <?php echo ProfileNavbarLogin() ?>
+                        </div>
+                    @endif
+                    
+          
                 </div>
             </div>
         </div><br>

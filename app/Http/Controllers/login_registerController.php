@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Services\Interfaces\IUserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Services\Implements\UserService;
 
 class login_registerController extends Controller
 {
@@ -32,6 +33,9 @@ class login_registerController extends Controller
             'confirm_password' => 'required|string|max:255|same:password',
             'phone_number' => 'required|string',
             'date' => 'required|date',
+            'account_name' =>'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'image' => 'required|string|min:1',
         ]);
 
         if ($validator->fails()) {
@@ -42,9 +46,20 @@ class login_registerController extends Controller
 
         // Insert product into the database
         $data = $request->all();
-        $this->userService->register($data);
+        // $this->userService->register($data);
+        $data = $validator->validated();
+        $success = $this->userService->register($data); // Thực hiện đăng ký và trả về true nếu thành công
+        
+        if ($success) {
+            // Đăng ký thành công
+            return redirect('/login')->with('success', 'Register Successful!');
+        } else {
+            // Đăng ký không thành công
+            return redirect('/login')->with('error', 'Register Failed!');
+        }
+        return redirect('/login');
 
         // Store the user...
-        return redirect('/login');
+        // return redirect('/login');
     }
 }

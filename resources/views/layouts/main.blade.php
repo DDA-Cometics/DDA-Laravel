@@ -103,31 +103,33 @@
 
     {{-- navbar --}}
     <div id="main-container" class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <nav class="navbar p-0">
-                    <span id="brand" class="h1">
-                        <b>DDA-Comectic</b>
-                    </span>
-                </nav>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-7">
-                <?php echo ButtonNavbar("BEST SELLERS", "bestSellerPage", 120) ?>
-                <?php echo ButtonNavbar("NEW", "newPage", 120) ?>
-                <?php echo ButtonNavbar("SKINCARE", "skincarePage", 120) ?>
-                <?php echo ButtonNavbar("GIFTS & SETS", "gift&setPage", 120) ?>
-                <?php echo ButtonNavbar("WOMEN & MEN", "women&menPage", 150) ?>
-            </div>
-            <div class="col-5 ">
-                <div class="row">
-                    <div class="col-5">
-                        <?php echo SearchNavbar() ?>
-                    </div>
-                    <div class="col-3">
-                        <?php echo CartNavbar() ?>
-                    </div>
+
+      <div class="row">
+          <div class="col">
+              <nav class="navbar p-0">
+                  <span id="brand" class="h1">
+                      <b>DDA-Comectic</b>
+                  </span>
+              </nav>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-7">
+              <?php echo ButtonNavbar("H O M E", "/", 90) ?>
+              <?php echo ButtonNavbar("BEST SELLERS", "bestSellerPage", 120) ?>
+              <?php echo ButtonNavbar("NEW", "newPage", 120) ?>
+              <?php echo ButtonNavbar("SKINCARE", "skincarePage", 120) ?>
+              <?php echo ButtonNavbar("GIFTS & SETS", "gift&setPage", 120) ?>
+              <?php echo ButtonNavbar("WOMEN & MEN", "women&menPage", 150) ?>
+          </div>
+          <div class="col-5 ">
+              <div class="row">
+                  <div class="col-5">
+                      <?php echo SearchNavbar() ?>
+                  </div>
+                  <div class="col-3">
+                      <?php echo CartNavbar() ?>
+                  </div>
                     @if(session()->has('user_data'))
                         <div class="col-4">
                             <?php echo ProfileNavbar() ?>

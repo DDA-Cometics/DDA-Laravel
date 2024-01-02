@@ -13,8 +13,13 @@ class DetailProductController extends Controller
     {
         $this->detailProductService = $detailProductService;
     }
-    function index() {
-        return view("pages.detailProduct.index");
+
+   
+    function index(Request $dataProduct) {//request []
+        $id =$dataProduct->query('id');
+        $data = $this->detailProductService->findById($id);
+        return view("pages.detailProduct.index",["products" =>$data]);
+
     }
     // function create(Request $request){   
     //     //Insert product into database

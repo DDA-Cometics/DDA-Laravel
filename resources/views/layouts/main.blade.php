@@ -134,7 +134,7 @@
                         <div class="col-4">
                             <?php echo ProfileNavbar() ?>
                         </div>
-            
+             
                     @else
                         <div class="col-4">
                             <?php echo ProfileNavbarLogin() ?>

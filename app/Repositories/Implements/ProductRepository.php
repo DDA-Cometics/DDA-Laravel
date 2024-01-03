@@ -19,6 +19,11 @@ class ProductRepository extends BaseRepository implements IProductRepository
         // return Product::select('*')->get();
         return Product::where('display_flag', true)->get();
     }
-    
+    public function getNewProduct(): Collection
+    {
+        return Product::where('display_flag', true)
+                    ->where('new_flag', true) // Thêm điều kiện khác ở đây
+                    ->get();
+    }
     //...............................................
 }

@@ -32,5 +32,6 @@ Route::put('/productManagement/update/{id}', [ProductController::class, 'updateP
 Route::post('/register/register', [login_registerController::class, "register"]);
 Route::post('/login/login', [login_registerController::class, "login"]);
 Route::get('/logout', [login_registerController::class, "logout"]);
+Route::get('/newPage', [ProductController::class, "getNewProduct"]);
 
 

@@ -15,6 +15,10 @@ class ProductService implements IProductService {
     {
         return $this->ProductRepository->sortPrices();
     }
+    function getNewProduct(): Collection
+    {
+        return $this->ProductRepository->getNewProduct();
+    }
     function create(array $data): mixed
     {
         

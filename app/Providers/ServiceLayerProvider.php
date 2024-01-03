@@ -12,6 +12,8 @@ use App\Services\Interfaces\IAdminService;
 use App\Services\Implements\AdminService;
 use App\Services\Interfaces\IDetailProductService;
 use App\Services\Implements\DetailProductService;
+use App\Services\Interfaces\IShopping_cartService;
+use App\Services\Implements\Shopping_cartService;
 use Illuminate\Support\ServiceProvider;
 
 class ServiceLayerProvider extends ServiceProvider
@@ -38,6 +40,10 @@ class ServiceLayerProvider extends ServiceProvider
         $this->app->singleton(
             IDetailProductService::class,
             DetailProductService::class
+        );
+        $this->app->singleton(
+            IShopping_cartService::class,
+            Shopping_cartService::class
         );
 
         $this->app->singleton(

@@ -7,6 +7,7 @@ use App\Http\Controllers\login_registerController;
 use App\Http\Controllers\VoucherController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DetailProductController;
+use App\Http\Controllers\shoppingCartController;
 use App\Models\login_register;
 
 Route::get('/vouchers', [VoucherController::class, "index"]);
@@ -32,6 +33,5 @@ Route::put('/productManagement/update/{id}', [ProductController::class, 'updateP
 Route::post('/register/register', [login_registerController::class, "register"]);
 Route::post('/login/login', [login_registerController::class, "login"]);
 Route::get('/logout', [login_registerController::class, "logout"]);
+Route::get('/cart', [shoppingCartController::class, "index"]);
 Route::get('/newPage', [ProductController::class, "getNewProduct"]);
-
-

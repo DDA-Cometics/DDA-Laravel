@@ -160,18 +160,71 @@
     display: none;
 }
 #date{
-    width: 150px;
-    border-radius: 5px;
-    justify-content: center;
-    text-align: center;
-    margin-left: 16px;
-    
-
+    padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 100%;
+        box-sizing: border-box;
+        /* Để padding và border không tăng kích thước */
+        margin-bottom: 10px;
+        margin-right: 15px;
+        margin-left: 15px;
 }
+
 #button5 {
     background-color: #e95008;
 }
 #note{
     color: rgb(104, 187, 20);
+}
+ 
+
+#loginModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40%;
+    margin-left: 35%;
+    visibility: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+
+}
+
+/* Checkbox được ẩn đi */
+.modal-toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Nền đen phía sau modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+/* Khi checkbox được chọn (checked) */
+.modal-toggle:checked+.modal-overlay {
+    display: block;
+}
+
+/* Điều chỉnh kiểu hiển thị của modal content */
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+.close{
+    text-align: right;
+    color: #f50909;
 }
 

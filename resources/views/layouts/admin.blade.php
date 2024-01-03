@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>@yield('title')</title>
+    <title>@yield('title')</title> 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -77,8 +77,8 @@
               <i class="fa-solid fa-user" id="profileIcon">
               </i>
               <i id="triangleIcon" class="fa-solid fa-caret-down"></i>
-              <a href="profile" id="iconProfile" class="iconText">PROFILE</a>
-              <a href="/" id="textBelowIcon" class="iconText">LOGOUT</a>
+              <a href="/profile" id="iconProfile" class="iconText">PROFILE</a>
+              <a href="/logout" id="textBelowIcon" class="iconText">LOGOUT</a>
               
           </form>
       ';

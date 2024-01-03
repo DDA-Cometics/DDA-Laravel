@@ -6,6 +6,19 @@
 @endsection
 
 @section('content')
+
+@if(session('error'))
+<div id="loginModal" class="modal">
+    <input type="checkbox" id="modalToggle" class="modal-toggle" checked> <!-- Thêm một checkbox để điều khiển hiển thị modal -->
+    <label for="modalToggle" class="modal-overlay"></label> <!-- Label sẽ đóng vai trò làm nền đen phía sau modal -->
+    <div class="modal-content">
+        <a href="" class="close text-danger ">x</a>
+        <center>
+            <p id="error"> {{ session('error') }}</p>
+        </center>
+    </div>
+</div>
+@endif
 <div class="container" id="containerLog">
     <div class="row">
         <div class="row">
@@ -17,13 +30,9 @@
             <div class="column" id="log">
                 <h2>Sign In</h2>
                 <label>Required (*)</label>
-                @if (isset($successMessage))
-                <div class="alert alert-success">
-                    {{ $successMessage }}
-                </div>
-                @endif
                 <!-- Form Login -->
-                <form action="/login?login" method="post">
+                <form action="/login/login" method="post">
+                    @csrf
                     <div>
                         <div class="form-group">
                             <input type="email" id="emailSignIn" name="email" placeholder="Email Address (*)" required>
@@ -33,9 +42,9 @@
                         </div>
                         <div id="form-check">
                             <label>
-                                <input id="check" type="checkbox" name="remember"> Remember me
+                                <input id="check" type="checkbox" name="remember"> Accept terms
                             </label>
-                            <a id="forgot" href="#">Forgot the password</a>
+                            <a id="?forgot" href="?fogot">Forgot the password</a>
                         </div>
                         <button id="buttonn" type="submit">Sign In</button>
                         <div class="divider">
@@ -62,8 +71,8 @@
                 </div>
                 @endif
                 <h2>Create Account</h2>
-                
-                <form action="/register" id="register" method="post">
+
+                <form action="/register/register" id="register" method="post">
                     @csrf
                     <br>
                     <div class="row">
@@ -151,4 +160,17 @@
     </div>
 </div>
 <br>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var closeBtn = document.querySelector('.close');
+        var modal = document.getElementById('loginModal');
+        var overlay = document.querySelector('.modal-overlay');
+
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+    });
+</script>
 @endsection

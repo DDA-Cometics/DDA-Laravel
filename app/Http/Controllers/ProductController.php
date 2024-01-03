@@ -24,6 +24,11 @@ class ProductController extends Controller
         $product = $this->productService->sortPrices();
         return view("home/index", ["products" => $product]);
     }
+    function getNewProduct()
+    {
+        $product = $this->productService->getNewProduct();
+        return view("pages.new.index", ["products" => $product]);
+    }
     function create(Request $request){
         $validator = Validator::make($request->all(), [
             'image' => 'required|url', // Ví dụ: Ảnh cần là URL

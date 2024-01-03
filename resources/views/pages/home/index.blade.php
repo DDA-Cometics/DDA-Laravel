@@ -209,13 +209,15 @@ function ButtonBuyNow()
 <div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
 
-        @php
-        $totalItems = count($products);
-        $slides = ceil($totalItems / 4);
-        @endphp
+      @php
+          $totalItems = count($products);
+          $slides = ceil($totalItems / 4);
+      @endphp
+    
+      @for ($i = 0; $i < $slides; $i++)
+          <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+              <div class="card-wrapper container-sm d-flex justify-content-around">
 
-        @for ($i = 0; $i < $slides; $i++) <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
-            <div class="card-wrapper container-sm d-flex justify-content-around">
 
                 @for ($j = $i * 4; $j < min(($i + 1) * 4, $totalItems); $j++) <div class="col-md-3">
                     @php

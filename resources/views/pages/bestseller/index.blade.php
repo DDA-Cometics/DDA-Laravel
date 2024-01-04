@@ -157,7 +157,7 @@ function favoritesProductCard($id, $name, $size, $price, $description, $category
                 <select class="form-control mt-4 bg-light" id="selectFilter"  name="category">
                     <option value="" >CATEGORY</option>
                     @php
-                        $uniqueCategories = $products->unique('category');
+                        $uniqueCategories = $productt->unique('category');
                     @endphp
                     @foreach ($uniqueCategories as $product)
                         <option value="{{ $product->category }}">{{ $product->category }}</option>
@@ -169,7 +169,7 @@ function favoritesProductCard($id, $name, $size, $price, $description, $category
                     <option value="" >SKIN CONCERNS</option>
                     <!-- Thêm các tùy chọn về Skin Concerns -->
                     @php
-                        $uniqueSkinConcerns = $products->unique('skin_concerns');
+                        $uniqueSkinConcerns = $productt->unique('skin_concerns');
                     @endphp
                     @foreach ($uniqueSkinConcerns as $product)
                         <option value="{{ $product-> skin_concerns}}">{{ $product->skin_concerns }}</option>
@@ -180,7 +180,7 @@ function favoritesProductCard($id, $name, $size, $price, $description, $category
                     <option value="" >SKIN TYPE</option>
                     <!-- Thêm các tùy chọn về Skin Type -->
                     @php
-                        $uniqueSkinType = $products->unique('skin_type');
+                        $uniqueSkinType = $productt->unique('skin_type');
                     @endphp
                     @foreach ($uniqueSkinType as $product)
                         <option value="{{ $product-> skin_type}}">{{ $product->skin_type }}</option>
@@ -191,7 +191,7 @@ function favoritesProductCard($id, $name, $size, $price, $description, $category
                     <option value="" >INGREDIENT</option>
                     <!-- Thêm các tùy chọn về Ingredient -->
                     @php
-                        $uniqueIngredient = $products->unique('ingredient');
+                        $uniqueIngredient = $productt->unique('ingredient');
                     @endphp
                     @foreach ($uniqueIngredient as $product)
                         <option value="{{ $product-> ingredient}}">{{ $product->ingredient }}</option>
@@ -203,25 +203,44 @@ function favoritesProductCard($id, $name, $size, $price, $description, $category
         <div class="col-9">
             <div class="row">
                 
-                @foreach ($products as $product)
-                    <div class="col ml-2 mt-4">
-                        @php 
-                            CardBestller(
-                                $product->id,
-                                $product->product_name,
-                                $product->size,
-                                $product->price,
-                                $product->description,
-                                $product->category,
-                                $product->image,
-                                50,
-                            );
-                        @endphp
-                    </div>
-                    @if ($loop->iteration % 4 == 0)
-                        </div><div class="row">
-                    @endif
-                @endforeach
+                @if(count($products) > 0)
+    {{-- Hiển thị danh sách sản phẩm --}}
+    <div class="row">
+      @foreach ($products as $product)
+        <div class="col ml-2 mt-4">
+          @php 
+            // Gọi hàm để hiển thị sản phẩm
+            CardBestller(
+              $product->id,
+              $product->product_name,
+              $product->size,
+              $product->price,
+              $product->description,
+              $product->category,
+              $product->image,
+              50
+            );
+          @endphp
+        </div>
+        @if ($loop->iteration % 4 == 0)
+          </div><div class="row">
+        @endif
+      @endforeach
+    </div>
+  @else
+    <center class="col message">
+        I apologize, but no matching products were found. 
+    </center>
+    <div class="row text-center " style="width:100vw">
+        <div class="col-5"></div>
+        <form action="/fillter" method="get">
+            <center class=""> 
+                <button type="submit" class=" btn fillter mt-2" id="fillterSearch">GET ALL</button>
+            </center> 
+        </form>
+  </div>
+  
+  @endif
             </div>
         </div>        
     </div>
@@ -230,7 +249,7 @@ function favoritesProductCard($id, $name, $size, $price, $description, $category
         <div class="carousel-inner">
     
           @php
-              $totalItems = count($products);
+              $totalItems = count($productt);
               $slides = ceil($totalItems / 4);
           @endphp
         
@@ -242,13 +261,13 @@ function favoritesProductCard($id, $name, $size, $price, $description, $category
                     @for ($j = $i * 4; $j < min(($i + 1) * 4, $totalItems); $j++) <div class="col-md-3">
                         @php
                         favoritesProductCard(
-                        $products[$j]->id,
-                        $products[$j]->product_name,
-                        $products[$j]->size,
-                        $products[$j]->price,
-                        $products[$j]->description,
-                        $products[$j]->category,
-                        $products[$j]->image,
+                        $productt[$j]->id,
+                        $productt[$j]->product_name,
+                        $productt[$j]->size,
+                        $productt[$j]->price,
+                        $productt[$j]->description,
+                        $productt[$j]->category,
+                        $productt[$j]->image,
                         ); @endphp
                 </div>
                 @endfor

@@ -160,14 +160,14 @@ function toggleControForm(id, isHidden) {
                                     </div>
                                     <div class="form-inp">
                                         <label for="active_datetime">Active Datetime:</label>
-                                        <input type="datetime-local" id="active_datetime" name="active_datetime">
+                                        <input type="datetime-local" id="active_datetime" value="{{$p->active_datetime}}" name="active_datetime">
                                         @if ($errors->has('active_datetime'))
                                             <span class="error">{{ $errors->first('active_datetime') }}</span>
                                         @endif
                                     </div>
                                     <div class="form-inp">
                                         <label for="expired_datetime">expired_datetime:</label>
-                                        <input type="datetime-local" id="expired_datetime" name="expired_datetime">
+                                        <input type="datetime-local" id="expired_datetime" value="{{$p->expired_datetime}}" name="expired_datetime">
                                         @if ($errors->has('expired_datetime'))
                                             <span class="error">{{ $errors->first('expired_datetime') }}</span>
                                             @endif

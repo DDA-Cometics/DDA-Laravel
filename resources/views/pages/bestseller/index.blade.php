@@ -149,11 +149,12 @@ function favoritesProductCard($id, $name, $size, $price, $description, $category
         }
    </script>
     <?php generateDiscountHeader2("SKINCARE TOP SELLER") ?>
+
     <div class="row mx-4">
         <div class="col-3 bg-light" id="formFillter">
-            <form action="/filter" method="get" id="formFillters">
+            <form action="/fillter" method="get" id="formFillters">
                 <center class="mt-5"> <b class="fillter mt-5" id="fillter">FILLTER BY</b></center>
-                <select class="form-control mt-4 bg-light" id="selectFilter">
+                <select class="form-control mt-4 bg-light" id="selectFilter"  name="category">
                     <option value="" >CATEGORY</option>
                     @php
                         $uniqueCategories = $products->unique('category');
@@ -164,7 +165,7 @@ function favoritesProductCard($id, $name, $size, $price, $description, $category
                     <!-- Thêm các tùy chọn danh mục -->
                 </select>
                 
-                <select class="form-control mt-4 bg-light" id="selectFilter">
+                <select class="form-control mt-4 bg-light" id="selectFilter"  name="skin_concerns">
                     <option value="" >SKIN CONCERNS</option>
                     <!-- Thêm các tùy chọn về Skin Concerns -->
                     @php
@@ -175,7 +176,7 @@ function favoritesProductCard($id, $name, $size, $price, $description, $category
                     @endforeach
                 </select>
                 
-                <select class="form-control mt-4 bg-light" id="selectFilter">
+                <select class="form-control mt-4 bg-light" id="selectFilter" name="skin_type">
                     <option value="" >SKIN TYPE</option>
                     <!-- Thêm các tùy chọn về Skin Type -->
                     @php
@@ -186,7 +187,7 @@ function favoritesProductCard($id, $name, $size, $price, $description, $category
                     @endforeach
                 </select>
                 
-                <select class="form-control mt-4 bg-light" id="selectFilter">
+                <select class="form-control mt-4 bg-light" id="selectFilter" name="ingredient">
                     <option value="" >INGREDIENT</option>
                     <!-- Thêm các tùy chọn về Ingredient -->
                     @php
@@ -201,6 +202,7 @@ function favoritesProductCard($id, $name, $size, $price, $description, $category
         </div>
         <div class="col-9">
             <div class="row">
+                
                 @foreach ($products as $product)
                     <div class="col ml-2 mt-4">
                         @php 

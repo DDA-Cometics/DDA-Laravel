@@ -115,9 +115,9 @@ class ProductController extends Controller
 
         // Lấy kết quả
         $filteredProducts = $query->get();
-        $product = $this->productService->getNewProduct();
+        $productt = $this->productService->getNewProduct();
         // Trả về view hiển thị kết quả filter
-        return view("pages.bestseller.index", ["products" => $filteredProducts]);
+        return view("pages.bestseller.index", ["products" => $filteredProducts,"productt" => $productt]);
     }
 }
 

@@ -235,9 +235,14 @@
         font-style: normal;
         font-weight: 600;
         border-color: pink; /* Màu sắc khi thẻ được focus */
-        box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25); /* Hiệu ứng bóng khi focus */
+        box-shadow: 0 0 0 0.2rem rgba(227, 12, 12, 0.25); /* Hiệu ứng bóng khi focus */
     }
     #formFillter,#formFillters{
        max-height:600px;
        border-radius: 10px;
+    }
+    .message{
+      font-size: 60px;
+      color: rgba(55, 1, 1, 0.873);
+      text-shadow: 0 0 2px #ffffff, 0 0 15px #70ffff, 0 0 20px #46fdff, 0 0 40px #46fdff; 
     }

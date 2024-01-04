@@ -35,3 +35,6 @@ Route::post('/login/login', [login_registerController::class, "login"]);
 Route::get('/logout', [login_registerController::class, "logout"]);
 Route::get('/cart', [shoppingCartController::class, "index"]);
 Route::get('/newPage', [ProductController::class, "getNewProduct"]);
+Route::post('/voucherManagement/create', [AdminController::class, "voucherManagementCreate"]);
+Route::delete('/voucherManagement/delete', [AdminController::class, "voucherManagementDelete"]);
+Route::put('/voucherManagement/update/{id}', [AdminController::class, "voucherManagementUpdate"]);

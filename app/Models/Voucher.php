@@ -11,5 +11,5 @@ class Voucher extends Model
     use HasFactory, SoftDeletes;
     
     protected $table = "vouchers";
-    protected $fillable = ["id", "discount", "description", "active_datetime", "expired_dateime"];
+    protected $fillable = ["id", "discount", "description", "active_datetime", "expired_dateime","updated_at"];
 }

@@ -3,9 +3,49 @@
 @section('css')
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/bestseller.css">
+  <link rel="stylesheet" href="/assets/css/home.css">
 @endsection
 @section('content')
 <?php
+function favoritesProductCard($id, $name, $size, $price, $description, $category, $image)
+{
+    echo '
+                <div class="card mr-3 mb-3">
+                    <div class="circle-container">
+                        <span>Bests Seller</span>
+                    </div>
+                    <img class="img"
+                        src="' . $image . '"
+                        alt="a">
+                    <div class="title text-truncate">' . $name . '</div>
+                    <div class="rating">
+                        <input value="5" name="rate" id="star5" type="radio">
+                        <label title="text" for="star5"></label>
+                        <input value="4" name="rate" id="star4" type="radio">
+                        <label title="text" for="star4"></label>
+                        <input value="3" name="rate" id="star3" type="radio" checked="">
+                        <label title="text" for="star3"></label>
+                        <input value="2" name="rate" id="star2" type="radio">
+                        <label title="text" for="star2"></label>
+                        <input value="1" name="rate" id="star1" type="radio">
+                        <label title="text" for="star1"></label>
+                        <span class="ratingTotal">(' . 999 . ')</span>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="oldPrice">
+                                Price: $' . $price . '
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn mb-3" id="buynowBtn" onclick="redirectToDetail(' . $id . ')">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            ';
+}
   function generateDiscountHeader($text) {
           echo '
       <div class="container-fluid" id="borderHr">
@@ -110,8 +150,54 @@
    </script>
     <?php generateDiscountHeader2("SKINCARE TOP SELLER") ?>
     <div class="row mx-4">
-        <div class="col-3 bg-light" style="max-height:600px">
-           <center> <button class="btn fillter mt-4" id="fillter">FILLTER BY</button></center>
+        <div class="col-3 bg-light" id="formFillter">
+            <form action="/filter" method="get" id="formFillters">
+                <center class="mt-5"> <b class="fillter mt-5" id="fillter">FILLTER BY</b></center>
+                <select class="form-control mt-4 bg-light" id="selectFilter">
+                    <option value="" >CATEGORY</option>
+                    @php
+                        $uniqueCategories = $products->unique('category');
+                    @endphp
+                    @foreach ($uniqueCategories as $product)
+                        <option value="{{ $product->category }}">{{ $product->category }}</option>
+                    @endforeach
+                    <!-- Thêm các tùy chọn danh mục -->
+                </select>
+                
+                <select class="form-control mt-4 bg-light" id="selectFilter">
+                    <option value="" >SKIN CONCERNS</option>
+                    <!-- Thêm các tùy chọn về Skin Concerns -->
+                    @php
+                        $uniqueSkinConcerns = $products->unique('skin_concerns');
+                    @endphp
+                    @foreach ($uniqueSkinConcerns as $product)
+                        <option value="{{ $product-> skin_concerns}}">{{ $product->skin_concerns }}</option>
+                    @endforeach
+                </select>
+                
+                <select class="form-control mt-4 bg-light" id="selectFilter">
+                    <option value="" >SKIN TYPE</option>
+                    <!-- Thêm các tùy chọn về Skin Type -->
+                    @php
+                        $uniqueSkinType = $products->unique('skin_type');
+                    @endphp
+                    @foreach ($uniqueSkinType as $product)
+                        <option value="{{ $product-> skin_type}}">{{ $product->skin_type }}</option>
+                    @endforeach
+                </select>
+                
+                <select class="form-control mt-4 bg-light" id="selectFilter">
+                    <option value="" >INGREDIENT</option>
+                    <!-- Thêm các tùy chọn về Ingredient -->
+                    @php
+                        $uniqueIngredient = $products->unique('ingredient');
+                    @endphp
+                    @foreach ($uniqueIngredient as $product)
+                        <option value="{{ $product-> ingredient}}">{{ $product->ingredient }}</option>
+                    @endforeach
+                </select>
+                <center class=""> <button type="submit" class=" btn fillter mt-2" id="fillterSearch">SEARCH</button></center>
+            </form>
         </div>
         <div class="col-9">
             <div class="row">
@@ -138,6 +224,48 @@
         </div>        
     </div>
     <?php generateDiscountHeader("YOU MAY ALSO LIKE") ?>
-
+    <div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+    
+          @php
+              $totalItems = count($products);
+              $slides = ceil($totalItems / 4);
+          @endphp
+        
+          @for ($i = 0; $i < $slides; $i++)
+              <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                  <div class="card-wrapper container-sm d-flex justify-content-around">
+    
+    
+                    @for ($j = $i * 4; $j < min(($i + 1) * 4, $totalItems); $j++) <div class="col-md-3">
+                        @php
+                        favoritesProductCard(
+                        $products[$j]->id,
+                        $products[$j]->product_name,
+                        $products[$j]->size,
+                        $products[$j]->price,
+                        $products[$j]->description,
+                        $products[$j]->category,
+                        $products[$j]->image,
+                        ); @endphp
+                </div>
+                @endfor
+    
+        </div>
+    </div>
+    @endfor
+    
+    </div>
+    
+    <a class="carousel-control-prev" href="#carouselExampleControls1" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    
+    <a class="carousel-control-next" href="#carouselExampleControls1" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    </div>
     <?php generateDiscountHeader("ABOUT US") ?>
 @endsection

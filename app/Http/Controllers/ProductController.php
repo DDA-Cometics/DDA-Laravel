@@ -85,5 +85,39 @@ class ProductController extends Controller
 
         return redirect('/productManagement');
     }
+    public function filterProducts(Request $request)
+    {
+        // Lấy giá trị từ form
+        $category = $request->input('category');
+        $skinConcerns = $request->input('skin_concerns');
+        $skinType = $request->input('skin_type');
+        $ingredient = $request->input('ingredient');
+
+        // Bắt đầu với một query cho tất cả sản phẩm
+        $query = Product::query();
+
+        // Áp dụng các bộ lọc nếu có giá trị
+        if ($category) {
+            $query->where('category', $category);
+        }
+
+        if ($skinConcerns) {
+            $query->where('skin_concerns', $skinConcerns);
+        }
+
+        if ($skinType) {
+            $query->where('skin_type', $skinType);
+        }
+
+        if ($ingredient) {
+            $query->where('ingredient', $ingredient);
+        }
+
+        // Lấy kết quả
+        $filteredProducts = $query->get();
+        $product = $this->productService->getNewProduct();
+        // Trả về view hiển thị kết quả filter
+        return view("pages.bestseller.index", ["products" => $filteredProducts]);
+    }
 }
 

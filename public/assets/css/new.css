@@ -10,7 +10,15 @@
     margin-top: 50px;
     margin-bottom: 50px;
 }
-
+.card:hover {
+    box-shadow: 0 8px 50px #23232333;
+    transform: translateY(0.5%);
+    opacity: 1;
+}
+.card:hover #buynowBtn{
+    background: #f70063;
+    color: #FFF;
+    }
 #buttonSignUp,
 #buttonSignIn {
     width: 161.434px;

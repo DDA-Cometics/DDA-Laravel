@@ -131,7 +131,7 @@ function discountBanner($n)
 }
 function ButtonBuyNow()
 {
-    echo '<button class="btn mr-5" id="buynowBtn">Buy Now</button>';
+    echo '<a href="bestSellerPage"><button class="btn mr-5" id="buynowBtn">Buy Now</button></a>';
 
     }
     function ButtonSignUp(){
@@ -268,18 +268,20 @@ function ButtonBuyNow()
                 </div>
             </div>
             <div class="row mt-5">
-                <div class="col">
-                    <?php ButtonSignUp(); ?>
-                </div>
-                <div class="col">
-                    <?php ButtonSignIn(); ?>
-                </div>
-                <div class="col "></div>
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                    <!-- <?php ButtonBuyNow(); ?> -->
-                </div>
+                @if(session()->has('user_data'))
+                    <div class="col "></div>
+                    <div class="col text-center">
+                        <?php ButtonBuyNow(); ?>
+                    </div>
+                    <div class="col"></div>
+                @else
+                    <div class="col">
+                        <?php ButtonSignUp(); ?>
+                    </div>
+                    <div class="col">
+                        <?php ButtonSignIn(); ?>
+                    </div>  
+                @endif
             </div>
         </div>
         <div class="col-5 ">

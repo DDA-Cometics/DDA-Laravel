@@ -9,12 +9,13 @@
 @section('content')
 
     <?php
-    function createCartPage($id, $name, $size, $price, $description, $category, $image, $discount)
+    
+    function createCartPage($id, $name, $size, $price, $description, $category, $image, $discount,$quanity)
     {
         echo '
          <div class="row" id="containerProducts" >
-            <div class="col-4">
-                <img src="' .
+            <div class="col-4 mt-2">
+                <img style="width:150px;height:200px;" src="' .
             $image .
             '" alt="' .
             $name .
@@ -23,7 +24,7 @@
             <div class="col-8">
                 <h5>' .
             $name .
-            '</h5><br>
+            '</h5><br>  
                 <div class="row">
                     <div class="col-4">
                         <i class="fa-solid fa-circle-info"></i> YOU GET ' .
@@ -37,7 +38,7 @@
                         <h6>Quantity</h6>
                         <div class="quantity-container">
                             <button class="btn btn-light decreaseBtn">-</button>
-                            <input type="number" class="form-control quantity-input" style="width: 50px;" value="1">
+                            <input style="width:70px" type="number" class="form-control quantity-input" style="width: 50px;" value="'.$quanity.'">
                             <button class="btn btn-light increaseBtn">+</button>
                         </div>
                         </div>
@@ -69,38 +70,6 @@
            </div>';
     }
     
-    $shoppingCart = [
-        [
-            'id' => 1,
-            'name' => 'Product 1',
-            'size' => '0.95 fl oz / 28 ml',
-            'price' => 50.0,
-            'description' => 'Description 1',
-            'category' => 'Category 1',
-            'image' => 'https://res.cloudinary.com/duas1juqs/image/upload/v1703816580/Web%20DDA%20COMECTIC/xxwbt9kmbhkhbdmaxfon.png',
-            'discount' => 25.0,
-        ],
-        [
-            'id' => 2,
-            'name' => 'Product 2',
-            'size' => '1.5 fl oz / 45 ml',
-            'price' => 75.0,
-            'description' => 'Description 2',
-            'category' => 'Category 2',
-            'image' => 'https://res.cloudinary.com/duas1juqs/image/upload/v1703816580/Web%20DDA%20COMECTIC/xxwbt9kmbhkhbdmaxfon.png',
-            'discount' => 15.0,
-        ],
-        [
-            'id' => 3,
-            'name' => 'Product 3',
-            'size' => '1.0 fl oz / 30 ml',
-            'price' => 60.0,
-            'description' => 'Description 3',
-            'category' => 'Category 3',
-            'image' => 'https://res.cloudinary.com/duas1juqs/image/upload/v1703816580/Web%20DDA%20COMECTIC/xxwbt9kmbhkhbdmaxfon.png',
-            'discount' => 10.0,
-        ],
-    ];
     ?>
 
     <body>
@@ -115,11 +84,25 @@
                     <hr style="border: 1px solid;">
                 </div>
 
-                <?php
-                foreach ($shoppingCart as $product) {
-                    createCartPage($product['id'], $product['name'], $product['size'], $product['price'], $product['description'], $product['category'], $product['image'], $product['discount']);
-                }
-                ?>
+                
+                @foreach ($shoppingCart as $cartItem)
+                @php
+                    createCartPage(
+                        $cartItem['products']['product_id'],
+                        $cartItem['products']['product_name'],
+                        $cartItem['products']['size'],
+                        $cartItem['products']['price'],
+                        $cartItem['products']['description'],
+                        $cartItem['products']['category'],
+                        $cartItem['products']['image'],
+                        50,
+                        $cartItem['quanity']
+                    );
+                @endphp
+            @endforeach
+            
+                
+                
             </div>
 
             <div class="col-5 mx-auto " id="payMent">

@@ -14,8 +14,13 @@ class shoppingCartController extends Controller
         $this->Shopping_cartService = $Shopping_cartService;
     }
 
-    function index() {
-       
-        return view("pages.Shopping_cart.index");
-    } 
+    function index(Request $request) {
+        $data= $request->all();
+        $this->Shopping_cartService->create($data);
+        return redirect("/cart");
+    }
+    function getToCart() {
+        $shoppingCart=$this->Shopping_cartService->returnProductWithCart();
+        return view("pages.Shopping_cart.index",["shoppingCart"=>$shoppingCart]);
+    }
 }

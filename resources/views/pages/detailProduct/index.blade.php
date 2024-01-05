@@ -70,22 +70,25 @@
                                 <option value="{{ $products->size }}">{{ $products->size }}ml</option>
                             </select>
                         </div>
+                        <form action="/addToCart" method="post">
+                            @csrf
+                                <input type="number" name="id" value="{{ session('user_data')['id'] }}" class="d-none">
                         <div class="container mt-5">
                             <div class="quantity-container">
-                                <button class="btn btn-light" id="decreaseBtn">-</button>
-                                <input type="text" class="form-control quantity-input" id="quantityInput" value="1"
+                                <button type="button" class="btn btn-light" id="decreaseBtn">-</button>
+                                <input type="number" class="form-control quantity-input" id="quanity" name="quanity" value="1"
                                     readonly>
-                                <button class="btn btn-light" id="increaseBtn">+</button>
+                                <button type="button" class="btn btn-light" id="increaseBtn">+</button>
                             </div>
                         </div><br>
                         <div class="button-container">
-                            <button class="btn" id="buynowBtn">Buy Now</button>
+                            <button type="button" class="btn" id="buynowBtn">Buy Now</button>
 
-                            <button class="btn custom-button cart-button" id="buynowBtn">
+                            <button type="submit" name="product_id" value="{{ $products->id }}" class="btn custom-button cart-button" id="product_id">
                                 <i class="fa-solid fa-cart-shopping text-light"></i>
                             </button>
                         </div>
-
+                    </form>
                     </div>
                 </div>
             </div>
@@ -99,8 +102,8 @@
         let originalWidth, originalHeight;
 
         function changeImage(newImageUrl) {
-            const quantityInput = document.getElementById('quantityInput');
-            currentQuantity = quantityInput.value;
+            const quanity = document.getElementById('quanity');
+            currentQuantity = quanity.value;
 
             const mainImage = document.getElementById('mainImage');
             if (!originalWidth && !originalHeight) {
@@ -113,7 +116,7 @@
             mainImage.style.height = originalHeight + 'px';
             mainImage.style.border = 'none';
 
-            quantityInput.value = currentQuantity;
+            quanity.value = currentQuantity;
         }
 
         document.getElementById('decreaseBtn').addEventListener('click', () => {
@@ -125,13 +128,13 @@
         });
 
         function updateQuantity(change) {
-            const quantityInput = document.getElementById('quantityInput');
-            let newQuantity = parseInt(quantityInput.value) + change;
+            const quanity = document.getElementById('quanity');
+            let newQuantity = parseInt(quanity.value) + change;
 
 
             newQuantity = Math.max(1, newQuantity);
 
-            quantityInput.value = newQuantity;
+            quanity.value = newQuantity;
             currentQuantity = newQuantity;
         }
     </script>

@@ -18,6 +18,10 @@ class Product extends Model
 
     protected $table = "products";
     protected $fillable = ["id","product_name","size","price","dicription","category","display_flag","new","image"];
+    public function shoppingCart()
+    {
+        return $this->hasMany(Shopping_cart::class, 'product_id');
+    }
 }
 class User extends Model
 {

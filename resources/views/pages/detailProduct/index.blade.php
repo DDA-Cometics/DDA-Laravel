@@ -13,23 +13,23 @@
         <div class="row">
             <div class="col-md-6 ">
                 <div class="d-flex justify-content-center">
-                    <img id="mainImage" src="{{ $products->image }}" alt="Sữa tắm" class="img-fluid mb-3">
+                    <img id="mainImage" src="{{ $products->image }}" alt="{{ $products->name}}" class="img-fluid mb-3">
                 </div>
                 <div class="d-flex justify-content-center">
                     <div class="col-4 mx-1" style="padding: 0; ">
-                        <img onclick="changeImage('https://res.cloudinary.com/duas1juqs/image/upload/v1703471009/Web%20DDA%20COMECTIC/p1qqsfgpmdepdwj7rsnv.png')"
-                            src="https://res.cloudinary.com/duas1juqs/image/upload/v1703471009/Web%20DDA%20COMECTIC/p1qqsfgpmdepdwj7rsnv.png"
-                            alt="Dầu gội" class="small-image">
+                        <img onclick="changeImage('{{ $products->image }}')"
+                            src="{{ $products->image }}"
+                            alt="{{ $products->name }}" class="small-image">
                     </div>
                     <div class="col-4 mx-1" style="padding: 0;">
-                        <img onclick="changeImage('https://res.cloudinary.com/duas1juqs/image/upload/v1703471073/Web%20DDA%20COMECTIC/mzhk9ji272xq0rn66p0s.png')"
-                            src="https://res.cloudinary.com/duas1juqs/image/upload/v1703471073/Web%20DDA%20COMECTIC/mzhk9ji272xq0rn66p0s.png"
+                        <img onclick="changeImage('https://res.cloudinary.com/dpmcvuhew/image/upload/v1704446075/DDA-Cometics/3-vector-sale-mua-thu-2_axdzab.png')"
+                            src="https://res.cloudinary.com/dpmcvuhew/image/upload/v1704446075/DDA-Cometics/3-vector-sale-mua-thu-2_axdzab.png"
                             alt="Chăm sóc" class="small-image">
                     </div>
-                    <div class="col-4 mx-1" style="padding: 0;">
-                        <img onclick="changeImage('https://res.cloudinary.com/duas1juqs/image/upload/v1703471149/Web%20DDA%20COMECTIC/if4p8lvjdcrlugq7hvpw.png')"
-                            src="https://res.cloudinary.com/duas1juqs/image/upload/v1703471149/Web%20DDA%20COMECTIC/if4p8lvjdcrlugq7hvpw.png"
-                            alt="Dầu xả" class="small-image">
+                    <div class="col-4 mx-1" style="padding: 0; ">
+                        <img onclick="changeImage('{{ $products->image }}')"
+                            src="{{ $products->image }}"
+                            alt="{{ $products->name }}" class="small-image">
                     </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@ use App\Repositories\Interfaces\IAdminRepository;
 use App\Repositories\Implements\DetailProductRepository;
 use App\Repositories\Interfaces\IDetailProductRepository;
 use App\Repositories\Implements\Shopping_cartRepository;
-use App\Repositories\Interfaces\IShoppingCartRepository;
+use App\Repositories\Interfaces\IShopping_cartRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryProvider extends ServiceProvider
@@ -51,7 +51,7 @@ class RepositoryProvider extends ServiceProvider
             DetailProductRepository::class
         );
         $this->app->singleton(
-            IShoppingCartRepository::class,
+            IShopping_cartRepository::class,
             Shopping_cartRepository::class
         );
     }

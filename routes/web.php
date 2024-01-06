@@ -29,7 +29,7 @@ Route::post('/add-to-cart', [shoppingCartController::class, "index"]);
 Route::get('/cart', [shoppingCartController::class, "getToCart"]);
 Route::get('/new-products', [ProductController::class, "getNewProduct"]);
 Route::get('/fillter', [ProductController::class, "filterProducts"]);
-
+Route::get('/profile', [HomeController::class, "profileView"]);
 
 Route::prefix("/admin")->group(function () {
     Route::post('/voucher-management/create', [AdminController::class, "voucherManagementCreate"]);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Services\Interfaces\IAdminService;
+use App\Services\Interfaces\IVoucherService;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -12,6 +13,7 @@ class AdminController extends Controller
 
     public function __construct(
         private IAdminService $AdminService,
+        private IVoucherService $VoucherService,
         // private IProductService $productService
         )
     {}
@@ -87,5 +89,52 @@ class AdminController extends Controller
     $this->AdminService->update($userIdToUpdate, $data);
 
     return redirect('/userManagement');
-    }   
+    }
+    function voucherManagementCreate(Request $request){
+        // $validator = Validator::make($request->all(), [
+        //     'description' => 'required|string',
+        //     'discount' => 'required|number',
+        //     'active_datetime' => 'required|date',
+        //     'expired_datetime' => 'required|date',
+        // ]);
+
+        // if ($validator->fails()) {
+        //     return redirect('/voucherManagement') // Điều hướng nếu dữ liệu không hợp lệ
+        //         ->withErrors($validator)
+        //         ->withInput();
+        // }
+        //Insert product into database
+        $data= $request->all();
+        $this->VoucherService->createVoucher($data);
+        // Store the user...
+        return redirect('/voucherManagement');
+    }
+    function voucherManagementDelete(Request $id){
+        // Lấy dữ liệu từ request, ví dụ trường 'id'
+        $voucherIdToDelete = $id->all();
+        // Gọi hàm delete từ AdminService để xóa người dùng
+        $this->VoucherService->deleteVoucher($voucherIdToDelete);
+
+        return redirect('/voucherManagement');
+    }
+    function voucherManagementUpdate(Request $request){
+        // // Lấy dữ liệu từ request, ví dụ trường 'id'
+        // $userIdToUpdate = $id;
+        // $data = $attributes->all();
+
+        // // Gọi hàm delete từ AdminService để xóa người dùng
+        // $this->AdminService->update($userIdToUpdate, $data);
+
+        // return redirect('/userManagement');
+        // Lấy dữ liệu từ request, ví dụ trường 'id'
+    $userIdToUpdate = $request->input('id');
+
+    // Lấy các trường cần cập nhật từ request
+    $data = $request->except(['_token', '_method', 'id']);
+
+    // Gọi hàm update từ AdminService để cập nhật người dùng
+    $this->VoucherService->updateVoucher($userIdToUpdate, $data);
+
+    return redirect('/voucherManagement');
+    }
 }

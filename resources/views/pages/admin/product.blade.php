@@ -61,8 +61,28 @@
                     <span class="error">{{ $errors->first('category') }}</span>
                     @endif
                 </div>
-
-                <button id="submit-button" type="submit">Create</button>
+                <div class="form-inp">
+                    <label for="skin_type">skin_type:</label>
+                    <input type="text" id="skin_type" name="skin_type" required><br>
+                    @if ($errors->has('skin_type'))
+                    <span class="error">{{ $errors->first('skin_type') }}</span>
+                    @endif
+                </div>
+                <div class="form-inp">
+                    <label for="skin_concerns">skin_concerns:</label>
+                    <input type="text" id="skin_concerns" name="skin_concerns" required><br>
+                    @if ($errors->has('skin_concerns'))
+                    <span class="error">{{ $errors->first('skin_concerns') }}</span>
+                    @endif
+                </div>
+                <div class="form-inp">
+                    <label for="ingredient">ingredient:</label>
+                    <input type="text" id="ingredient" name="ingredient" required><br>
+                    @if ($errors->has('ingredient'))
+                    <span class="error">{{ $errors->first('ingredient') }}</span>
+                    @endif
+                </div>
+                <button id="submit-button" class="mb-3" type="submit">Create</button>
                 <button id="cancel-button" type="button" onclick="toggleForm()">Cancel</button>
 
             </form>
@@ -71,6 +91,9 @@
     </div>
 </div>
 <div class="table-wrapper">
+    <div class="context">
+        <h3>LIST PRODUCT<hr ></h5>
+    </div>
     <table id="productTable">
         <thead id=" row1">
             <tr>
@@ -135,6 +158,18 @@
                                 <div class="form-inp">
                                     <label for="category">Category</label>
                                     <input type="text" id="category" value="{{ $p->category }}" name="category">
+                                </div>
+                                <div class="form-inp">
+                                    <label for="ingredient">ingredient</label>
+                                    <input type="text" id="ingredient" value="{{ $p->ingredient }}" name="ingredient">
+                                </div>
+                                <div class="form-inp">
+                                    <label for="skin_type">skin_type</label>
+                                    <input type="text" id="skin_type" value="{{ $p->skin_type }}" name="skin_type">
+                                </div>
+                                <div class="form-inp">
+                                    <label for="skin_concerns">skin_concerns</label>
+                                    <input type="text" id="skin_concerns" value="{{ $p->skin_concerns }}" name="skin_concerns">
                                 </div>
                                 <button id="submit-button" type="submit" name="id" value="{{ $p->id }}" class="mb-3">Edit</button>
                                 <button id="cancel-button" type="button" onclick="toggleForm2('{{$p->id}}')">Cancel</button>

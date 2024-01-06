@@ -131,7 +131,7 @@ function discountBanner($n)
 }
 function ButtonBuyNow()
 {
-    echo '<button class="btn mr-5" id="buynowBtn">Buy Now</button>';
+    echo '<a href="bestSellerPage"><button class="btn mr-5" id="buynowBtn">Buy Now</button></a>';
 
     }
     function ButtonSignUp(){
@@ -209,13 +209,15 @@ function ButtonBuyNow()
 <div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
 
-        @php
-        $totalItems = count($products);
-        $slides = ceil($totalItems / 4);
-        @endphp
+      @php
+          $totalItems = count($products);
+          $slides = ceil($totalItems / 4);
+      @endphp
+    
+      @for ($i = 0; $i < $slides; $i++)
+          <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+              <div class="card-wrapper container-sm d-flex justify-content-around">
 
-        @for ($i = 0; $i < $slides; $i++) <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
-            <div class="card-wrapper container-sm d-flex justify-content-around">
 
                 @for ($j = $i * 4; $j < min(($i + 1) * 4, $totalItems); $j++) <div class="col-md-3">
                     @php
@@ -266,18 +268,20 @@ function ButtonBuyNow()
                 </div>
             </div>
             <div class="row mt-5">
-                <div class="col">
-                    <?php ButtonSignUp(); ?>
-                </div>
-                <div class="col">
-                    <?php ButtonSignIn(); ?>
-                </div>
-                <div class="col "></div>
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                    <!-- <?php ButtonBuyNow(); ?> -->
-                </div>
+                @if(session()->has('user_data'))
+                    <div class="col "></div>
+                    <div class="col text-center">
+                        <?php ButtonBuyNow(); ?>
+                    </div>
+                    <div class="col"></div>
+                @else
+                    <div class="col">
+                        <?php ButtonSignUp(); ?>
+                    </div>
+                    <div class="col">
+                        <?php ButtonSignIn(); ?>
+                    </div>  
+                @endif
             </div>
         </div>
         <div class="col-5 ">

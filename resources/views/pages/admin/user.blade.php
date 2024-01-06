@@ -201,7 +201,7 @@ function toggleControForm(id, isHidden) {
                     <div class="col">
                         <div  >
                             <div class="containerForm2 ">
-                                <form action=" /userManagement/update/{{$p->id}}"method="POST" id="formUser2" class="d-none">
+                                <form action="/userManagement/update/{{$p->id}}"method="POST" id="formUser2" class="d-none">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-inp">

@@ -14,5 +14,19 @@ class VoucherService implements IVoucherService {
     {
         return $this->voucherRepository->getAllActiveVouchers();
     }
-    
+    function createVoucher(array $data): mixed
+    {
+
+        return $this->voucherRepository->create($data);
+    }
+    function deleteVoucher($id): mixed
+    {
+
+        return $this->voucherRepository->delete($id);
+    }
+    function updateVoucher($id,array $data): mixed
+    {
+
+        return $this->voucherRepository->update($id,$data);
+    }
 }

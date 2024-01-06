@@ -56,7 +56,7 @@ class AdminController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('/user-management') // Điều hướng nếu dữ liệu không hợp lệ
+            return redirect('/admin/user-management') // Điều hướng nếu dữ liệu không hợp lệ
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -64,7 +64,7 @@ class AdminController extends Controller
         $data= $request->all();
         $this->AdminService->create($data);
         // Store the user...
-        return redirect('/user-management');
+        return redirect('/admin/user-management');
     }
 
     public function updateProfile(Request $request)
@@ -76,7 +76,7 @@ class AdminController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('/user-management')
+            return redirect('/admin/user-management')
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -97,13 +97,13 @@ class AdminController extends Controller
             if (Hash::check($oldPassword, $user->password)) {
                 // Mật khẩu cũ đúng, cập nhật mật khẩu mới
                 $this->AdminService->updatePassword($userIdToUpdate, $newPassword);
-                return redirect('/profileuser')->with('success', 'Mật khẩu đã được cập nhật thành công');
+                return redirect('/admin/profileuser')->with('success', 'Mật khẩu đã được cập nhật thành công');
             } else {
                 // Mật khẩu cũ không đúng
                 throw new \Exception('Mật khẩu cũ không đúng');
             }
         } catch (\Exception $e) {
-            return redirect('/profileadmin')->with('error', $e->getMessage());
+            return redirect('/admin/profileadmin')->with('error', $e->getMessage());
         }
     }
     function profileView()
@@ -117,7 +117,7 @@ class AdminController extends Controller
         // Gọi hàm delete từ AdminService để xóa người dùng
         $this->AdminService->delete($userIdToDelete);
 
-        return redirect('/user-management');
+        return redirect('/admin/user-management');
     }
     function update(Request $request){
         // // Lấy dữ liệu từ request, ví dụ trường 'id'
@@ -137,7 +137,7 @@ class AdminController extends Controller
     // Gọi hàm update từ AdminService để cập nhật người dùng
     $this->AdminService->update($userIdToUpdate, $data);
 
-    return redirect('/user-management');
+    return redirect('/admin/user-management');
     }
     function voucherManagementCreate(Request $request){
         // $validator = Validator::make($request->all(), [
@@ -156,7 +156,7 @@ class AdminController extends Controller
         $data= $request->all();
         $this->VoucherService->createVoucher($data);
         // Store the user...
-        return redirect('/voucher-management');
+        return redirect('/admin/voucher-management');
     }
     function voucherManagementDelete(Request $id){
         // Lấy dữ liệu từ request, ví dụ trường 'id'
@@ -164,7 +164,7 @@ class AdminController extends Controller
         // Gọi hàm delete từ AdminService để xóa người dùng
         $this->VoucherService->deleteVoucher($voucherIdToDelete);
 
-        return redirect('/voucher-management');
+        return redirect('/admin/voucher-management');
     }
     function voucherManagementUpdate(Request $request){
         // // Lấy dữ liệu từ request, ví dụ trường 'id'
@@ -184,6 +184,6 @@ class AdminController extends Controller
     // Gọi hàm update từ AdminService để cập nhật người dùng
     $this->VoucherService->updateVoucher($userIdToUpdate, $data);
 
-    return redirect('/voucher-management');
+    return redirect('/admin/voucher-management');
     }
 }

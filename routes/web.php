@@ -17,7 +17,6 @@ Route::get('/login', [login_registerController::class, "index"]);
 Route::get('/register', [login_registerController::class, "index"]);
 Route::get('/product-details', [DetailProductController::class, "index"]);
 // Route::method('/đường dẫn',[Tên controller::class, "Function thực hiện trả về view nằm ở Controller"]);
-Route::delete('/product/delete', [ProductController::class, "delete"]);
 Route::get('/create', [ProductController::class, "create"])->name('product.create');
 Route::post('/save', [ProductController::class, "save"])->name('product.save');
 Route::put('/product-management/update/{id}', [ProductController::class, 'update']);
@@ -32,6 +31,7 @@ Route::get('/fillter', [ProductController::class, "filterProducts"]);
 Route::get('/profile', [HomeController::class, "profileView"]);
 
 Route::prefix("/admin")->group(function () {
+    Route::delete('/product/delete', [ProductController::class, "delete"]);
     Route::post('/voucher-management/create', [AdminController::class, "voucherManagementCreate"]);
     Route::delete('/voucher-management/delete', [AdminController::class, "voucherManagementDelete"]);
     Route::put('/voucher-management/update/{id}', [AdminController::class, "voucherManagementUpdate"]);

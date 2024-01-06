@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col"></div>
         <div class="col">
-            <form class="" action="/product/create" id="formUser" method="post">
+            <form class="" action="/admin/product/create" id="formUser" method="post">
                 @csrf
                 <div class="form-inp">
                     <label for="image">Image:</label>
@@ -119,7 +119,7 @@
                 <td>{{$p->description}}</td>
                 <td>{{$p->category}}</td>
                 <td>
-                    <form action="/product/delete" method="post">
+                    <form action="/admin/product/delete" method="post">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-remove" name="id" value="{{$p->id}}" id="removeBtn">Remove</button>
@@ -132,7 +132,7 @@
                     <div class="col"></div>
                     <div class="col">
                         <div class="containerForm2 ">
-                            <form action="/product-management/update/{{$p->id}}" method="POST" id="updateP" class="d-none">
+                            <form action="/admin/product-management/update/{{$p->id}}" method="POST" id="updateP" class="d-none">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-inp">

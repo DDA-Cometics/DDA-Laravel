@@ -33,18 +33,12 @@
     background-color: white;
     border-radius: 5px;
 }
-/* #tables{
-    
-border-radius: 5px;
-} */
 
 #newPrice {
     color: #000;
     font-size: 26px;
     font-family: Noto Serif;
     font-weight: 400;
-    /* padding-left: 13px; */
-
 }
 
 #containerProducts {

@@ -7,20 +7,7 @@
 @endsection
 
 @section('content')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var profileNavbar = document.getElementById('ProfileNavbar');
-   
-        profileNavbar.addEventListener('click', function() {
-            // Chuyển đổi lớp 'showText' khi click vào icon
-            this.classList.toggle('showText');
-        });
-        profileNavbar.addEventListener('click', function() {
-            // Chuyển đổi lớp 'logout' khi click vào icon
-            this.classList.toggle('logout');
-        });
-    });
-</script>
+
 <?php
 function generateDiscountHeader($text)
 {
@@ -131,7 +118,7 @@ function discountBanner($n)
 }
 function ButtonBuyNow()
 {
-    echo '<a href="bestSellerPage"><button class="btn mr-5" id="buynowBtn">Buy Now</button></a>';
+    echo '<a href="best-seller"><button class="btn mr-5" id="buynowBtn">Buy Now</button></a>';
 
     }
     function ButtonSignUp(){
@@ -144,7 +131,7 @@ function ButtonBuyNow()
   <script>
     function redirectToDetail(productId) {
         // Chuyển hướng đến trang detail với ID của sản phẩm
-        window.location.href = '/detailproduct?id=' + productId;
+        window.location.href = '/product-details?id=' + productId;
     }
    </script>
   <div class="banner" id="banner">

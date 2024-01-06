@@ -62,7 +62,7 @@ function toggleControForm(id, isHidden) {
     <div class="row ">
         <div class="col"></div>
         <div class="col">
-            <form action="/voucherManagement/create" method="POST" id="formUser" class="">
+            <form action="/voucher-management/create" method="POST" id="formUser" class="">
                 @csrf
                 <div class="form-inp">
                     <label for="description">Description:</label>
@@ -129,7 +129,7 @@ function toggleControForm(id, isHidden) {
                 <td>{{$p->expired_datetime}}</td>
                 <td>{{$p->updated_at}}</td>
                 <td>
-                    <form action="/voucherManagement/delete" method="POST">
+                    <form action="/voucher-management/delete" method="POST">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-remove" name="id" value="{{$p->id}}" id="removeBtn">
@@ -147,7 +147,7 @@ function toggleControForm(id, isHidden) {
                     <div class="col">
                         <div  >
                             <div class="containerForm2 ">
-                                <form action="/voucherManagement/update/{{$p->id}}"method="POST" id="formUser2" class="d-none">
+                                <form action="/voucher-management/update/{{$p->id}}"method="POST" id="formUser2" class="d-none">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-inp">

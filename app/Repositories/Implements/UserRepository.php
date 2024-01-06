@@ -13,18 +13,10 @@ class UserRepository extends BaseRepository implements IUserRepository
         return User::class;
     }
 
-    public function login($email, $password): Collection
+    function findByEmail(string $email): mixed
     {
-        $user = User::where('email', $email)->first();
-        $userData = new Collection();
-
-        if ($user && $password === $user->password) {
-            $userData->push($user);
-        }
-
-        return $userData;
+        return $this->findOneBy(["email" => $email]);
     }
-
 
 
     //...............................................

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('css')
-  <link rel="stylesheet" href="/assets/css/userManagement.css">
+  <link rel="stylesheet" href="/assets/css/user-management.css">
 @endsection
 
 @section('content')
@@ -62,7 +62,7 @@ function toggleControForm(id, isHidden) {
     <div class="row ">
         <div class="col"></div>
         <div class="col">
-            <form action="/userManagement/create" method="POST" id="formUser" class="">
+            <form action="/user-management/create" method="POST" id="formUser" class="">
                 @csrf
                 <div class="form-inp">
                     <label for="last_name">Last Name:</label>
@@ -183,7 +183,7 @@ function toggleControForm(id, isHidden) {
                 <td>{{$p->email}}</td>
                 <td>{{$p->date}}</td>
                 <td>
-                    <form action="/userManagement/delete" method="POST">
+                    <form action="/user-management/delete" method="POST">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-remove" name="id" value="{{$p->id}}" id="removeBtn">
@@ -201,7 +201,7 @@ function toggleControForm(id, isHidden) {
                     <div class="col">
                         <div  >
                             <div class="containerForm2 ">
-                                <form action="/userManagement/update/{{$p->id}}"method="POST" id="formUser2" class="d-none">
+                                <form action="/user-management/update/{{$p->id}}"method="POST" id="formUser2" class="d-none">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-inp">

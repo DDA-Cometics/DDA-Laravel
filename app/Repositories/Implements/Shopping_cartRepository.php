@@ -5,6 +5,7 @@ namespace App\Repositories\Implements;
 use App\Models\Shopping_cart;
 use App\Repositories\Interfaces\IShopping_cartRepository;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 class Shopping_cartRepository extends BaseRepository implements IShopping_cartRepository
 {
     protected function getModel(): string
@@ -18,17 +19,12 @@ class Shopping_cartRepository extends BaseRepository implements IShopping_cartRe
     }
     public function updateQuanity($user_id, $product_id, $quanity)
     {
-        $cartItem = Shopping_cart::where('id', $user_id)
-        ->whereHas('products', function ($query) use ($product_id) {
-            $query->where('product_id', $product_id);
-        })
-        ->first();
-        if ($cartItem) {
-            // Cập nhật số lượng
-            $cartItem->quanity = $quanity;
-            $cartItem->save();
-        }
+        DB::table('carts')
+        ->where('id', $user_id)
+        ->where('product_id', $product_id)
+        ->update(['quanity' => $quanity]);
     }
+    
     
     public function findByProductAndUser($product_id, $user_id)
     {

@@ -1,0 +1,146 @@
+#title{
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 5px;
+    padding-top: 20px ;
+    padding-right: 600px;
+}
+
+
+.quantity-container {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    width: 30%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+
+.d-flex {
+    display: flex;
+    text-align: left;
+}
+
+.border-line {
+    border: 1px solid black;
+    margin-top: 20px;
+    height: 150px;
+    
+}
+
+#line {
+    background-color: white;
+    border-radius: 5px;
+}
+
+#newPrice {
+    color: #000;
+    font-size: 26px;
+    font-family: Noto Serif;
+    font-weight: 400;
+}
+
+#containerProducts {
+    border: 1px solid black;
+    margin-bottom: 10px;
+    margin-left:10px ;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+.content{
+    border-radius: 5px;
+}
+#new{
+    border-radius: 5px;
+}
+/* #myPrice{
+    padding: 0px;
+    
+} */
+
+.oldPrice {
+    color: #F40707;
+    font-size: 26px;
+    font-family: Noto Serif;
+    font-weight: 400;
+    text-transform: capitalize;
+    letter-spacing: 0.91px;
+    word-wrap: break-word;
+}
+
+h5 {
+    text-decoration: underline;
+}
+#apply{
+    background-color: #000;
+    color:white;
+    border-radius: 5px  ;
+}
+#payMent{
+    max-width:100vw;
+    max-height:700px; 
+}
+#apply {
+    background-color: #000;
+    color: white;
+}
+
+#payMent {
+    max-width: 100vw;
+    max-height: 700px;
+}
+#checkout{
+    border-radius: 10px;
+    width: 500px;
+    height: 45px;
+    background-color:#ED9A1E;
+    
+}
+#checkout:hover{
+    background-color:#f5a834;   
+}
+#momo{
+    border-radius: 10px;
+    width: 500px;
+    height: 45px;
+    background-color:#F1F0F8;
+}
+#momo:hover{
+    background-color:#ffffff;
+}
+#pickup{
+    border-radius: 10px;
+    width: 500px;
+    height: 45px;
+    background-color:#F3A9C6;
+
+}
+#pickup:hover{
+    background-color:#ffc0d9;
+}
+#line{
+    padding: 15px;
+}
+#headAboutUs,#bodyAboutUs{
+    display: none;
+}
+.selectable-button {
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+.selectable-button:hover {
+    background-color: #eee;
+}
+.selected-button {
+    background-color: red !important;
+    color: white;
+}
+
+hr{
+    border-radius: 5px;
+}
+

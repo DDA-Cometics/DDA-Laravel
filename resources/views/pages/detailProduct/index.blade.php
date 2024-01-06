@@ -13,23 +13,23 @@
         <div class="row">
             <div class="col-md-6 ">
                 <div class="d-flex justify-content-center">
-                    <img id="mainImage" src="{{ $products->image }}" alt="Sữa tắm" class="img-fluid mb-3">
+                    <img id="mainImage" src="{{ $products->image }}" alt="{{ $products->name}}" class="img-fluid mb-3">
                 </div>
                 <div class="d-flex justify-content-center">
                     <div class="col-4 mx-1" style="padding: 0; ">
-                        <img onclick="changeImage('https://res.cloudinary.com/duas1juqs/image/upload/v1703471009/Web%20DDA%20COMECTIC/p1qqsfgpmdepdwj7rsnv.png')"
-                            src="https://res.cloudinary.com/duas1juqs/image/upload/v1703471009/Web%20DDA%20COMECTIC/p1qqsfgpmdepdwj7rsnv.png"
-                            alt="Dầu gội" class="small-image">
+                        <img onclick="changeImage('{{ $products->image }}')"
+                            src="{{ $products->image }}"
+                            alt="{{ $products->name }}" class="small-image">
                     </div>
                     <div class="col-4 mx-1" style="padding: 0;">
-                        <img onclick="changeImage('https://res.cloudinary.com/duas1juqs/image/upload/v1703471073/Web%20DDA%20COMECTIC/mzhk9ji272xq0rn66p0s.png')"
-                            src="https://res.cloudinary.com/duas1juqs/image/upload/v1703471073/Web%20DDA%20COMECTIC/mzhk9ji272xq0rn66p0s.png"
+                        <img onclick="changeImage('https://res.cloudinary.com/dpmcvuhew/image/upload/v1704446075/DDA-Cometics/3-vector-sale-mua-thu-2_axdzab.png')"
+                            src="https://res.cloudinary.com/dpmcvuhew/image/upload/v1704446075/DDA-Cometics/3-vector-sale-mua-thu-2_axdzab.png"
                             alt="Chăm sóc" class="small-image">
                     </div>
-                    <div class="col-4 mx-1" style="padding: 0;">
-                        <img onclick="changeImage('https://res.cloudinary.com/duas1juqs/image/upload/v1703471149/Web%20DDA%20COMECTIC/if4p8lvjdcrlugq7hvpw.png')"
-                            src="https://res.cloudinary.com/duas1juqs/image/upload/v1703471149/Web%20DDA%20COMECTIC/if4p8lvjdcrlugq7hvpw.png"
-                            alt="Dầu xả" class="small-image">
+                    <div class="col-4 mx-1" style="padding: 0; ">
+                        <img onclick="changeImage('{{ $products->image }}')"
+                            src="{{ $products->image }}"
+                            alt="{{ $products->name }}" class="small-image">
                     </div>
                 </div>
             </div>
@@ -70,22 +70,25 @@
                                 <option value="{{ $products->size }}">{{ $products->size }}ml</option>
                             </select>
                         </div>
+                        <form action="/add-to-cart" method="post">
+                            @csrf
+                                <input type="number" name="id" value="{{ session('user_data')['id'] }}" class="d-none">
                         <div class="container mt-5">
                             <div class="quantity-container">
-                                <button class="btn btn-light" id="decreaseBtn">-</button>
-                                <input type="text" class="form-control quantity-input" id="quantityInput" value="1"
+                                <button type="button" class="btn btn-light" id="decreaseBtn">-</button>
+                                <input type="number" class="form-control quantity-input" id="quanity" name="quanity" value="1"
                                     readonly>
-                                <button class="btn btn-light" id="increaseBtn">+</button>
+                                <button type="button" class="btn btn-light" id="increaseBtn">+</button>
                             </div>
                         </div><br>
                         <div class="button-container">
-                            <button class="btn" id="buynowBtn">Buy Now</button>
+                            <button type="button" class="btn" id="buynowBtn">Buy Now</button>
 
-                            <button class="btn custom-button cart-button" id="buynowBtn">
+                            <button type="submit" name="product_id" value="{{ $products->id }}" class="btn custom-button cart-button" id="product_id">
                                 <i class="fa-solid fa-cart-shopping text-light"></i>
                             </button>
                         </div>
-
+                    </form>
                     </div>
                 </div>
             </div>
@@ -99,8 +102,8 @@
         let originalWidth, originalHeight;
 
         function changeImage(newImageUrl) {
-            const quantityInput = document.getElementById('quantityInput');
-            currentQuantity = quantityInput.value;
+            const quanity = document.getElementById('quanity');
+            currentQuantity = quanity.value;
 
             const mainImage = document.getElementById('mainImage');
             if (!originalWidth && !originalHeight) {
@@ -113,7 +116,7 @@
             mainImage.style.height = originalHeight + 'px';
             mainImage.style.border = 'none';
 
-            quantityInput.value = currentQuantity;
+            quanity.value = currentQuantity;
         }
 
         document.getElementById('decreaseBtn').addEventListener('click', () => {
@@ -125,13 +128,13 @@
         });
 
         function updateQuantity(change) {
-            const quantityInput = document.getElementById('quantityInput');
-            let newQuantity = parseInt(quantityInput.value) + change;
+            const quanity = document.getElementById('quanity');
+            let newQuantity = parseInt(quanity.value) + change;
 
 
             newQuantity = Math.max(1, newQuantity);
 
-            quantityInput.value = newQuantity;
+            quanity.value = newQuantity;
             currentQuantity = newQuantity;
         }
     </script>

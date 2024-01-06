@@ -9,4 +9,6 @@ interface IAdminRepository extends IBaseRepository{
     function getUser(): Collection;
     function getVoucher(): Collection;
     
+
+    
 }

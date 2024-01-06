@@ -77,7 +77,7 @@
               <i class="fa-solid fa-user" id="profileIcon">
               </i>
               <i id="triangleIcon" class="fa-solid fa-caret-down"></i>
-              <a href="/profile" id="iconProfile" class="iconText">PROFILE</a>
+              <a href="/admin/profile" id="iconProfile" class="iconText">PROFILE</a>
               <a href="/logout" id="textBelowIcon" class="iconText">LOGOUT</a>
               
           </form>
@@ -121,10 +121,10 @@
       </div>
       <div class="row">
           <div class="col-7">
-              <?php echo ButtonNavbar("USER MANAGEMENT", "/userManagement", 142) ?>
-              <?php echo ButtonNavbar("PRODUCT MANAGEMENT", "/productManagement", 160) ?>
-              <?php echo ButtonNavbar("VOUCHERS MANAGEMENT", "/voucherManagement", 152) ?>
-              <?php echo ButtonNavbar("SHOW CHART", "/showChartManagement", 100) ?>
+              <?php echo ButtonNavbar("USER MANAGEMENT", "/admin/user-management", 142) ?>
+              <?php echo ButtonNavbar("PRODUCT MANAGEMENT", "/admin/product-management", 160) ?>
+              <?php echo ButtonNavbar("VOUCHERS MANAGEMENT", "/admin/voucher-management", 152) ?>
+              <?php echo ButtonNavbar("SHOW CHART", "/admin/statistics", 100) ?>
           </div>
           <div class="col-5 ">
               <div class="row">

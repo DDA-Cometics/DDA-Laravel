@@ -120,7 +120,24 @@ select:hover{
     font-weight: 400;
     text-decoration: line-through;
 }
-
+#product_id{
+    width: 180px;
+    height: auto;
+    border-radius: 15px;
+    border: 1px solid #000;
+    background: #F3A9C6;
+    color: #FFF;
+    font-family: Noto Sans;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    letter-spacing: 5.7px;
+    text-transform: uppercase;
+  }
+  #product_id:hover{
+    background:rgb(255, 0, 43);
+  }
 @media (max-width: 768px) {
     .quantity-container {
         width: 100%;

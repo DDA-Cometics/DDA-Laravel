@@ -44,6 +44,20 @@
 </head>
 
 <body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var profileNavbar = document.getElementById('ProfileNavbar');
+       
+            profileNavbar.addEventListener('click', function() {
+                // Chuyển đổi lớp 'showText' khi click vào icon
+                this.classList.toggle('showText');
+            });
+            profileNavbar.addEventListener('click', function() {
+                // Chuyển đổi lớp 'logout' khi click vào icon
+                this.classList.toggle('logout');
+            });
+        });
+    </script>
     <?php
     function ButtonNavbar($text, $link, $width)
     {
@@ -116,8 +130,8 @@
       <div class="row">
           <div class="col-7">
               <?php echo ButtonNavbar("H O M E", "/", 90) ?>
-              <?php echo ButtonNavbar("BEST SELLERS", "bestSellerPage", 120) ?>
-              <?php echo ButtonNavbar("NEW", "newPage", 120) ?>
+              <?php echo ButtonNavbar("BEST SELLERS", "best-seller", 120) ?>
+              <?php echo ButtonNavbar("NEW", "new-products", 120) ?>
               <?php echo ButtonNavbar("SKINCARE", "skincarePage", 120) ?>
               <?php echo ButtonNavbar("GIFTS & SETS", "gift&setPage", 120) ?>
               <?php echo ButtonNavbar("WOMEN & MEN", "women&menPage", 150) ?>

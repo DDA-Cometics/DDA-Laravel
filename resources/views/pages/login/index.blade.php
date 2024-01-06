@@ -31,7 +31,7 @@
                 <h2>Sign In</h2>
                 <label>Required (*)</label>
                 <!-- Form Login -->
-                <form action="/login/login" method="post">
+                <form action="/login" method="post">
                     @csrf
                     <div>
                         <div class="form-group">
@@ -72,7 +72,7 @@
                 @endif
                 <h2>Create Account</h2>
 
-                <form action="/register/register" id="register" method="post">
+                <form action="/register" id="register" method="post">
                     @csrf
                     <br>
                     <div class="row">

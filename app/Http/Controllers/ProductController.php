@@ -40,7 +40,7 @@ class ProductController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('/productManagement') // Điều hướng nếu dữ liệu không hợp lệ
+            return redirect('/product-management') // Điều hướng nếu dữ liệu không hợp lệ
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -50,7 +50,7 @@ class ProductController extends Controller
         $this->productService->create($data);
         // Store the user...
  
-        return redirect('/productManagement');
+        return redirect('/product-management');
     }
     public function delete(Request $id)
     {
@@ -58,32 +58,20 @@ class ProductController extends Controller
         $idProduct = $id->all();
         $this->productService->delete($idProduct);
         // Điều hướng về trang chủ sau khi xóa sản phẩm thành công
-        return redirect('/productManagement');
+        return redirect('/product-management');
     }
     
 
-    function updateP(Request $request)
+    function update(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'image' => ['required', 'url'],
-        //     'product_name' => ['required', 'string', 'max:255'],
-        //     'size' => ['required', 'numeric'],
-        //     'price' => ['required', 'numeric', 'min:0'],
-        //     'description' => ['required', 'string'],
-        //     'category' => ['required', 'string'],
-        // ]);
-
-        // if ($validator->fails()) {
-        //     return redirect('/productManagement')
-        //     ->withErrors($validator)
-        //         ->withInput();
-        // }
-
+       
+        // Validate
+        
         $productIdUpdate= $request->input('id');
         $data = $request->all();
         $this->productService->update($productIdUpdate, $data  );
 
-        return redirect('/productManagement');
+        return redirect('/product-management');
     }
     public function filterProducts(Request $request)
     {

@@ -24,7 +24,7 @@
 <script>
     function redirectToDetail(productId) {
         // Chuyển hướng đến trang detail với ID của sản phẩm
-        window.location.href = '/detailproduct?id=' + productId;
+        window.location.href = '/product-details?id=' + productId;
     }
 </script>
 <?php

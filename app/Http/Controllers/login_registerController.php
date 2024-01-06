@@ -55,32 +55,26 @@ class login_registerController extends Controller
         $data = $request->all();
         // $this->userService->register($data);
         $data = $validator->validated();
-        $success = $this->userService->register($data); // Thực hiện đăng ký và trả về true nếu thành công
+        $dataResgister = $this->userService->register($data); // Thực hiện đăng ký và trả về true nếu thành công
         
-        if ($success) {
+        if (!$dataResgister["errors"]) {
             // Đăng ký thành công
             return redirect('/login')->with('success', 'Register Successful!');
         } else {
             // Đăng ký không thành công
-            return redirect('/login')->with('error', 'Register Failed!');
+            return redirect('/login')->with('error', 'Register Failed!'.$dataResgister["errors"]);
         }
-        return redirect('/login');
-
-        // Store the user...
-        // return redirect('/login');
     }
     public function login(Request $request)
     {
         $email = $request->input('email');
         $password = $request->input('password');
-        $response = $this->userService->login($email, $password);
+        $user = $this->userService->login($email, $password);
 
-        if ($response->isNotEmpty()) {
-            // Lấy thông tin người dùng từ đối tượng User trong Collection
-            $user = $response->first();
-
+        if ($user) {
             // Tạo một mảng dữ liệu user từ thông tin của đối tượng User
             $userData = [
+                'image' => $user-> image,
                 'email' => $user->email,
                 'last_name' => $user->last_name,
                 'first_name' => $user->first_name,

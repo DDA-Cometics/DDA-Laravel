@@ -132,7 +132,7 @@
                     <div class="col"></div>
                     <div class="col">
                         <div class="containerForm2 ">
-                            <form action="/productManagement/update/{{$p->id}}" method="POST" id="updateP" class="d-none">
+                            <form action="/product-management/update/{{$p->id}}" method="POST" id="updateP" class="d-none">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-inp">

@@ -4,7 +4,7 @@ namespace App\Repositories\Interfaces;
 
 use Illuminate\Database\Eloquent\Collection;
 
-interface IShopping_cartRepository extends IBaseRepository{
+interface IShoppingCartRepository extends IBaseRepository{
    function returnProductWithCart(): Collection;
    function updateQuanity($user_id,$product_id, $quanity);
    function findByProductAndUser($product_id, $user_id);

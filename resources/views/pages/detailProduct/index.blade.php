@@ -70,7 +70,7 @@
                                 <option value="{{ $products->size }}">{{ $products->size }}ml</option>
                             </select>
                         </div>
-                        <form action="/addToCart" method="post">
+                        <form action="/add-to-cart" method="post">
                             @csrf
                                 <input type="number" name="id" value="{{ session('user_data')['id'] }}" class="d-none">
                         <div class="container mt-5">

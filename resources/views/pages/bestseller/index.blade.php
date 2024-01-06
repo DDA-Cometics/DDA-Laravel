@@ -145,7 +145,7 @@ function favoritesProductCard($id, $name, $size, $price, $description, $category
   ?>
   <script>
         function redirectToDetail(productId) {
-            window.location.href = '/detailproduct?id=' + productId;
+            window.location.href = '/product-details?id=' + productId;
         }
         document.addEventListener('DOMContentLoaded', function() {
         var profileNavbar = document.getElementById('ProfileNavbar');

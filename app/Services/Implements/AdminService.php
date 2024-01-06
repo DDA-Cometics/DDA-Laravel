@@ -1,10 +1,15 @@
 <?php
 namespace App\Services\Implements;
 
+
 use App\Repositories\Interfaces\IAdminRepository;
 use App\Services\Interfaces\IAdminService;
+use App\Models\User;
+
+
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Mix;
+use Illuminate\Support\Facades\Hash;
 
 class AdminService implements IAdminService {
     function __construct(
@@ -22,6 +27,7 @@ class AdminService implements IAdminService {
     {
         return $this->AdminRepository->getVoucher();
     }
+
     function create(array $data): mixed
     {
 
@@ -36,5 +42,14 @@ class AdminService implements IAdminService {
     {
 
         return $this->AdminRepository->update($id,$data);
+    }
+    public function updatePassword($userId, $newPassword)
+    {
+        $user = User::find($userId);
+    
+        if ($user) {
+            $user->password = Hash::make($newPassword);
+            $user->save();
+        }
     }
 }

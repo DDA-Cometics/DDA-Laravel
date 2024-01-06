@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Collection;
 
 interface IUserRepository extends IBaseRepository
 {
-    function login($email, $password): Collection;
+    function findByEmail(string $email): mixed;
 }

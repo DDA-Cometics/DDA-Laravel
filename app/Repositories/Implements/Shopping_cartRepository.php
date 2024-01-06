@@ -3,9 +3,10 @@
 namespace App\Repositories\Implements;
 
 use App\Models\Shopping_cart;
-use App\Repositories\Interfaces\IShopping_cartRepository;
+use App\Repositories\Interfaces\IShoppingCartRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
+
 class Shopping_cartRepository extends BaseRepository implements IShopping_cartRepository
 {
     protected function getModel(): string

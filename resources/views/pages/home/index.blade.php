@@ -117,7 +117,7 @@ function discountBanner($n)
 }
 function ButtonBuyNow()
 {
-    echo '<a href="bestSellerPage"><button class="btn mr-5" id="buynowBtn">Buy Now</button></a>';
+    echo '<a href="best-seller"><button class="btn mr-5" id="buynowBtn">Buy Now</button></a>';
 
     }
     function ButtonSignUp(){
@@ -130,7 +130,7 @@ function ButtonBuyNow()
   <script>
     function redirectToDetail(productId) {
         // Chuyển hướng đến trang detail với ID của sản phẩm
-        window.location.href = '/detailproduct?id=' + productId;
+        window.location.href = '/product-details?id=' + productId;
     }
    </script>
   <div class="banner" id="banner">

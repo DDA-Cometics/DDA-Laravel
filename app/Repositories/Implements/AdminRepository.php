@@ -6,8 +6,11 @@ use App\Models\Admin;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Voucher;
+use App\Models\Profile;
+
 use App\Repositories\Interfaces\IAdminRepository;
 use Illuminate\Database\Eloquent\Collection;
+use Symfony\Component\HttpKernel\Profiler\Profile as ProfilerProfile;
 
 class AdminRepository extends BaseRepository implements IAdminRepository
 {
@@ -33,5 +36,7 @@ class AdminRepository extends BaseRepository implements IAdminRepository
         // return Product::select('*')->get();
         return Voucher::select('*')->get();
     }
+  
+
     //...............................................
 }

@@ -186,4 +186,9 @@ class AdminController extends Controller
 
     return redirect('/admin/voucher-management');
     }
+    function editProfileAdmin(Request $request){
+        
+        return redirect("/admin/profile");
+
+    }
 }

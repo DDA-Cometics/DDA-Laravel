@@ -29,7 +29,8 @@ Route::post('/add-to-cart', [shoppingCartController::class, "index"]);
 Route::get('/cart', [shoppingCartController::class, "getToCart"]);
 Route::get('/new-products', [ProductController::class, "getNewProduct"]);
 Route::get('/fillter', [ProductController::class, "filterProducts"]);
-
+Route::get('/profile', [HomeController::class, "profileUser"]);
+Route::put('/edit-profile', [HomeController::class, "editProfileUser"]);
 
 Route::prefix("/admin")->group(function () {
     Route::post('/voucher-management/create', [AdminController::class, "voucherManagementCreate"]);
@@ -37,6 +38,7 @@ Route::prefix("/admin")->group(function () {
     Route::put('/voucher-management/update/{id}', [AdminController::class, "voucherManagementUpdate"]);
     Route::get('/profile', [AdminController::class, "profileView"]);
     Route::put('/profile', [AdminController::class, "updateProfile"]);
+    Route::put('/edit-profile', [AdminController::class, "editProfileAdmin"]);
     Route::get('/admin', [AdminController::class, "userManagement"]);
     Route::post('/user-management/create', [AdminController::class, "create"]);
     Route::get('/user-management', [AdminController::class, "userManagement"]);

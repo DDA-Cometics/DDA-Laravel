@@ -13,6 +13,14 @@ class HomeController extends Controller
         $product = $this->productService->sortPrices();
         return view("pages.home.index", ["products" => $product]);
     }
+    function profileUser(){
+        return view("pages.profile.profileuser");
+    }
+    function editProfileUser(Request $request){
+        
+        return redirect("/profile");
+
+    }
     function bestseller() {
         $product = $this->productService->sortPrices();
         return view("pages.bestseller.index", ["products" => $product]);

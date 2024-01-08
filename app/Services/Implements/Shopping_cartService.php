@@ -1,16 +1,13 @@
 <?php
 namespace App\Services\Implements;
 
-use App\Repositories\Interfaces\IShoppingCartRepository;
+use App\Repositories\Interfaces\IShopping_cartRepository;
 use App\Services\Interfaces\IShopping_cartService;
-use App\Repositories\Interfaces\IDetailProductRepository;
-use App\Services\Interfaces\IDetailProductService;
 use Illuminate\Database\Eloquent\Collection;
 
 class Shopping_cartService implements IShopping_cartService {
     function __construct(
-        private IShoppingCartRepository $Shopping_cartRepository,
-        private IDetailProductRepository $detailProductService
+        private IShopping_cartRepository $Shopping_cartRepository,
     ){}
     public function create($data): mixed
     {

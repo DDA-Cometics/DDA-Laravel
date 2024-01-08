@@ -57,13 +57,13 @@ class login_registerController extends Controller
         $data = $validator->validated();
         $dataResgister = $this->userService->register($data); // Thực hiện đăng ký và trả về true nếu thành công
         
-        if (!$dataResgister["errors"]) {
-            // Đăng ký thành công
+        if (empty($dataResgister["errors"])) {
+           
             return redirect('/login')->with('success', 'Register Successful!');
         } else {
-            // Đăng ký không thành công
-            return redirect('/login')->with('error', 'Register Failed!'.$dataResgister["errors"]);
-        }
+           
+            return redirect('/login')->with('error', 'Register Failed!' . json_encode($dataResgister["errors"]));
+        }        
     }
     public function login(Request $request)
     {

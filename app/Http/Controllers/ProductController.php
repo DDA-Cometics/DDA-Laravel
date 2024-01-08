@@ -40,7 +40,7 @@ class ProductController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('/product-management') // Điều hướng nếu dữ liệu không hợp lệ
+            return redirect('/admin/product-management') // Điều hướng nếu dữ liệu không hợp lệ
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -50,7 +50,7 @@ class ProductController extends Controller
         $this->productService->create($data);
         // Store the user...
  
-        return redirect('/product-management');
+        return redirect('/admin/product-management');
     }
     public function delete(Request $id)
     {
@@ -58,7 +58,7 @@ class ProductController extends Controller
         $idProduct = $id->all();
         $this->productService->delete($idProduct);
         // Điều hướng về trang chủ sau khi xóa sản phẩm thành công
-        return redirect('/product-management');
+        return redirect('/admin/product-management');
     }
     
 
@@ -71,7 +71,7 @@ class ProductController extends Controller
         $data = $request->all();
         $this->productService->update($productIdUpdate, $data  );
 
-        return redirect('/product-management');
+        return redirect('/admin/product-management');
     }
     public function filterProducts(Request $request)
     {

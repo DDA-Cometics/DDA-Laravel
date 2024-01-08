@@ -86,25 +86,59 @@
 
                 
                 @foreach ($shoppingCart as $cartItem)
-                @php
-                    createCartPage(
-                        $cartItem['products']['product_id'],
-                        $cartItem['products']['product_name'],
-                        $cartItem['products']['size'],
-                        $cartItem['products']['price'],
-                        $cartItem['products']['description'],
-                        $cartItem['products']['category'],
-                        $cartItem['products']['image'],
-                        50,
-                        $cartItem['quanity']
-                    );
-                @endphp
-            @endforeach
-            
-                
-                
+                    <?php
+                        // Assuming you have these variables available
+                        $product_id = $cartItem['products']['product_id'];
+                        $product_name = $cartItem['products']['product_name'];
+                        $size = $cartItem['products']['size'];
+                        $price = $cartItem['products']['price'];
+                        $description = $cartItem['products']['description'];
+                        $category = $cartItem['products']['category'];
+                        $image = $cartItem['products']['image'];
+                        $discount = 50; // You may need to retrieve this value from your data
+                        $quantity = $cartItem['quanity'];
+                    ?>
+                    <div class="row" id="containerProducts">
+                        <div class="col-4 mt-2">
+                            <img style="width: 150px; height: 200px;" src="<?= $image ?>" alt="<?= $product_name ?>">
+                        </div>
+                        <div class="col-8">
+                            <h5><?= $product_name ?></h5><br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <i class="fa-solid fa-circle-info"></i> YOU GET <?= $discount ?> OFF! <br>
+                                    <br><h5><?= $size ?></h5>
+                                </div>
+                                <div class="col-8">
+                                    <h6>Quantity</h6>
+                                    <div class="quantity-container">
+                                        <button class="btn btn-light decreaseBtn">-</button>
+                                        <input style="width: 70px" type="number" class="form-control quantity-input" style="width: 50px;" name="quanity" value="<?= $quantity ?>">
+                                        <button class="btn btn-light increaseBtn">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col d-flex" id="myPrice">
+                                    <div class="mr-3" id="newPrice"><del style="text-decoration: line-through">$<?= $price ?></del></div>
+                                    <div class="oldPrice">$<?= $price - $discount ?></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <h5 class="selectable-button" onclick="handleButtonClick(this)">Save</h5>
+                                </div>
+                                <div class="col-5">
+                                    <h5 class="selectable-button" onclick="handleButtonClick(this)">Add to Wishlist</h5>
+                                </div>
+                                <div class="col-4">
+                                    <h5 class="selectable-button" onclick="handleButtonClick(this)">Remove</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach   
             </div>
-
             <div class="col-5 mx-auto " id="payMent">
                 <div class="content"style="width: 100; height: 100%; background: #D9D9D9">
                     <div class="row p-3">
@@ -134,7 +168,8 @@
                                 </div>
                             </div>
                         </div>
-                    </form><br>
+                    </form>
+                    <br>
                     <div class="row p-3">
                         <div class="col-6">
                             <h6>ESTIMATED TOTAL</h6>

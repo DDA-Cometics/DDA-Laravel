@@ -20,4 +20,10 @@ class HomeController extends Controller
     function profileView() {
         return view("pages.Profile.profileuser");
     }
+    function search(Request $request)
+    {
+        $searchData = $request->input('search');
+        $product= $this->productService->searchProduct($searchData);
+        return view("pages.search.search", ["products" => $product]);
+    }
 }

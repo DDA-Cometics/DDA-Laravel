@@ -34,4 +34,7 @@ class ProductService implements IProductService {
         
         return $this->ProductRepository->update($id,$data);
     }
+    function searchProduct($searchData):Collection{
+        return $this->ProductRepository->searchProduct($searchData);
+    }
 }

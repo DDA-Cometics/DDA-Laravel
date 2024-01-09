@@ -26,4 +26,19 @@ class ProductRepository extends BaseRepository implements IProductRepository
                     ->get();
     }
     //...............................................
+    public function searchProduct($searchData): Collection
+    {
+        
+
+        $searchResults = Product::where(function ($query) use ($searchData) {
+            $query->where('product_name', 'like', '%' . $searchData . '%')
+            ->orWhere('description', 'like', '%' . $searchData . '%')
+            ->orWhere('category', 'like', '%' . $searchData . '%')
+            ->orWhere('ingredient', 'like', '%' . $searchData . '%')
+            ->orWhere('price', '<=', $searchData);
+        })->get();
+
+        return $searchResults;
+    }
 }
+

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DetailProductController;
 use App\Http\Controllers\shoppingCartController;
 use App\Models\login_register;
-
+Route::get('/search',[HomeController::class, "search"]);
 Route::get('/vouchers', [VoucherController::class, "index"]);
 Route::get('', [HomeController::class, "index"]);
 Route::post('/product/create', [ProductController::class, "create"]);

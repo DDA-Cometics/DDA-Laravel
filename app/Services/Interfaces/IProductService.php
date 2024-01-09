@@ -9,4 +9,6 @@ interface IProductService {
     function create(array $data): mixed;
     function delete($id): mixed;
     function update($id,array $data): mixed;
+    function searchProduct($searchData): Collection;
+
 }

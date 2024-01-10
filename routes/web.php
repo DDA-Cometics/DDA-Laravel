@@ -12,14 +12,12 @@ use App\Models\login_register;
 Route::get('/search',[HomeController::class, "search"]);
 Route::get('/vouchers', [VoucherController::class, "index"]);
 Route::get('', [HomeController::class, "index"]);
-Route::post('/product/create', [ProductController::class, "create"]);
 Route::get('/login', [login_registerController::class, "index"]);
 Route::get('/register', [login_registerController::class, "index"]);
 Route::get('/product-details', [DetailProductController::class, "index"]);
 // Route::method('/đường dẫn',[Tên controller::class, "Function thực hiện trả về view nằm ở Controller"]);
 Route::get('/create', [ProductController::class, "create"])->name('product.create');
 Route::post('/save', [ProductController::class, "save"])->name('product.save');
-Route::put('/product-management/update/{id}', [ProductController::class, 'update']);
 Route::get('/best-seller', [ProductController::class, "filterProducts"]);
 Route::post('/register', [login_registerController::class, "register"]);
 Route::post('/login', [login_registerController::class, "login"]);
@@ -34,6 +32,8 @@ Route::put('/edit-profile', [HomeController::class, "editProfileUser"]);
 
 
 Route::prefix("/admin")->group(function () {
+    Route::post('/product/create', [ProductController::class, "create"]);
+    Route::put('/product-management/update/{id}', [ProductController::class, 'update']);
     Route::delete('/product/delete', [ProductController::class, "delete"]);
     Route::post('/voucher-management/create', [AdminController::class, "voucherManagementCreate"]);
     Route::delete('/voucher-management/delete', [AdminController::class, "voucherManagementDelete"]);

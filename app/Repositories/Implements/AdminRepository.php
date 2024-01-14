@@ -23,13 +23,13 @@ class AdminRepository extends BaseRepository implements IAdminRepository
     public function getProduct(): Collection
     {
         // return Product::select('*')->get();
-        return Product::select('*')->get();
+        return Product::where('display_flag', true)->get();
     }
 
     public function getUser(): Collection
     {
         // return Product::select('*')->get();
-        return User::select('*')->get();
+        return User::where('display_flag', true)->get();
     }
     public function getVoucher(): Collection
     {

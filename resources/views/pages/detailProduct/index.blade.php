@@ -72,18 +72,16 @@
                         </div>
                         <form action="/add-to-cart" method="post">
                             @csrf
-                                <input type="number" name="id" value="{{ session('user_data')['id'] }}" class="d-none">
+                                <input type="number" name="id" value="{{ session('user_data')['id'] ?? 0 }}" class="d-none">
                         <div class="container mt-5">
                             <div class="quantity-container">
                                 <button type="button" class="btn btn-light" id="decreaseBtn">-</button>
-                                <input type="number" class="form-control quantity-input" id="quanity" name="quanity" value="1"
-                                    readonly>
+                                <input type="number" class="form-control quantity-input" id="quanity" name="quanity" value="1">
                                 <button type="button" class="btn btn-light" id="increaseBtn">+</button>
                             </div>
                         </div><br>
                         <div class="button-container">
-                            <button type="button" class="btn" id="buynowBtn">Buy Now</button>
-
+                            <button type="submit" name="product_id" value="{{ $products->id }}" class="btn" id="buynowBtn">Buy Now</button>
                             <button type="submit" name="product_id" value="{{ $products->id }}" class="btn custom-button cart-button" id="product_id">
                                 <i class="fa-solid fa-cart-shopping text-light"></i>
                             </button>

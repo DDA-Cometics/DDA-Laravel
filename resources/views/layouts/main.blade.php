@@ -99,8 +99,7 @@
               </i>
               <i id="triangleIcon" class="fa-solid fa-caret-down"></i>
               <a href="/profile" id="iconProfile" class="iconText">Profile</a>
-              <a href="/logout" id="textBelowIcon" class="iconText">Logout</a>
-              
+              <a href="/logout" id="textBelowIcon" class="iconText">Logout</a>    
           </form>
       ';
     }
@@ -132,9 +131,7 @@
                 <?php echo ButtonNavbar("H O M E", "/", 90) ?>
                 <?php echo ButtonNavbar("BEST SELLERS", "best-seller", 120) ?>
                 <?php echo ButtonNavbar("NEW", "new-products", 120) ?>
-                <?php echo ButtonNavbar("SKINCARE", "skincarePage", 120) ?>
-                <?php echo ButtonNavbar("GIFTS & SETS", "gift&setPage", 120) ?>
-                <?php echo ButtonNavbar("WOMEN & MEN", "women&menPage", 150) ?>
+                <?php echo ButtonNavbar("HISTORY", "history", 120) ?>
             </div>
             <div class="col-5 ">
                 <div class="row">

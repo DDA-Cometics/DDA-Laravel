@@ -29,6 +29,11 @@ class ProductService implements IProductService {
 
         return $this->ProductRepository->delete($id);
     }
+    function delete1($id): mixed
+    {
+
+        return $this->ProductRepository->delete1($id);
+    }
     function update($id,array $data): mixed
     {
         

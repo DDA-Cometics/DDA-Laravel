@@ -6,7 +6,9 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 abstract class BaseRepository implements IBaseRepository {
     protected $model;
     protected Builder $query;
@@ -116,5 +118,13 @@ abstract class BaseRepository implements IBaseRepository {
     public function delete($id): mixed
     {
         return $this->model->destroy($id);
+    }
+    public function delete1($id): mixed
+    { 
+
+        $product = $this->model->find($id)->first();
+        $product->display_flag = 0;
+        $product->save();
+        return ['success' => false, 'message' => 'Product not found.'];
     }
 }

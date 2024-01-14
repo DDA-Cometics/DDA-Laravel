@@ -15,6 +15,7 @@ interface IBaseRepository {
   public function findOneBy(array $filter): mixed;
   public function with($relationship): mixed;
   public function delete($id): mixed;
+  public function delete1($id): mixed;
   public function getQuery(): Builder|\Illuminate\Database\Query\Builder;
   public function clearQuery(): \Illuminate\Database\Query\Builder;
   public function paginate($page): LengthAwarePaginator;

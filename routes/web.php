@@ -8,6 +8,7 @@ use App\Http\Controllers\VoucherController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DetailProductController;
 use App\Http\Controllers\shoppingCartController;
+use App\Http\Controllers\checkoutController;
 use App\Models\login_register;
 Route::get('/search',[HomeController::class, "search"]);
 Route::get('/vouchers', [VoucherController::class, "index"]);
@@ -23,18 +24,19 @@ Route::post('/register', [login_registerController::class, "register"]);
 Route::post('/login', [login_registerController::class, "login"]);
 Route::get('/logout', [login_registerController::class, "logout"]);
 Route::post('/add-to-cart', [shoppingCartController::class, "index"]);
+Route::delete('/add-to-cart', [shoppingCartController::class, "deleteProductToCart"]);
 Route::get('/cart', [shoppingCartController::class, "getToCart"]);
 Route::get('/new-products', [ProductController::class, "getNewProduct"]);
 Route::get('/fillter', [ProductController::class, "filterProducts"]);
-
 Route::get('/profile', [HomeController::class, "profileUser"]);
 Route::put('/edit-profile', [HomeController::class, "editProfileUser"]);
-
-
+Route::post('/payUrl', [checkoutController::class, "paymentMomo"]);
+Route::get('/ordered', [checkoutController::class, "ordered"]);
+Route::get('/history', [checkoutController::class, "history"]);
 Route::prefix("/admin")->group(function () {
     Route::post('/product/create', [ProductController::class, "create"]);
     Route::put('/product-management/update/{id}', [ProductController::class, 'update']);
-    Route::delete('/product/delete', [ProductController::class, "delete"]);
+    Route::put('/product/delete', [ProductController::class, "delete1"]);
     Route::post('/voucher-management/create', [AdminController::class, "voucherManagementCreate"]);
     Route::delete('/voucher-management/delete', [AdminController::class, "voucherManagementDelete"]);
     Route::put('/voucher-management/update/{id}', [AdminController::class, "voucherManagementUpdate"]);

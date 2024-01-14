@@ -88,7 +88,7 @@ class login_registerController extends Controller
             // Lưu thông tin người dùng vào session và chuyển hướng đến trang chủ
             session()->put('user_data', $userData);
             if ($userData['role']=="admin"){
-                return redirect('/admin');
+                return redirect('/admin/user-management');
             }
             return redirect('/');
         }

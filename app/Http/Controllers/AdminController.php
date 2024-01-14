@@ -24,21 +24,57 @@ class AdminController extends Controller
 
     function productManagement()
     {
+        $sessionData = session()->get('user_data');
+        $userId = $sessionData['id'] ?? 0;
+        $role = $sessionData['role'];
+        if ($userId ===0){
+            return view("pages.login.index");
+        }
+        if ($role != "admin"){
+            return redirect("/");
+        }
         $product = $this->AdminService->getProduct();
         return view("pages.admin.product", ["products" => $product]);
     }
     function userManagement()
     {
+        $sessionData = session()->get('user_data');
+        $userId = $sessionData['id'] ?? 0;
+        $role = $sessionData['role'];
+        if ($userId ===0){
+            return view("pages.login.index");
+        }
+        if ($role != "admin"){
+            return redirect("/");
+        }
         $user = $this->AdminService->getUser();
         return view("pages.admin.user", ["users" => $user]);
     }
     function voucherManagement()
     {
+        $sessionData = session()->get('user_data');
+        $userId = $sessionData['id'] ?? 0;
+        $role = $sessionData['role'];
+        if ($userId ===0){
+            return view("pages.login.index");
+        }
+        if ($role != "admin"){
+            return redirect("/");
+        }
         $voucher = $this->AdminService->getVoucher();
         return view("pages.admin.voucher", ["vouchers" => $voucher]);
     }
     function statistics()
     {
+        $sessionData = session()->get('user_data');
+        $userId = $sessionData['id'] ?? 0;
+        $role = $sessionData['role'];
+        if ($userId ===0){
+            return view("pages.login.index");
+        }
+        if ($role != "admin"){
+            return redirect("/");
+        }
         return view("pages.admin.showchart");
     }
     function create(Request $request){
@@ -108,6 +144,15 @@ class AdminController extends Controller
     }
     function profileView()
     {
+        $sessionData = session()->get('user_data');
+        $userId = $sessionData['id'] ?? 0;
+        $role = $sessionData['role'];
+        if ($userId ===0){
+            return view("pages.login.index");
+        }
+        if ($role != "admin"){
+            return redirect("/");
+        }
         return view("pages.Profile.profileadmin");
     }
 

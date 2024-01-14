@@ -60,7 +60,14 @@ class ProductController extends Controller
         // Điều hướng về trang chủ sau khi xóa sản phẩm thành công
         return redirect('/admin/product-management');
     }
-    
+    public function delete1(Request $id)
+    {
+        // Tìm sản phẩm cần xóa dựa trên ID
+        $idProduct =$id->all();
+        $this->productService->delete1($idProduct);
+        // Điều hướng về trang chủ sau khi xóa sản phẩm thành công
+        return redirect('/admin/product-management');
+    }
 
     function update(Request $request)
     {

@@ -121,7 +121,7 @@
                 <td>
                     <form action="/admin/product/delete" method="post">
                         @csrf
-                        @method('delete')
+                        @method('put')
                         <button type="submit" class="btn btn-remove" name="id" value="{{$p->id}}" id="removeBtn">Remove</button>
                     </form>
                     <button class="btn btn-edit" onclick="toggleForm2('{{$p->id}}')" id="editBtn">Edit</button>

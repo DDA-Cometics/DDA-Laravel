@@ -16,14 +16,8 @@ class Shopping_cartRepository extends BaseRepository implements IShopping_cartRe
     {
         return Shopping_cart::class;
     }
-
-    // Dưới đây là Implement
-    // function returnProductWithCart(): Collection{
-    //     return Shopping_cart::with('products')->get();
-    // }
     public function returnProductWithCart($userId): Collection
     {
-
         return Shopping_cart::with('products')
             ->where('id', $userId)
             ->where('display_flag', true)
@@ -36,8 +30,6 @@ class Shopping_cartRepository extends BaseRepository implements IShopping_cartRe
         ->where('product_id', $product_id)
         ->update(['quanity' => $quanity]);
     }
-    
-    
     public function findByProductAndUser($product_id, $user_id)
     {
         return $this->model->where('product_id', $product_id)
@@ -55,7 +47,6 @@ class Shopping_cartRepository extends BaseRepository implements IShopping_cartRe
     {
        return DB::table('vouchers')->get();
     }
-    //...............................................
     function ordered($request, $userId,$shoppingCart)
     {
         $partnerCode = $request->input('partnerCode');
@@ -89,13 +80,10 @@ class Shopping_cartRepository extends BaseRepository implements IShopping_cartRe
             'paymentOption' => $paymentOption,
         ];
         if ($message == "Successful.") {
-            // Thêm vào bảng orders
             $order = Order::create([
                 'user_id' => $userId,
                 'date' => now(),
             ]);
-
-            // Lặp qua giỏ hàng và thêm vào bảng order_details
             foreach ($shoppingCart as $item) {
                 Order_details::create([
                     'order_id' => $order->id,
@@ -103,19 +91,14 @@ class Shopping_cartRepository extends BaseRepository implements IShopping_cartRe
                     'quanity' => $item->quanity,
                 ]);
             }
-
-            // Thêm vào bảng payment_history
             Payment_history::create([
                 'order_id' => $order->id,
                 'amount' => $amount,
             ]);
-
-            // Xóa giỏ hàng của người dùng sau khi đã thanh toán
             Shopping_cart::where('id', $userId)->delete();
-           
         }
     }
-    function  history($userId)
+    function history($userId)
     {
       return  Payment_history::whereHas('order', function ($query) use ($userId) {
             $query->where('user_id', $userId);

@@ -1,5 +1,4 @@
 <div>Him Đẹp Trai</div>
-
 @foreach ($vouchers as $voucher)
     <div>{{$voucher->id}}</div>
     <div>{{$voucher->discount*100}}%</div>

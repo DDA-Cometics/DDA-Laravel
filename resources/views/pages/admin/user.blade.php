@@ -5,54 +5,54 @@
 @endsection
 
 @section('content')
-<script>
-    function toggleForm() {
-        var form = document.getElementById("container");
-        form.classList.toggle("d-none");
-        form.classList.toggle("d-flex");
-    }
-    document.addEventListener('DOMContentLoaded', function () {
-        // Kiểm tra mỗi container2
-        const containers = document.querySelectorAll('.controForm .containerForm2');
+    <script>
+        function toggleForm() {
+            var form = document.getElementById("container");
+            form.classList.toggle("d-none");
+            form.classList.toggle("d-flex");
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            // Kiểm tra mỗi container2
+            const containers = document.querySelectorAll('.controForm .containerForm2');
 
-        containers.forEach(container => {
-            // Tìm id tương ứng từ id container2
-            const id = container.id.split('-')[1];
+            containers.forEach(container => {
+                // Tìm id tương ứng từ id container2
+                const id = container.id.split('-')[1];
 
-            // Kiểm tra xem container2 có lớp d-none hay không
-            const isHidden = container.classList.contains('d-none');
+                // Kiểm tra xem container2 có lớp d-none hay không
+                const isHidden = container.classList.contains('d-none');
 
+                // Áp dụng trạng thái cho controForm
+                toggleControForm(id, isHidden);
+            });
+        });
+
+        function toggleForm2(id) {
+            const container2 = document.getElementById(`container2-${id}`);
+            const controForm = document.querySelector(`.controForm #container2-${id} .containerForm2`);
+            if (container2.classList.contains('d-none')) {
+                container2.classList.remove('d-none');
+            } else {
+                container2.classList.add('d-none');
+            }
+            // Lấy trạng thái mới của container2 sau khi thay đổi
+            const isHidden = container2.classList.contains('d-none');
             // Áp dụng trạng thái cho controForm
             toggleControForm(id, isHidden);
-        });
-    });
-
-    function toggleForm2(id) {
-        const container2 = document.getElementById(`container2-${id}`);
-        const controForm = document.querySelector(`.controForm #container2-${id} .containerForm2`);
-        if (container2.classList.contains('d-none')) {
-            container2.classList.remove('d-none');
-        } else {
-            container2.classList.add('d-none');
         }
-        // Lấy trạng thái mới của container2 sau khi thay đổi
-        const isHidden = container2.classList.contains('d-none');
-        // Áp dụng trạng thái cho controForm
-        toggleControForm(id, isHidden);
-    }
-    function toggleControForm(id, isHidden) {
-        const controForm = document.querySelector(`.controForm #controForm-${id}`);
-        if (isHidden) {
-            controForm.classList.add('d-none');
-        } else {
-            controForm.classList.remove('d-none');
+        function toggleControForm(id, isHidden) {
+            const controForm = document.querySelector(`.controForm #controForm-${id}`);
+            if (isHidden) {
+                controForm.classList.add('d-none');
+            } else {
+                controForm.classList.remove('d-none');
+            }
         }
-    }
-</script>
-<button id="showForm1" class="Btn" onclick="toggleForm()">
-    <div class="sign">+</div>
-    <div id="showForm" class="text">Create</div>
-</button>
+    </script>
+    <button id="showForm1" class="Btn" onclick="toggleForm()">
+        <div class="sign">+</div>
+        <div id="showForm" class="text">Create</div>
+    </button>
 <div class="d-none" id="container">
     <div class="row ">
         <div class="col"></div>
@@ -80,7 +80,7 @@
                         <span class="error">{{ $errors->first('account_name') }}</span>
                     @endif
                 </div>
-                <div class="form-inp">
+                <div class="form-inp" >
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password">
                     @if ($errors->has('password'))
@@ -144,7 +144,6 @@
     <table id="userTable">
         <thead>
             <tr>
-                <!-- Các thẻ table header -->
                 <th>ID</th>
                 <th>Image</th>
                 <th>Last Name</th>
@@ -160,10 +159,8 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Table rows will be inserted here using Laravel Blade -->
             @foreach ($users as $p)
                 <tr>
-                    <!-- Các ô thông tin user -->
                     <td>{{$p->id}}</td>
                     <td><img src="{{$p->image}}" alt="user Image" style="max-width: 100px; max-height: 100px;"></td>
                     <td>{{$p->last_name}}</td>

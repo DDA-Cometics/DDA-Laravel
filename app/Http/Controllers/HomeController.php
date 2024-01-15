@@ -5,12 +5,11 @@ use App\Services\Interfaces\IProductService;
 use Illuminate\Http\Request;
 class HomeController extends Controller
 {
-
     function __construct(
         private IProductService $productService
     ){}
     function index() {
-        $product = $this->productService->sortPrices();
+        $product = $this->productService->getProduct();
         return view("pages.home.index", ["products" => $product]);
     }
     function profileUser(){
@@ -22,7 +21,7 @@ class HomeController extends Controller
 
     }
     function bestseller() {
-        $product = $this->productService->sortPrices();
+        $product = $this->productService->getProduct();
         return view("pages.bestseller.index", ["products" => $product]);
     }
     function profileView() {

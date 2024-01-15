@@ -12,13 +12,9 @@ class DetailProductRepository extends BaseRepository implements IDetailProductRe
     {
         return Detail_product::class;
     }
-
-    // Dưới đây là Implement
-    public function sortPrices(): Collection
+    public function getProduct(): Collection
     {
-        // return Product::select('*')->get();
-        return Detail_product::where('display_flag', true)->get();
+        return Detail_product::where('display_flag', true)
+                               ->get();
     }
-    
-    //...............................................
 }

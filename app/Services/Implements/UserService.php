@@ -12,9 +12,7 @@ class UserService implements IUserService
 {
     function __construct(
         private IUserRepository $userRepository
-    ) {
-    }
-
+    ) {}
     function login($email, $password): mixed
     {
         $user = $this->userRepository->findByEmail($email, $password);
@@ -23,7 +21,6 @@ class UserService implements IUserService
             return $user;
         }
         return null;
-        
     }
     function register(array $data): mixed
     {
@@ -44,4 +41,13 @@ class UserService implements IUserService
             "user" => $user
         ];
     }
+    function find($userIdToUpdate)
+    {
+        return $this->userRepository->find($userIdToUpdate);
+    }
+    function getUsers()
+    {
+        return $this->userRepository->getUsers();
+    }
+
 }

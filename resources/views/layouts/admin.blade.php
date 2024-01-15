@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/js/navbar.js') }}">
-    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap">  
@@ -25,7 +24,7 @@
       font-size: 32px;
       font-style: normal;
       font-weight: 700;
-      line-height: 98.7%; /* 31.584px */
+      line-height: 98.7%;
       text-transform: capitalize;
       }
       #bodyAboutUs{
@@ -35,64 +34,64 @@
           font-size: 28px;
           font-style: normal;
           font-weight: 400;
-          line-height: 98.7%; /* 27.636px */
+          line-height: 98.7%;
           letter-spacing: 2.24px;
       }
   </style>
   </head>
-  <body>     
+<body>     
   <?php
-    function ButtonNavbar($text, $link,$width) {
+        function ButtonNavbar($text, $link,$width) {
+            echo '
+                <a href="' . $link . '">
+                <button class="custom-button" id="ButtonNavbar" style="width: ' . $width . 'px;">
+                    <b> <span id="text1">'. $text .'</span> </b>
+                    </button>
+                </a>';
+        }
+        function SearchNavbar() {
+        return '
+            <form class="form-inline" id="SearchNavbar">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Tìm kiếm">
+                <i id="iconSearch" class="fa-solid fa-magnifying-glass"></i>
+            </form>
+        ';
+        }
+        function CartNavbar()
+        {
         echo '
-            <a href="' . $link . '">
-            <button class="custom-button" id="ButtonNavbar" style="width: ' . $width . 'px;">
-                  <b> <span id="text1">'. $text .'</span> </b>
-                </button>
-            </a>';
-    }
-    function SearchNavbar() {
-      return '
-          <form class="form-inline" id="SearchNavbar">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Tìm kiếm">
-              <i id="iconSearch" class="fa-solid fa-magnifying-glass"></i>
-          </form>
-      ';
-    }
-    function CartNavbar()
-    {
-      echo '
-    
-          <form class="form-inline" id="CartNavbar">
-              <a href="?news" id="cartLink">
-                <i class="fa-solid fa-bell ml-5" id="cartIcon"></i>
-              </a>
-              <span style="position: absolute; width:10px; height:10px; border-radius:50%; right:54px;top:1px; background-color:red;" > </span>
-          </form>
-      ';
-    }
-    function ProfileNavbar()
-      {
-          return '
-          <form class="form-inline " id="ProfileNavbar">
-              <i class="fa-solid fa-user" id="profileIcon">
-              </i>
-              <i id="triangleIcon" class="fa-solid fa-caret-down"></i>
-              <a href="/admin/profile" id="iconProfile" class="iconText">PROFILE</a>
-              <a href="/logout" id="textBelowIcon" class="iconText">LOGOUT</a>
-              
-          </form>
-      ';
-      }
-      
-      function ProfileNavbarLogin()
-      { 
-          return '
-          <form class="form-inline" id="ProfileNavbar">
-              <a href="login"> <i id="iconSignin" class="fa-solid fa-right-to-bracket"></i></a>
-              <a href="login" id="textBelowIcon" class="iconText2">LOG IN</a>    
-          </form>
-          ';
-      }
+        
+            <form class="form-inline" id="CartNavbar">
+                <a href="?news" id="cartLink">
+                    <i class="fa-solid fa-bell ml-5" id="cartIcon"></i>
+                </a>
+                <span style="position: absolute; width:10px; height:10px; border-radius:50%; right:54px;top:1px; background-color:red;" > </span>
+            </form>
+        ';
+        }
+        function ProfileNavbar()
+        {
+            return '
+            <form class="form-inline " id="ProfileNavbar">
+                <i class="fa-solid fa-user" id="profileIcon">
+                </i>
+                <i id="triangleIcon" class="fa-solid fa-caret-down"></i>
+                <a href="/admin/profile" id="iconProfile" class="iconText">PROFILE</a>
+                <a href="/logout" id="textBelowIcon" class="iconText">LOGOUT</a>
+                
+            </form>
+        ';
+        }
+        
+        function ProfileNavbarLogin()
+        { 
+            return '
+            <form class="form-inline" id="ProfileNavbar">
+                <a href="login"> <i id="iconSignin" class="fa-solid fa-right-to-bracket"></i></a>
+                <a href="login" id="textBelowIcon" class="iconText2">LOG IN</a>    
+            </form>
+            ';
+        }
     ?>  
  <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -108,7 +107,7 @@
         });
     });
 </script>
-    {{-- navbar --}}
+{{-- navbar --}}
     <div id="main-container" class="container-fluid">
       <div class="row">
           <div class="col">
@@ -125,6 +124,7 @@
               <?php echo ButtonNavbar("PRODUCT MANAGEMENT", "/admin/product-management", 160) ?>
               <?php echo ButtonNavbar("VOUCHERS MANAGEMENT", "/admin/voucher-management", 152) ?>
               <?php echo ButtonNavbar("SHOW CHART", "/admin/statistics", 100) ?>
+              <?php echo ButtonNavbar("MORE TABLE", "/admin/more-table", 100) ?>
           </div>
           <div class="col-5 ">
               <div class="row">
@@ -134,26 +134,17 @@
                   <div class="col-3">
                       <?php echo CartNavbar() ?>
                   </div>
-                  <!-- Check Login để quyết định hiển thị -->
                   <div class="col-4">
                       <?php echo ProfileNavbar() ?>                      
                   </div> 
-                  <!--<div class="col-4">
-                      <?php echo ProfileNavbarLogin() ?>
-                       
-                  </div> -->
-                  <!-- ..................... -->
               </div>
           </div>
       </div><br>
   </div>
-
-  {{-- Phần Yield Body --}}
+{{-- Phần Yield Body --}}
     <div class="container-fluid">
         @yield('content')
     </div>
-  {{-- .......................... --}}
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

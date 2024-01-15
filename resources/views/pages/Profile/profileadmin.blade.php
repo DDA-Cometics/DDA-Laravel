@@ -6,17 +6,14 @@
 @section('content')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
             var editButton = document.getElementById('editButton');
             var profileForm = document.getElementById('profileForm');
             var editProfileForm = document.getElementById('editProfileForm');
             var cancelButton = document.getElementById('cancelButton');
-
-               editButton.addEventListener('click', function() {
+                editButton.addEventListener('click', function() {
                 profileForm.style.display = 'none';
                 editProfileForm.style.display = 'block';
             });
-
             cancelButton.addEventListener('click', function() {
                 profileForm.style.display = 'block';
                 editProfileForm.style.display = 'none';

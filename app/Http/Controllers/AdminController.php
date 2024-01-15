@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 use App\Services\Interfaces\IAdminService;
 use App\Services\Interfaces\IVoucherService;
+use App\Services\Interfaces\IUserService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-
-
-
-
+use App\Services\Interfaces\IProductService;
+use App\Models\Payment_history;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -18,47 +16,47 @@ class AdminController extends Controller
     public function __construct(
         private IAdminService $AdminService,
         private IVoucherService $VoucherService,
-        // private IProductService $productService
+        private IProductService $ProductService,
+        private IUserService $UserService,
         )
     {}
 
     function productManagement()
     {
         $sessionData = session()->get('user_data');
-        $userId = $sessionData['id'] ?? 0;
-        $role = $sessionData['role'];
-        if ($userId ===0){
+        if (!$sessionData || !isset($sessionData['id'])) {
             return view("pages.login.index");
         }
-        if ($role != "admin"){
+        $role = $sessionData['role'];
+        if ($role != "admin") {
             return redirect("/");
         }
+
         $product = $this->AdminService->getProduct();
         return view("pages.admin.product", ["products" => $product]);
     }
     function userManagement()
     {
         $sessionData = session()->get('user_data');
-        $userId = $sessionData['id'] ?? 0;
-        $role = $sessionData['role'];
-        if ($userId ===0){
+        if (!$sessionData || !isset($sessionData['id'])) {
             return view("pages.login.index");
         }
-        if ($role != "admin"){
+        $role = $sessionData['role'];
+        if ($role != "admin") {
             return redirect("/");
         }
+
         $user = $this->AdminService->getUser();
         return view("pages.admin.user", ["users" => $user]);
     }
     function voucherManagement()
     {
         $sessionData = session()->get('user_data');
-        $userId = $sessionData['id'] ?? 0;
-        $role = $sessionData['role'];
-        if ($userId ===0){
+        if (!$sessionData || !isset($sessionData['id'])) {
             return view("pages.login.index");
         }
-        if ($role != "admin"){
+        $role = $sessionData['role'];
+        if ($role != "admin") {
             return redirect("/");
         }
         $voucher = $this->AdminService->getVoucher();
@@ -92,14 +90,12 @@ class AdminController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('/admin/user-management') // Điều hướng nếu dữ liệu không hợp lệ
+            return redirect('/admin/user-management') 
                 ->withErrors($validator)
                 ->withInput();
         }
-        //Insert product into database
         $data= $request->all();
         $this->AdminService->create($data);
-        // Store the user...
         return redirect('/admin/user-management');
     }
 
@@ -110,32 +106,24 @@ class AdminController extends Controller
             'old_password' => 'required|string',
             'new_password' => 'required|string|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d).+$/',
         ]);
-
         if ($validator->fails()) {
             return redirect('/admin/user-management')
                 ->withErrors($validator)
                 ->withInput();
         }
-
         $userIdToUpdate = $request->input('id');
         $oldPassword = $request->input('old_password');
         $newPassword = $request->input('new_password');
-
         try {
-            // Kiểm tra mật khẩu cũ
-            $user = User::find($userIdToUpdate);
-
+            $user = $this->UserService->find($userIdToUpdate);
             if (!$user) {
-                // Người dùng không tồn tại
                 throw new \Exception('Người dùng không tồn tại');
             }
 
             if (Hash::check($oldPassword, $user->password)) {
-                // Mật khẩu cũ đúng, cập nhật mật khẩu mới
                 $this->AdminService->updatePassword($userIdToUpdate, $newPassword);
                 return redirect('/admin/profileuser')->with('success', 'Mật khẩu đã được cập nhật thành công');
             } else {
-                // Mật khẩu cũ không đúng
                 throw new \Exception('Mật khẩu cũ không đúng');
             }
         } catch (\Exception $e) {
@@ -145,95 +133,182 @@ class AdminController extends Controller
     function profileView()
     {
         $sessionData = session()->get('user_data');
-        $userId = $sessionData['id'] ?? 0;
-        $role = $sessionData['role'];
-        if ($userId ===0){
+        if (!$sessionData || !isset($sessionData['id'])) {
             return view("pages.login.index");
         }
-        if ($role != "admin"){
+        $role = $sessionData['role'];
+        if ($role != "admin") {
             return redirect("/");
         }
         return view("pages.Profile.profileadmin");
     }
 
-    function delete(Request $id){
-        // Lấy dữ liệu từ request, ví dụ trường 'id'
+    function delete(Request $id)
+    {
         $userIdToDelete = $id->all();
-        // Gọi hàm delete từ AdminService để xóa người dùng
         $this->AdminService->delete($userIdToDelete);
+        return redirect('/admin/user-management');
+    }
+    function update(Request $request)
+    {
+        $userIdToUpdate = $request->input('id');
+
+        $data = $request->except(['_token', '_method', 'id']);
+
+        $this->AdminService->update($userIdToUpdate, $data);
 
         return redirect('/admin/user-management');
     }
-    function update(Request $request){
-        // // Lấy dữ liệu từ request, ví dụ trường 'id'
-        // $userIdToUpdate = $id;
-        // $data = $attributes->all();
-
-        // // Gọi hàm delete từ AdminService để xóa người dùng
-        // $this->AdminService->update($userIdToUpdate, $data);
-
-        // return redirect('/user-management');
-        // Lấy dữ liệu từ request, ví dụ trường 'id'
-    $userIdToUpdate = $request->input('id');
-
-    // Lấy các trường cần cập nhật từ request
-    $data = $request->except(['_token', '_method', 'id']);
-
-    // Gọi hàm update từ AdminService để cập nhật người dùng
-    $this->AdminService->update($userIdToUpdate, $data);
-
-    return redirect('/admin/user-management');
-    }
-    function voucherManagementCreate(Request $request){
-        // $validator = Validator::make($request->all(), [
-        //     'description' => 'required|string',
-        //     'discount' => 'required|number',
-        //     'active_datetime' => 'required|date',
-        //     'expired_datetime' => 'required|date',
-        // ]);
-
-        // if ($validator->fails()) {
-        //     return redirect('/voucher-management') // Điều hướng nếu dữ liệu không hợp lệ
-        //         ->withErrors($validator)
-        //         ->withInput();
-        // }
-        //Insert product into database
+    function voucherManagementCreate(Request $request)
+    {
         $data= $request->all();
         $this->VoucherService->createVoucher($data);
-        // Store the user...
         return redirect('/admin/voucher-management');
     }
-    function voucherManagementDelete(Request $id){
-        // Lấy dữ liệu từ request, ví dụ trường 'id'
+    function voucherManagementDelete(Request $id)
+    {      
         $voucherIdToDelete = $id->all();
-        // Gọi hàm delete từ AdminService để xóa người dùng
         $this->VoucherService->deleteVoucher($voucherIdToDelete);
-
         return redirect('/admin/voucher-management');
     }
-    function voucherManagementUpdate(Request $request){
-        // // Lấy dữ liệu từ request, ví dụ trường 'id'
-        // $userIdToUpdate = $id;
-        // $data = $attributes->all();
-
-        // // Gọi hàm delete từ AdminService để xóa người dùng
-        // $this->AdminService->update($userIdToUpdate, $data);
-
-        // return redirect('/user-management');
-        // Lấy dữ liệu từ request, ví dụ trường 'id'
-    $userIdToUpdate = $request->input('id');
-
-    // Lấy các trường cần cập nhật từ request
-    $data = $request->except(['_token', '_method', 'id']);
-
-    // Gọi hàm update từ AdminService để cập nhật người dùng
-    $this->VoucherService->updateVoucher($userIdToUpdate, $data);
-
-    return redirect('/admin/voucher-management');
+    function voucherManagementUpdate(Request $request)
+    {
+        $userIdToUpdate = $request->input('id');
+        $data = $request->except(['_token', '_method', 'id']);
+        $this->VoucherService->updateVoucher($userIdToUpdate, $data);
+        return redirect('/admin/voucher-management');
     }
-    function editProfileAdmin(Request $request){
-        
+    function editProfileAdmin(Request $request)
+    {
         return redirect("/admin/profile");
 
+    }
+    function moreTable()
+    {
+        $products = $this->ProductService->getProduct();
+        $vouchers = $this->VoucherService->getAllActiveVouchers();
+        $appliedVouchers = $this->AdminService->getProductVoucher();
+        $orders = $this->AdminService->getOrders();
+        $users = $this->UserService->getUsers();
+        $orderDetails = $this->AdminService->getOrdersDetail();
+        $paymentHistory = $this->AdminService->getPaymentHistory();
+        return view("pages.admin.tableManagement", 
+            [   
+                'appliedVouchers' => $appliedVouchers,
+                'products' => $products, 
+                'vouchers' => $vouchers,
+                'orders' => $orders,
+                'users' => $users,
+                'orderDetails' => $orderDetails,
+                'paymentHistory' => $paymentHistory,
+            ]);
+    }
+    function voucherManagementAppliedCreate(Request $request)
+    {
+        $product_id = $request->input('product_id');
+        $vourcher_id = $request->input('vourcher_id');
+        $this->AdminService->createAppliedVoucher($product_id,$vourcher_id);
+        return redirect("admin/more-table?table=applied-voucher");
+    }
+    function voucherManagementAppliedUpdate(Request $request)
+    {
+        $id=$request->id;
+        $product_id=$request->input('product_id');
+        $voucher_id=$request->input('vourcher_id');
+        $appliedVoucher = $this->AdminService->getApplied_voucher($id);
+        $appliedVoucher->update([
+            'product_id' => $product_id,
+            'vourcher_id' => $voucher_id,
+        ]);
+        return redirect("admin/more-table?table=applied-voucher");
+    }
+    function voucherManagementAppliedDelete(Request $request)
+    {
+        $id=$request->id;
+        $appliedVoucher = $this->AdminService->getApplied_voucher($id);
+        $appliedVoucher->delete();
+        return redirect("admin/more-table?table=applied-voucher");
+    }
+    function orderManagementCreate(Request $request)
+    {
+        $user_id = $request->input('user_id');
+        $date=now();
+        $this->AdminService->createOrder($user_id,$date);
+        return redirect("admin/more-table?table=orders");
+    }
+    function orderManagementUpdate(Request $request)
+    {
+        $id=$request->id;
+        $date = now();
+        $user_id=$request->input('user_id');
+        $appliedVoucher = $this->AdminService->getOrdersById($id)->first();
+        $appliedVoucher->update([
+            'user_id' => $user_id,
+            'date' => $date,
+        ]);        
+        return redirect("admin/more-table?table=orders");
+    }
+    function orderManagementDelete(Request $request)
+    {
+        $id=$request->id;
+        $appliedVoucher = $this->AdminService->getOrdersById($id)->first();
+        $appliedVoucher->delete();
+        return redirect("admin/more-table?table=orders");
+    }
+    function orderDetailManagementCreate(Request $request)
+    {
+        $order_id = $request->input('order_id');
+        $product_id = $request->input('product_id');
+        $quanity = $request->input('quanity');
+        $this->AdminService->createOrderDetail($order_id,$product_id,$quanity);
+        return redirect("admin/more-table?table=order_details");
+    }
+    function orderDetailManagementUpdate(Request $request)
+    {
+        $id=$request->id;
+        $order_id = $request->input('order_id');
+        $product_id = $request->input('product_id');
+        $quanity = $request->input('quanity');
+        $appliedVoucher = $this->AdminService->getOrderDetailById($id)->first();
+        $appliedVoucher->update([
+            'order_id' => $order_id,
+            'product_id' => $product_id,
+            'quanity' => $quanity,
+        ]);        
+        return redirect("admin/more-table?table=order_details");
+    }
+    function orderDetailManagementDelete(Request $request)
+    {
+        $id=$request->id;
+        $appliedVoucher = $this->AdminService->getOrderDetailById($id)->first();
+        $appliedVoucher->delete();
+        return redirect("admin/more-table?table=order_details");
+    }
+    function paymentHistoryManagementCreate(Request $request)
+    {
+        $order_id = $request->input('order_id');
+        $amount = $request->input('amount');
+        $this->AdminService->createpaymentHistory($order_id,$amount);
+        return redirect("admin/more-table?table=payment_history");
+    }
+    function paymentHistoryManagementUpdate(Request $request)
+    {
+        $id=$request->id;
+        $order_id = $request->input('order_id');
+        $amount = $request->input('amount');
+        $appliedVoucher = $this->AdminService->getpaymentHistoryById($id)->first();
+        $payment_id=$appliedVoucher->payment_id;
+        $this->AdminService->updatePayment_history($payment_id,$order_id,$amount);
+        return redirect("admin/more-table?table=payment_history");
+    }
+    function paymentHistoryManagementDelete(Request $request)
+    {
+        $id = $request->id;
+        $idObject = json_decode($id);
+        $paymentId = $idObject->payment_id;
+        $appliedVoucher = $this->AdminService->getpaymentHistoryById($paymentId)->first();
+        $id=$appliedVoucher->payment_id;
+        $this->AdminService->deletePaymentHistory($id);
+        return redirect("admin/more-table?table=payment_history");
     }
 }

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Detail_product extends Model// trong Model chỗ nào khai báo public hoặc protected thì Detail_product đều sử dụng được 
+class Detail_product extends Model
 {
     use HasFactory;
     protected $table = "products";

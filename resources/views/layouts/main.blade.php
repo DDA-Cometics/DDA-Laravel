@@ -1,9 +1,7 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <title>@yield('title')</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     @yield('css')
@@ -14,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap">
     @yield('libary')
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         #headAboutUs {
@@ -25,10 +22,8 @@
             font-style: normal;
             font-weight: 700;
             line-height: 98.7%;
-            /* 31.584px */
             text-transform: capitalize;
         }
-
         #bodyAboutUs {
             color: #000;
             text-align: center;
@@ -37,86 +32,78 @@
             font-style: normal;
             font-weight: 400;
             line-height: 98.7%;
-            /* 27.636px */
             letter-spacing: 2.24px;
         }
     </style>
 </head>
-
 <body>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var profileNavbar = document.getElementById('ProfileNavbar');
-
             profileNavbar.addEventListener('click', function() {
-                // Chuyển đổi lớp 'showText' khi click vào icon
                 this.classList.toggle('showText');
             });
             profileNavbar.addEventListener('click', function() {
-                // Chuyển đổi lớp 'logout' khi click vào icon
                 this.classList.toggle('logout');
             });
         });
     </script>
     <?php
-    function ButtonNavbar($text, $link, $width)
-    {
-        echo '
-            <a href="' . $link . '">
-            <button class="custom-button" id="ButtonNavbar" style="width: ' . $width . 'px;">
-                  <b> <span id="text1">' . $text . '</span> </b>
-                </button>
-            </a>';
-    }
-    function SearchNavbar()
-    {
-        return '
-          <form class="form-inline" id="SearchNavbar">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Tìm kiếm">
-              <i id="iconSearch" class="fa-solid fa-magnifying-glass"></i>
-          </form>
-      ';
-    }
-    function CartNavbar()
-    {
-        echo '
-    
-          <form class="form-inline" id="CartNavbar">
-              <a href="cart" id="cartLink">
-                  <i class="fa-solid fa-cart-shopping" id="cartIcon"></i>
-                  <label id="iconCart" style="">
-                    My Bag
-                  </label>
-              </a>
-          </form>
-      ';
-    }
-    function ProfileNavbar()
-    {
-        return '
-          <form class="form-inline" id="ProfileNavbar">
-              <i class="fa-solid fa-user" id="profileIcon">
-              </i>
-              <i id="triangleIcon" class="fa-solid fa-caret-down"></i>
-              <a href="/profile" id="iconProfile" class="iconText">Profile</a>
-              <a href="/logout" id="textBelowIcon" class="iconText">Logout</a>    
-          </form>
-      ';
-    }
-    function ProfileNavbarLogin()
-    {
-        return '
-          <form class="form-inline" id="ProfileNavbar">
-              <a href="login"> <i id="iconSignin" class="fa-solid fa-right-to-bracket"></i></a>
-              <a href="login" id="textBelowIcon" class="iconText2">LOG IN</a>    
-          </form>
-          ';
-    }
+        function ButtonNavbar($text, $link, $width)
+        {
+            echo '
+                <a href="' . $link . '">
+                <button class="custom-button" id="ButtonNavbar" style="width: ' . $width . 'px;">
+                    <b> <span id="text1">' . $text . '</span> </b>
+                    </button>
+                </a>';
+        }
+        function SearchNavbar()
+        {
+            return '
+            <form class="form-inline" id="SearchNavbar">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Tìm kiếm">
+                <i id="iconSearch" class="fa-solid fa-magnifying-glass"></i>
+            </form>
+        ';
+        }
+        function CartNavbar()
+        {
+            echo '
+            <form class="form-inline" id="CartNavbar">
+                <a href="cart" id="cartLink">
+                    <i class="fa-solid fa-cart-shopping" id="cartIcon"></i>
+                    <label id="iconCart" style="">
+                        My Bag
+                    </label>
+                </a>
+            </form>
+        ';
+        }
+        function ProfileNavbar()
+        {
+            return '
+            <form class="form-inline" id="ProfileNavbar">
+                <i class="fa-solid fa-user" id="profileIcon">
+                </i>
+                <i id="triangleIcon" class="fa-solid fa-caret-down"></i>
+                <a href="/profile" id="iconProfile" class="iconText">Profile</a>
+                <a href="/logout" id="textBelowIcon" class="iconText">Logout</a>    
+            </form>
+        ';
+        }
+        function ProfileNavbarLogin()
+        {
+            return '
+            <form class="form-inline" id="ProfileNavbar">
+                <a href="login"> <i id="iconSignin" class="fa-solid fa-right-to-bracket"></i></a>
+                <a href="login" id="textBelowIcon" class="iconText2">LOG IN</a>    
+            </form>
+            ';
+        }
     ?>
-
-    {{-- navbar --}}
+{{-- Navbar --}}
     <div id="main-container" class="container-fluid">
-
         <div class="row">
             <div class="col">
                 <nav class="navbar p-0">
@@ -136,7 +123,6 @@
             <div class="col-5 ">
                 <div class="row">
                     <div class="col-5">
-                        <!-- <?php echo SearchNavbar() ?> -->
                         <form action="/search" method="get" class="form-inline" id="SearchNavbar">
                             <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Tìm kiếm">
                             <i id="iconSearch" class="fa-solid fa-magnifying-glass"></i>
@@ -147,27 +133,23 @@
                         <?php echo CartNavbar() ?>
                     </div>
                     @if(session()->has('user_data'))
-                    <div class="col-4">
-                        <?php echo ProfileNavbar() ?>
-                    </div>
-
+                        <div class="col-4">
+                            <?php echo ProfileNavbar() ?>
+                        </div>
                     @else
-                    <div class="col-4">
-                        <?php echo ProfileNavbarLogin() ?>
-                    </div>
+                        <div class="col-4">
+                            <?php echo ProfileNavbarLogin() ?>
+                        </div>
                     @endif
-
-
                 </div>
             </div>
         </div><br>
     </div>
-
-    {{-- Phần Yield Body --}}
+{{-- Yield Body --}}
     <div class="container-fluid">
         @yield('content')
     </div>
-    {{-- .......................... --}}
+{{-- About US --}}
     <div class="container">
         <div class="row">
             <div class="col">
@@ -183,7 +165,7 @@
             </div>
         </div>
     </div>
-    {{-- footer --}}
+{{-- footer --}}
     <footer class="footer">
         <div class="container">
             <div class="row">
@@ -237,10 +219,8 @@
                             <a href="https://www.instagram.com"><i id="icon" class="fa-brands fa-square-instagram"></i></a>
                             <a href="https://www.youtube.com"><i id="icon" class="fa-brands fa-youtube"></i></a>
                         </div>
-
                     </div>
                 </div>
-
                 <div class="col"></div>
             </div>
             <div class="row">
@@ -248,7 +228,6 @@
                     <strong><i class="fas fa-check-circle icon-circle mr-5"></i></strong><span>2023|</span> Phạm Thị Lan Anh - Huỳnh Đức - Đinh Thị Hồng Duyên
                 </div>
             </div>
-        </div>
         </div>
     </footer>
     <!-- Optional JavaScript -->
@@ -258,5 +237,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     @yield('Javascript')
 </body>
-
 </html>

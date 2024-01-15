@@ -5,7 +5,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-interface IBaseRepository {
+interface IBaseRepository 
+{
   public function all(bool $toArray): Collection|array|null;
   public function findById($id): mixed;
   public function create($attributes = []): mixed;

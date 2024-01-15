@@ -10,7 +10,6 @@ class Payment_history extends Model
     use HasFactory;
     protected $table = "payment_history";
     protected $fillable = ["payment_id","order_id","amount"];
-
     public function order()
     {
         return $this->belongsTo(Order::class, 'order_id', 'id');

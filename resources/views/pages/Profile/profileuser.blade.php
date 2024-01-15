@@ -6,17 +6,14 @@
 @section('content')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
             var editButton = document.getElementById('editButton');
             var profileForm = document.getElementById('profileForm');
             var editProfileForm = document.getElementById('editProfileForm');
             var cancelButton = document.getElementById('cancelButton');
-
             editButton.addEventListener('click', function() {
                 profileForm.style.display = 'none';
                 editProfileForm.style.display = 'block';
             });
-
             cancelButton.addEventListener('click', function() {
                 profileForm.style.display = 'block';
                 editProfileForm.style.display = 'none';
@@ -51,7 +48,6 @@
                             <p><strong>Role:</strong> {{ session('user_data')['role'] }}</p>
                         </div>
                     </div>
-                
                     <div class="edit-profile-info card mt-4" id="editProfileForm" style="display: none;">
                         <h2 class="text-center mb-4">EDIT PROFILE</h2>
                         <form action="/edit-profile" method="post">

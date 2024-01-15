@@ -92,49 +92,35 @@
             </div>
         </div>
     </div>
-
-
-
     <script>
         let currentQuantity = 1;
         let originalWidth, originalHeight;
-
         function changeImage(newImageUrl) {
             const quanity = document.getElementById('quanity');
             currentQuantity = quanity.value;
-
             const mainImage = document.getElementById('mainImage');
             if (!originalWidth && !originalHeight) {
                 originalWidth = mainImage.width;
                 originalHeight = mainImage.height;
             }
-
             mainImage.src = newImageUrl;
             mainImage.style.width = originalWidth + 'px';
             mainImage.style.height = originalHeight + 'px';
             mainImage.style.border = 'none';
-
             quanity.value = currentQuantity;
         }
-
         document.getElementById('decreaseBtn').addEventListener('click', () => {
             updateQuantity(-1);
         });
-
         document.getElementById('increaseBtn').addEventListener('click', () => {
             updateQuantity(1);
         });
-
         function updateQuantity(change) {
             const quanity = document.getElementById('quanity');
             let newQuantity = parseInt(quanity.value) + change;
-
-
             newQuantity = Math.max(1, newQuantity);
-
             quanity.value = newQuantity;
             currentQuantity = newQuantity;
         }
     </script>
-
 @endsection

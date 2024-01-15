@@ -1,100 +1,98 @@
 @extends('layouts.main')
+
 @section('title', 'Cart')
+
 @section('css')
     <link rel="stylesheet" href="/assets/css/cart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer" 
+    />
 @endsection
 
 @section('content')
-@if(request('err'))
-
-<div id="errorModal" class="modal">
-    <div class="modal-content " id="modalErr">
-        <button class="close text-right">X</button>
-        <p>You haven't added any products to your cart. Please add products before proceeding.</p>
-    </div>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var modal = document.getElementById('errorModal');
-        modal.style.display = 'block';
-        var closeBtn = document.querySelector('.close');
-        closeBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-        setTimeout(function() {
-            modal.style.display = 'none';
-        }, 8000);
-    });
-</script>
-@endif
-    <?php
-    
-    function createCartPage($id, $name, $size, $price, $description, $category, $image, $discount,$quanity)
-    {
-        echo '
-         <div class="row" id="containerProducts" >
-            <div class="col-4 mt-2">
-                <img style="width:150px;height:200px;" src="' .
-            $image .
-            '" alt="' .
-            $name .
-            '">
+    @if(request('err'))
+        <div id="errorModal" class="modal">
+            <div class="modal-content " id="modalErr">
+                <button class="close text-right">X</button>
+                <p>You haven't added any products to your cart. Please add products before proceeding.</p>
             </div>
-            <div class="col-8">
-                <h5>' .
-            $name .
-            '</h5><br>  
-                <div class="row">
-                    <div class="col-4">
-                        <i class="fa-solid fa-circle-info"></i> YOU GET ' .
-            $discount .
-            ' OFF!  <br>
-                        <br><h5>' .
-            $size .
-            '</h5>
-                    </div>
-                    <div class="col-8">
-                        <h6>Quantity</h6>
-                        <div class="quantity-container">
-                            <button class="btn btn-light decreaseBtn">-</button>
-                            <input style="width:70px" type="number" class="form-control quantity-input" style="width: 50px;" value="'.$quanity.'">
-                            <button class="btn btn-light increaseBtn">+</button>
-                        </div>
-                        </div>
-                    </div>
-                <div class="row">
-                    <div class="col d-flex id="myPrice">
-                        <div class="mr-3" id="newPrice" ><del style="text-decoration: line-through">$' .
-            $price .
-            '</div>
-                        <div class="oldPrice" >$' .
-            ($price - $discount) .
-            '</div>
-                    </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var modal = document.getElementById('errorModal');
+                modal.style.display = 'block';
+                var closeBtn = document.querySelector('.close');
+                closeBtn.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
+                setTimeout(function() {
+                    modal.style.display = 'none';
+                }, 8000);
+            });
+        </script>
+    @endif
+    <?php
+        function createCartPage($id, $name, $size, $price, $description, $category, $image, $discount,$quanity)
+        {
+            echo '
+            <div class="row" id="containerProducts" >
+                <div class="col-4 mt-2">
+                    <img style="width:150px;height:200px;" src="' .
+                $image .
+                '" alt="' .
+                $name .
+                '">
                 </div>
-                <div class="row">
-                    <div class="col-3">
-                        <h5 class="selectable-button" onclick="handleButtonClick(this)">Edit</h5>
+                <div class="col-8">
+                    <h5>' .
+                $name .
+                '</h5><br>  
+                    <div class="row">
+                        <div class="col-4">
+                            <i class="fa-solid fa-circle-info"></i> YOU GET ' .
+                $discount .
+                ' OFF!  <br>
+                            <br><h5>' .
+                $size .
+                '</h5>
+                        </div>
+                        <div class="col-8">
+                            <h6>Quantity</h6>
+                            <div class="quantity-container">
+                                <button class="btn btn-light decreaseBtn">-</button>
+                                <input style="width:70px" type="number" class="form-control quantity-input" style="width: 50px;" value="'.$quanity.'">
+                                <button class="btn btn-light increaseBtn">+</button>
+                            </div>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col d-flex id="myPrice">
+                            <div class="mr-3" id="newPrice" ><del style="text-decoration: line-through">$' .
+                $price .
+                '</div>
+                            <div class="oldPrice" >$' .
+                ($price - $discount) .
+                '</div>
+                        </div>
                     </div>
-                    <div class="col-5">
-                        <h5 class="selectable-button" onclick="handleButtonClick(this)">Add to Wishlist</h5>
+                    <div class="row">
+                        <div class="col-3">
+                            <h5 class="selectable-button" onclick="handleButtonClick(this)">Edit</h5>
+                        </div>
+                        <div class="col-5">
+                            <h5 class="selectable-button" onclick="handleButtonClick(this)">Add to Wishlist</h5>
+                        </div>
+                        <div class="col-4">
+                            <h5 class="selectable-button" onclick="handleButtonClick(this)">Remove</h5>
+                        </div>
                     </div>
-                    <div class="col-4">
-                        <h5 class="selectable-button" onclick="handleButtonClick(this)">Remove</h5>
-                    </div>
-                </div>
-    
-           </div>
-    
-           </div>';
-    }
-    
+        
+            </div>
+        
+            </div>';
+        }  
     ?>
-
     <body>
         <h2 class="mt-4 ml-3">My Shopping Bag (<?php echo count($shoppingCart); ?> Items)</h2><br>
         <div class="row container-fluid">
@@ -109,10 +107,8 @@
                 <div class="d-none">
                     <?= $total=0; ?>
                 </div>
-                
                 @foreach ($shoppingCart as $cartItem)
                     <?php
-                        // Assuming you have these variables available
                         $product_id = $cartItem['products']['id'];
                         $product_name = $cartItem['products']['product_name'];
                         $size = $cartItem['products']['size'];
@@ -120,12 +116,11 @@
                         $description = $cartItem['products']['description'];
                         $category = $cartItem['products']['category'];
                         $image = $cartItem['products']['image'];
-                        $discount = 50; // You may need to retrieve this value from your data
+                        $discount = 50;
                         $quantity = $cartItem['quanity'];
                         $a= ($price* $quantity) - (($discount/100)*($price* $quantity));
                         $total += $a;
                     ?>  
-
                     <div class="row" id="containerProducts">
                         <div class="col-4 mt-2">
                             <img style="width: 150px; height: 200px;" src="<?= $image ?>" alt="<?= $product_name ?>">
@@ -192,9 +187,7 @@
                         </div>
                     </div>
                 @endforeach   
-                
             </div>
-            
             <div class="col-5 mx-auto " id="payMent">
                 <div class="content"style="width: 100; height: 100%; background: #D9D9D9">
                     <div class="row p-3">
@@ -210,7 +203,6 @@
                             <h6>$0.00</h6><br>
                         </div>
                     </div>
-                    
                     <form action="/payUrl" method="post">
                         @csrf
                         <div class="row p-3" id ="tables">
@@ -243,9 +235,7 @@
                                                     </option>
                                                 @endif
                                             @endforeach
-
                                         </select>
-
                                         <input type="text" name="user_name" value="{{ session('user_data')['last_name'] }} {{ session('user_data')['first_name'] }}" class="d-none">
                                         <button type="button" id="apply" name="payUrl" onclick="applyVoucher()">APPLY</button><br>
                                         <p>Please note: Certain promotions cannot be combined. Please see specific promotion
@@ -281,56 +271,46 @@
                 </div>
             </div>
         </form>
-
-            <script>
-                let currentQuantity = 1;
-                let originalWidth, originalHeight;
-
-                function changeImage(newImageUrl) {
-                    const quantityInput = document.getElementById('quantityInput');
-                    currentQuantity = quantityInput.value;
-
-                    const mainImage = document.getElementById('mainImage');
-                    if (!originalWidth && !originalHeight) {
-                        originalWidth = mainImage.width;
-                        originalHeight = mainImage.height;
-                    }
-
-                    mainImage.src = newImageUrl;
-                    mainImage.style.width = originalWidth + 'px';
-                    mainImage.style.height = originalHeight + 'px';
-                    mainImage.style.border = 'none';
-
-                    quantityInput.value = currentQuantity;
-                }
-
-                document.querySelectorAll('.quantity-container').forEach(container => {
-                    const decreaseBtn = container.querySelector('.decreaseBtn');
-                    const increaseBtn = container.querySelector('.increaseBtn');
-                    const quantityInput = container.querySelector('.quantity-input');
-
-                    decreaseBtn.addEventListener('click', () => {
-                        updateQuantity(quantityInput, -1);
-                    });
-
-                    increaseBtn.addEventListener('click', () => {
-                        updateQuantity(quantityInput, 1);
-                    });
-                });
-
-                function updateQuantity(quantityInput, change) {
-                    let newQuantity = parseInt(quantityInput.value) + change;
-                    newQuantity = Math.max(1, newQuantity);
-                    quantityInput.value = newQuantity;
-                }
-                function applyVoucher(){
-                    var discountValue = parseFloat(document.getElementById('new').value);
-                    var totalValue = <?= $total ?>;
-                    var discountedTotal = totalValue - (totalValue * discountValue / 100);
-
-                    document.getElementById('new_total').innerText = discountedTotal.toFixed(0);
-                    document.getElementById('amount').value = discountedTotal;
-                    document.getElementById('discountMessage').innerText = 'Discount of ' + discountValue + '% applied.';
-                }
-            </script>
-        @endsection
+    <script>
+        let currentQuantity = 1;
+        let originalWidth, originalHeight;
+        function changeImage(newImageUrl) {
+            const quantityInput = document.getElementById('quantityInput');
+            currentQuantity = quantityInput.value;
+            const mainImage = document.getElementById('mainImage');
+            if (!originalWidth && !originalHeight) {
+                originalWidth = mainImage.width;
+                originalHeight = mainImage.height;
+            }
+            mainImage.src = newImageUrl;
+            mainImage.style.width = originalWidth + 'px';
+            mainImage.style.height = originalHeight + 'px';
+            mainImage.style.border = 'none';
+            quantityInput.value = currentQuantity;
+        }
+        document.querySelectorAll('.quantity-container').forEach(container => {
+            const decreaseBtn = container.querySelector('.decreaseBtn');
+            const increaseBtn = container.querySelector('.increaseBtn');
+            const quantityInput = container.querySelector('.quantity-input');
+            decreaseBtn.addEventListener('click', () => {
+                updateQuantity(quantityInput, -1);
+            });
+            increaseBtn.addEventListener('click', () => {
+                updateQuantity(quantityInput, 1);
+            });
+        });
+        function updateQuantity(quantityInput, change) {
+            let newQuantity = parseInt(quantityInput.value) + change;
+            newQuantity = Math.max(1, newQuantity);
+            quantityInput.value = newQuantity;
+        }
+        function applyVoucher(){
+            var discountValue = parseFloat(document.getElementById('new').value);
+            var totalValue = <?= $total ?>;
+            var discountedTotal = totalValue - (totalValue * discountValue / 100);
+            document.getElementById('new_total').innerText = discountedTotal.toFixed(0);
+            document.getElementById('amount').value = discountedTotal;
+            document.getElementById('discountMessage').innerText = 'Discount of ' + discountValue + '% applied.';
+        }
+    </script>
+@endsection

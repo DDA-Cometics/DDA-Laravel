@@ -4,7 +4,8 @@ namespace App\Services\Interfaces;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Mix;
 
-interface IShopping_cartService {
+interface IShopping_cartService 
+{
    function create($data):mixed;
    function returnProductWithCart($userId):Collection;
    function updateQuanity($user_id, $product_id, $quanity);

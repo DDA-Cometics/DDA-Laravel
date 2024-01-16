@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Services\Interfaces\IProductService;
 use App\Models\Payment_history;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -73,7 +74,13 @@ class AdminController extends Controller
         if ($role != "admin"){
             return redirect("/");
         }
-        return view("pages.admin.showchart");
+        $data = Payment_history::select(
+            DB::raw('DATE(created_at) as date'), 
+            DB::raw('COUNT(*) as order_count'), 
+            DB::raw('SUM(amount) as total_amount'))
+            ->groupBy('date')
+            ->get();
+        return view("pages.admin.showchart",compact('data'));
     }
     function create(Request $request){
         $validator = Validator::make($request->all(), [

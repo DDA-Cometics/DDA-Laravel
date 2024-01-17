@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-8">
                     <div class="profile-info card mt-4" id="profileForm">
-                        <h2 class="text-center mb-4">USER INFORMATION</h2>
+                        <h2 class="text-center mb-4">Admin INFORMATION</h2>
                         <div class="user-info">
                             <p><strong>Email:</strong> {{ session('user_data')['email'] }}</p>
                             <p><strong>Last Name:</strong> {{ session('user_data')['last_name'] }}</p>
@@ -95,6 +95,6 @@
             </div>
         </div>
     @else
-        <p class="error-message">No user data available!</p>
+        <p class="error-message">Available!</p>
     @endif
 @endsection

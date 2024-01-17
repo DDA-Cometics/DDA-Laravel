@@ -119,7 +119,7 @@
                             <button type="submit" class="btn btn-remove" name="id" value="{{$p->id}}" id="removeBtn">Remove</button>
                         </form>
                         <button class="btn btn-edit" onclick="toggleForm2('{{$p->id}}')" id="editBtn">Edit</button>
-                    <td>
+                    </td>
                 </tr>
                 <div class="d-none" id="container2-{{$p->id}}">
                     <div class="row" id="controForm">

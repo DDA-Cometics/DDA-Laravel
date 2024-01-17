@@ -62,12 +62,20 @@
                                 $ {{ $products->price / 2 }}</div>
                         </div><br>
                         <div>
-                            <p>{{ $products->description }}</p>
+                            <p><strong>Description:</strong> {{ $products->description }}</p>
+                            <p>
+                                <strong>Category:</strong> 
+                                {{ $products->category }} 
+                                <strong>|</strong>
+                                <strong>Ingredient:</strong> 
+                                {{ $products->ingredient }}
+                            </p>
+                            <p><strong>Skin concerns:</strong> {{ $products->skin_concerns }}</p>
                         </div>
                         <div class="size_product">
                             <b>Size: </b>
                             <select name="product_size" id="product_size">
-                                <option value="{{ $products->size }}">{{ $products->size }}ml</option>
+                                <option value="{{ $products->size }}">{{ $products->size }}</option>
                             </select>
                         </div>
                         <form action="/add-to-cart" method="post">

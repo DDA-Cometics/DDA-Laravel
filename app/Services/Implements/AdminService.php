@@ -104,4 +104,8 @@ class AdminService implements IAdminService
     {
         return $this->AdminRepository->deletePaymentHistory($id);
     }
+    function getChart()
+    {
+        return $this->AdminRepository->getChart();
+    }
 }

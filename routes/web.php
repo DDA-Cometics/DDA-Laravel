@@ -37,6 +37,10 @@ use App\Http\Controllers\checkoutController;
     (
         function () 
         {
+            Route::get('/new-products', [ProductController::class, "getNewProduct"]);
+            Route::get('/best-seller', [ProductController::class, "filterProducts"]);
+            Route::get('/history', [checkoutController::class, "history"]);
+            Route::get('/cart', [shoppingCartController::class, "getToCart"]);
             Route::get('/login', [login_registerController::class, "index"]);
             Route::post('/product/create', [ProductController::class, "create"]);
             Route::put('/product-management/update/{id}', [ProductController::class, 'update']);

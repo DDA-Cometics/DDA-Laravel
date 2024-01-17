@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\Order_details;
 use App\Models\Applied_voucher;
 use App\Models\Payment_history;
+use Illuminate\Support\Facades\DB;
 use App\Repositories\Interfaces\IAdminRepository;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -103,5 +104,14 @@ class AdminRepository extends BaseRepository implements IAdminRepository
     public function deletePaymentHistory($id)
     {
         return Payment_history::where('payment_id',$id)->delete();
+    }
+    public function getChart()
+    {
+        return Payment_history::select(
+            DB::raw('DATE(created_at) as date'), 
+            DB::raw('COUNT(*) as order_count'), 
+            DB::raw('SUM(amount) as total_amount'))
+            ->groupBy('date')
+            ->get();
     }
 }

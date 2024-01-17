@@ -23,4 +23,5 @@ interface IAdminRepository extends IBaseRepository
     function getpaymentHistoryById($id);
     function updatePayment_history($payment_id,$order_id,$amount);
     function deletePaymentHistory($id);
+    function getChart();
 }

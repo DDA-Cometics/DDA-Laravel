@@ -21,7 +21,7 @@ class ProductController extends Controller
         $this->productService = $productService;
     }
     function index() {
-        $product = $this->productService->sortPrices();
+        $product = $this->productService->getProduct();
         return view("home/index", ["products" => $product]);
     }
     function getNewProduct()
@@ -31,42 +31,36 @@ class ProductController extends Controller
     }
     function create(Request $request){
         $validator = Validator::make($request->all(), [
-            'image' => 'required|url', // Ví dụ: Ảnh cần là URL
-            'product_name' => 'required|string|max:255', // Tên sản phẩm là chuỗi không quá 255 ký tự
-            'size' => 'required|numeric', // Kích thước phải là số
-            'price' => 'required|numeric|min:0', // Giá sản phẩm là số không âm
-            'description' => 'required|string', // Mô tả sản phẩm là chuỗi
-            'category' => 'required|string', // Loại sản phẩm là chuỗi
+            'image' => 'required|url', 
+            'product_name' => 'required|string|max:255',
+            'size' => 'required|numeric', 
+            'price' => 'required|numeric|min:0', 
+            'description' => 'required|string',
+            'category' => 'required|string',
         ]);
-
         if ($validator->fails()) {
-            return redirect('/admin/product-management') // Điều hướng nếu dữ liệu không hợp lệ
+            return redirect('/admin/product-management') 
                 ->withErrors($validator)
                 ->withInput();
         }
-        //Insert product into database
         $data= $request->all();
-        
         $this->productService->create($data);
-        // Store the user...
- 
         return redirect('/admin/product-management');
     }
     public function delete(Request $id)
     {
-        // Tìm sản phẩm cần xóa dựa trên ID
         $idProduct = $id->all();
         $this->productService->delete($idProduct);
-        // Điều hướng về trang chủ sau khi xóa sản phẩm thành công
         return redirect('/admin/product-management');
     }
-    
-
+    public function delete1(Request $id)
+    {
+        $idProduct =$id->all();
+        $this->productService->delete1($idProduct);
+        return redirect('/admin/product-management');
+    }
     function update(Request $request)
     {
-       
-        // Validate
-        
         $productIdUpdate= $request->input('id');
         $data = $request->all();
         $this->productService->update($productIdUpdate, $data  );
@@ -75,36 +69,25 @@ class ProductController extends Controller
     }
     public function filterProducts(Request $request)
     {
-        // Lấy giá trị từ form
         $category = $request->input('category');
         $skinConcerns = $request->input('skin_concerns');
         $skinType = $request->input('skin_type');
         $ingredient = $request->input('ingredient');
-
-        // Bắt đầu với một query cho tất cả sản phẩm
         $query = Product::query();
-
-        // Áp dụng các bộ lọc nếu có giá trị
         if ($category) {
             $query->where('category', $category);
         }
-
         if ($skinConcerns) {
             $query->where('skin_concerns', $skinConcerns);
         }
-
         if ($skinType) {
             $query->where('skin_type', $skinType);
         }
-
         if ($ingredient) {
             $query->where('ingredient', $ingredient);
         }
-
-        // Lấy kết quả
         $filteredProducts = $query->get();
         $productt = $this->productService->getNewProduct();
-        // Trả về view hiển thị kết quả filter
         return view("pages.bestseller.index", ["products" => $filteredProducts,"productt" => $productt]);
     }
 }

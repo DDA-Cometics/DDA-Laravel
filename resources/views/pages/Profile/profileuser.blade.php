@@ -6,17 +6,14 @@
 @section('content')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
             var editButton = document.getElementById('editButton');
             var profileForm = document.getElementById('profileForm');
             var editProfileForm = document.getElementById('editProfileForm');
             var cancelButton = document.getElementById('cancelButton');
-
             editButton.addEventListener('click', function() {
                 profileForm.style.display = 'none';
                 editProfileForm.style.display = 'block';
             });
-
             cancelButton.addEventListener('click', function() {
                 profileForm.style.display = 'block';
                 editProfileForm.style.display = 'none';
@@ -26,13 +23,12 @@
     @if (session()->has('user_data'))
         <div class="container mt-5">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4" id="newProfile">
                     <div class="profile-card card mt-4">
                         <center><img src="{{ session('user_data')['image'] }}" alt="Profile Image"
                                 class="img-fluid profile-image"></center>
                         <h2 class="text-center">{{ session('user_data')['last_name'] }}
                             {{ session('user_data')['first_name'] }}</h2>
-                        <p class="text-center">{{ session('user_data')['email'] }}</p>
                         <div class="text-center">
                             <button type="button" id="editButton" class="btn btn-edit">Edit Profile</button>
                         </div>
@@ -54,38 +50,45 @@
                     </div>
                     <div class="edit-profile-info card mt-4" id="editProfileForm" style="display: none;">
                         <h2 class="text-center mb-4">EDIT PROFILE</h2>
-                        <form action="/edit-profile" method="post" enctype="multipart/form-data">
+                        <form action="/edit-profile" method="post">
                             @csrf
                             @method('put')
+                            <input class="d-none" type="text" name="id" value="{{ session('user_data')['id'] }}">
                             <div class="form-group">
                                 <label for="editProfileImage">Profile Image</label>
                                 <input type="file" class="form-control-file" id="editProfileImage"
-                                    name="editProfileImage">
+                                    name="editProfileImage" value="{{ session('user_data')['image'] }}">
                             </div>
                             <div class="form-group">
-                                <label for="editFullName">Full Name</label>
-                                <input type="text" class="form-control" id="editFullName" name="editFullName"
-                                    value="{{ session('user_data')['last_name'] }}.{{ session('user_data')['first_name'] }}"
-                                    readonly>
+                                <label for="last_name">Last Name</label>
+                                <input type="text" class="form-control" id="last_name" name="last_name"
+                                    value="{{ session('user_data')['last_name'] }}"
+                                >
                             </div>
                             <div class="form-group">
-                                <label for="editPassword">Password</label>
-                                <input type="password" class="form-control" id="editPassword" name="editPassword"
+                                <label for="first_name">First Name</label>
+                                <input type="text" class="form-control" id="first_name" name="first_name"
+                                    value="{{ session('user_data')['first_name'] }}"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password"
                                     placeholder="Enter password">
                             </div>
                             <div class="form-group">
-                                <label for="editNewPassword">New Password</label>
-                                <input type="password" class="form-control" id="editNewPassword" name="editNewPassword"
+                                <label for="new_password">New Password</label>
+                                <input type="password" class="form-control" id="new_password" name="new_password"
                                     placeholder="Enter new password">
                             </div>
                             <div class="form-group">
-                                <label for="editConfirmPassword">Confirm New Password</label>
-                                <input type="password" class="form-control" id="editConfirmPassword"
-                                    name="editConfirmPassword" placeholder="Confirm new password">
+                                <label for="confirm_password">Confirm New Password</label>
+                                <input type="password" class="form-control" id="confirm_password"
+                                    name="confirm_password" placeholder="Confirm new password">
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <button type="submit" class="btn btn-save btn-block">Save</button>
+                                    <button type="submit" class="btn btn-save btn-block" id="saveButton">Save</button>
                                 </div>
                                 <div class="col-md-6">
                                     <button type="button" class="btn btn-cancel btn-block"
@@ -96,8 +99,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div><br>  
     @else
-        <p class="error-message">No user data available!</p>
+        @php
+            return redirect('/login');
+        @endphp
     @endif
 @endsection

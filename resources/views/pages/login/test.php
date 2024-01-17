@@ -21,7 +21,6 @@ function validate_registration_form($data)
     return [];
 }
 
-// Example usage:
 $data = [
     'first_name' => 'John',
     'last_name' => 'Doe',
@@ -37,7 +36,5 @@ if (!empty($validation_errors)) {
     foreach ($validation_errors as $error) {
         echo $error . "<br>";
     }
-    // Hiển thị thông báo lỗi cho người dùng để họ nhập lại thông tin
 } else {
-    // Tiến hành đăng ký người dùng
 }

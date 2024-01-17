@@ -33,9 +33,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: 98.7%;
-    /* 24.675px */
     text-transform: uppercase;
-    
 }
 
 #buttonSignUp:focus,
@@ -54,11 +52,8 @@
     font-style: normal;
     font-weight: 400;
     line-height: 98.7%;
-    /* 24.675px */
     text-transform: uppercase;
 }
-
-
 #banner img {
     position: relative;
     border-radius: 10px;
@@ -68,7 +63,6 @@
     height: 500px;
     margin-top: 50px;
 }
-
 .discountBanner {
     position: absolute;
     top: 271px;
@@ -79,17 +73,14 @@
     font-style: normal;
     font-weight: 400;
     line-height: 147.5%;
-    /* 147.5px */
     letter-spacing: 33px;
     text-transform: capitalize;
 }
-
 .btnBanner {
     position: absolute;
     top: 450px;
     right: 80px;
 }
-
 #buynowBtn {
     width: 180px;
     height: auto;
@@ -105,13 +96,10 @@
     letter-spacing: 5.7px;
     text-transform: uppercase;
 }
-
 #buynowBtn:hover {
     background: #f70063;
     color: #FFF;
 }
-
-
 .card {
     position: relative;
     width: 273px;
@@ -123,38 +111,30 @@
     align-items: center;
     justify-content: center;
 }
-
 .circle-container {
     position: absolute;
     top: 0px;
     left: 0px;
     width: 78px;
-    /* Đường kính = bán kính * 2 = 39 * 2 = 78px */
     height: 78px;
     border-radius: 50%;
-    /* Tạo thành hình tròn */
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #F3A9C6;
 }
-
 .circle-container1 {
     position: absolute;
     top: 0px;
-    
     width: 78px;
-    /* Đường kính = bán kính * 2 = 39 * 2 = 78px */
     height: 78px;
     border-radius: 50%;
-    /* Tạo thành hình tròn */
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #e1b341;
     text-align: right;
 }
-
 .circle-container1 span {
     text-align: center;
     color: #FAF2F2;
@@ -179,7 +159,6 @@
     letter-spacing: 0.49px;
     text-transform: capitalize;
 }
-
 .img {
     margin-top: 40px;
     background: white;
@@ -189,35 +168,28 @@
     display: grid;
     place-items: center;
 }
-
 .title {
     margin-top: 10px;
     width: 80%;
 }
-
 .rating {
     position: relative;
     margin-left: -60px;
 }
-
 .rating:not(:checked)>input {
     position: absolute;
     appearance: none;
 }
-
 .rating:not(:checked)>label {
     float: right;
     cursor: pointer;
     font-size: 30px;
     color: #666;
 }
-
 .rating:not(:checked)>label:before {
     content: '★';
     color: #ff9e0b;
-
 }
-
 .ratingTotal {
     position: absolute;
     bottom: 20px;
@@ -231,42 +203,31 @@
     letter-spacing: 0.49px;
     text-transform: capitalize;
 }
-
 .oldPrice {
     color: black;
 }
-
 .newPrice {
     color: #F40707;
 }
-
 .removePrice {
     position: absolute;
     top: -4px;
     width: 50px;
     border: 1px solid black;
-
 }
-
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     filter: invert(100%);
-    /* Invert color to black */
 }
-
 .carousel-control-prev,
 .carousel-control-next {
     margin: 90px;
     max-width: 5%;
     color: black;
-    /* Set text color to black */
-
 }
-
 #ImgService {
     margin-bottom: 100px;
 }
-
 .slogan {
     position: absolute;
     right: 50px;
@@ -277,16 +238,13 @@
     font-style: normal;
     font-weight: 400;
     line-height: 147.5%;
-    /* 44.25px */
     letter-spacing: 6.9px;
     text-transform: capitalize;
 }
-
 .anh {
         display: flex;
         align-items: center;
     }
-
     .anh img {
         width: 65px;
         margin-left: 200px;

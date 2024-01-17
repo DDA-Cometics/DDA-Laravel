@@ -6,17 +6,14 @@
 @section('content')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
             var editButton = document.getElementById('editButton');
             var profileForm = document.getElementById('profileForm');
             var editProfileForm = document.getElementById('editProfileForm');
             var cancelButton = document.getElementById('cancelButton');
-
-               editButton.addEventListener('click', function() {
+                editButton.addEventListener('click', function() {
                 profileForm.style.display = 'none';
                 editProfileForm.style.display = 'block';
             });
-
             cancelButton.addEventListener('click', function() {
                 profileForm.style.display = 'block';
                 editProfileForm.style.display = 'none';
@@ -40,7 +37,7 @@
                 </div>
                 <div class="col-md-8">
                     <div class="profile-info card mt-4" id="profileForm">
-                        <h2 class="text-center mb-4">USER INFORMATION</h2>
+                        <h2 class="text-center mb-4">Admin INFORMATION</h2>
                         <div class="user-info">
                             <p><strong>Email:</strong> {{ session('user_data')['email'] }}</p>
                             <p><strong>Last Name:</strong> {{ session('user_data')['last_name'] }}</p>
@@ -54,7 +51,7 @@
                     </div>
                     <div class="edit-profile-info card mt-4" id="editProfileForm" style="display: none;">
                         <h2 class="text-center mb-4">EDIT PROFILE</h2>
-                        <form action="/edit-profile" method="post" enctype="multipart/form-data">
+                        <form action="/admin/edit-profile" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="form-group">
@@ -85,7 +82,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <button type="submit" class="btn btn-save btn-block">Save</button>
+                                    <button type="submit" class="btn btn-save btn-block" id="saveButton ">Save</button>
                                 </div>
                                 <div class="col-md-6">
                                     <button type="button" class="btn btn-cancel btn-block"
@@ -98,6 +95,6 @@
             </div>
         </div>
     @else
-        <p class="error-message">No user data available!</p>
+        <p class="error-message">Available!</p>
     @endif
 @endsection

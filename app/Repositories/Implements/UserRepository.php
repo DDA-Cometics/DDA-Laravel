@@ -12,12 +12,16 @@ class UserRepository extends BaseRepository implements IUserRepository
     {
         return User::class;
     }
-
     function findByEmail(string $email): mixed
     {
         return $this->findOneBy(["email" => $email]);
     }
-
-
-    //...............................................
+    function find($userIdToUpdate)
+    {
+        return User::find($userIdToUpdate);
+    }
+    function getUsers()
+    {
+        return User::where('role','user')->get();
+    }
 }

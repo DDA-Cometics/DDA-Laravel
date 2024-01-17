@@ -6,14 +6,14 @@ use App\Services\Interfaces\IProductService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Mix;
 
-class ProductService implements IProductService {
+class ProductService implements IProductService 
+{
     function __construct(
         private IProductRepository $ProductRepository
     ){}
-
-    function sortPrices(): Collection
+    function getProduct(): Collection
     {
-        return $this->ProductRepository->sortPrices();
+        return $this->ProductRepository->getProduct();
     }
     function getNewProduct(): Collection
     {
@@ -21,17 +21,22 @@ class ProductService implements IProductService {
     }
     function create(array $data): mixed
     {
-        
         return $this->ProductRepository->create($data);
     }
     function delete($id): mixed
     {
-
         return $this->ProductRepository->delete($id);
+    }
+    function delete1($id): mixed
+    {
+        return $this->ProductRepository->delete1($id);
     }
     function update($id,array $data): mixed
     {
-        
         return $this->ProductRepository->update($id,$data);
+    }
+    function searchProduct($searchData):Collection
+    {
+        return $this->ProductRepository->searchProduct($searchData);
     }
 }

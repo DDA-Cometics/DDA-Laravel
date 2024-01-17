@@ -6,11 +6,13 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
-
-abstract class BaseRepository implements IBaseRepository {
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
+use App\Models\Product;
+abstract class BaseRepository implements IBaseRepository 
+{
     protected $model;
     protected Builder $query;
-
     /**
      * @throws BindingResolutionException
      */
@@ -19,9 +21,7 @@ abstract class BaseRepository implements IBaseRepository {
         $this->setModel();
         $this->query = $this->model->newQuery();
     }
-
     abstract protected function getModel(): string;
-
     /**
      * @throws BindingResolutionException
      */
@@ -29,57 +29,41 @@ abstract class BaseRepository implements IBaseRepository {
     {
         $this->model = app()->make($this->getModel());
     }
-
     public function getQuery(): Builder|\Illuminate\Database\Query\Builder
     {
         return $this->query->getQuery();
     }
-
     public function clearQuery(): \Illuminate\Database\Query\Builder
     {
         $this->query = $this->model->newQuery();
         return $this->query->getQuery();
     }
-
     public function all($toArray = false): Collection|array|null
     {
         $all = $this->model->all();
         return $toArray ? $all->toArray() : $all;
     }
-
     public function findById($id): mixed
     {
         return $this->model->find($id);
     }
-
     public function create($attributes = []): mixed
     {
         return $this->model->create($attributes);
     }
-
     public function update($id, array $attributes = []): mixed
     {
-        // return $this->model->update($id, $attributes);
         $model = $this->model->find($id);
-
         if ($model) {
-            // Cập nhật dữ liệu
             $model->update($attributes);
-
-            // Trả về model đã được cập nhật
             return $model;
         }
-
-        // Hoặc có thể trả về một giá trị khác để thể hiện kết quả cập nhật
         return null;
     }
-
-
     public function updateWhere(array $attributes, array $params): mixed
     {
         return $this->model->where($attributes)->update($params);
     }
-
     public function findBy(array $filter, bool $toArray = true): Collection|array|null
     {
         $builder = $this->model->newQuery();
@@ -93,7 +77,6 @@ abstract class BaseRepository implements IBaseRepository {
         }
         return $find ? $find->toArray() : null;
     }
-
     public function findOneBy(array $filter): mixed
     {
         $builder = $this->model->newQuery();
@@ -101,7 +84,6 @@ abstract class BaseRepository implements IBaseRepository {
             $builder->where($key, $val);
         }
         $data = $builder->first();
-
         return $data;
     }
     public function paginate($page): LengthAwarePaginator
@@ -112,9 +94,15 @@ abstract class BaseRepository implements IBaseRepository {
     {
         return $this->model->$relationship;
     }
-
     public function delete($id): mixed
     {
         return $this->model->destroy($id);
+    }
+    public function delete1($id): mixed
+    { 
+        $product = $this->model->find($id)->first();
+        $product->display_flag = 0;
+        $product->save();
+        return ['success' => false, 'message' => 'Product not found.'];
     }
 }

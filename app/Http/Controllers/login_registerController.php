@@ -57,22 +57,20 @@ class login_registerController extends Controller
         $data = $validator->validated();
         $dataResgister = $this->userService->register($data); // Thực hiện đăng ký và trả về true nếu thành công
         
-        if (!$dataResgister["errors"]) {
-            // Đăng ký thành công
+        if (empty($dataResgister["errors"])) {
+           
             return redirect('/login')->with('success', 'Register Successful!');
         } else {
-            // Đăng ký không thành công
-            return redirect('/login')->with('error', 'Register Failed!'.$dataResgister["errors"]);
-        }
+           
+            return redirect('/login')->with('error', 'Register Failed!' . json_encode($dataResgister["errors"]));
+        }        
     }
     public function login(Request $request)
     {
         $email = $request->input('email');
         $password = $request->input('password');
         $user = $this->userService->login($email, $password);
-
         if ($user) {
-            // Tạo một mảng dữ liệu user từ thông tin của đối tượng User
             $userData = [
                 'image' => $user-> image,
                 'email' => $user->email,
@@ -84,17 +82,12 @@ class login_registerController extends Controller
                 'address' => $user->address,
                 'role' => $user->role,
             ];
-            
-            // Lưu thông tin người dùng vào session và chuyển hướng đến trang chủ
             session()->put('user_data', $userData);
             if ($userData['role']=="admin"){
-                return redirect('/admin');
+                return redirect('/admin/user-management');
             }
             return redirect('/');
         }
-
-        // Trường hợp đăng nhập thất bại, chuyển hướng đến trang đăng nhập với thông báo lỗi
         return redirect('/login')->with('error', 'Login Failed!');
     }
-
 }

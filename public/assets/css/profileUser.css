@@ -1,0 +1,74 @@
+#headAboutUs,#bodyAboutUs{
+    display: none;
+}
+.profile-card {
+    border: 1px solid #ddd; 
+    border-radius: 10px;
+    padding: 5px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+.profile-image {
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin-bottom: 15px; 
+}
+.text-center {
+    text-align: center; 
+}
+.btn-edit {
+    background-color: #007bff; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s;  
+}
+#editButton{
+    background-color:lightpink;
+}
+#profileForm{
+    padding: 25px;
+    background-color:rgb(241, 228, 228)
+}
+#editProfileForm{
+    padding: 15px;
+    background-color:lightgray;
+    margin: 20px;
+}
+#saveButton{
+    background-color: lightpink;
+}
+#cancelButton{
+    background-color: lightpink;
+}
+#profileForm {
+    border: 1px solid #ddd;
+    border-radius: 10px; 
+    padding: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff; 
+}
+.user-info {
+    margin-top: 20px; 
+}
+.user-info p {
+    margin-bottom: 10px;
+}
+.user-info strong {
+    font-weight: bold; 
+    margin-right: 5px; 
+}
+.profile-info h2 {
+    color: #3498db; 
+    margin-bottom: 20px; 
+}
+.profile-info h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 2px;
+    background-color: #3498db;
+    margin-top: 10px;
+}

@@ -62,28 +62,34 @@
                                 $ {{ $products->price / 2 }}</div>
                         </div><br>
                         <div>
-                            <p>{{ $products->description }}</p>
+                            <p><strong>Description:</strong> {{ $products->description }}</p>
+                            <p>
+                                <strong>Category:</strong> 
+                                {{ $products->category }} 
+                                <strong>|</strong>
+                                <strong>Ingredient:</strong> 
+                                {{ $products->ingredient }}
+                            </p>
+                            <p><strong>Skin concerns:</strong> {{ $products->skin_concerns }}</p>
                         </div>
                         <div class="size_product">
                             <b>Size: </b>
                             <select name="product_size" id="product_size">
-                                <option value="{{ $products->size }}">{{ $products->size }}ml</option>
+                                <option value="{{ $products->size }}">{{ $products->size }}</option>
                             </select>
                         </div>
                         <form action="/add-to-cart" method="post">
                             @csrf
-                                <input type="number" name="id" value="{{ session('user_data')['id'] }}" class="d-none">
+                                <input type="number" name="id" value="{{ session('user_data')['id'] ?? 0 }}" class="d-none">
                         <div class="container mt-5">
                             <div class="quantity-container">
                                 <button type="button" class="btn btn-light" id="decreaseBtn">-</button>
-                                <input type="number" class="form-control quantity-input" id="quanity" name="quanity" value="1"
-                                    readonly>
+                                <input type="number" class="form-control quantity-input" id="quanity" name="quanity" value="1">
                                 <button type="button" class="btn btn-light" id="increaseBtn">+</button>
                             </div>
                         </div><br>
                         <div class="button-container">
-                            <button type="button" class="btn" id="buynowBtn">Buy Now</button>
-
+                            <button type="submit" name="product_id" value="{{ $products->id }}" class="btn" id="buynowBtn">Buy Now</button>
                             <button type="submit" name="product_id" value="{{ $products->id }}" class="btn custom-button cart-button" id="product_id">
                                 <i class="fa-solid fa-cart-shopping text-light"></i>
                             </button>
@@ -94,49 +100,35 @@
             </div>
         </div>
     </div>
-
-
-
     <script>
         let currentQuantity = 1;
         let originalWidth, originalHeight;
-
         function changeImage(newImageUrl) {
             const quanity = document.getElementById('quanity');
             currentQuantity = quanity.value;
-
             const mainImage = document.getElementById('mainImage');
             if (!originalWidth && !originalHeight) {
                 originalWidth = mainImage.width;
                 originalHeight = mainImage.height;
             }
-
             mainImage.src = newImageUrl;
             mainImage.style.width = originalWidth + 'px';
             mainImage.style.height = originalHeight + 'px';
             mainImage.style.border = 'none';
-
             quanity.value = currentQuantity;
         }
-
         document.getElementById('decreaseBtn').addEventListener('click', () => {
             updateQuantity(-1);
         });
-
         document.getElementById('increaseBtn').addEventListener('click', () => {
             updateQuantity(1);
         });
-
         function updateQuantity(change) {
             const quanity = document.getElementById('quanity');
             let newQuantity = parseInt(quanity.value) + change;
-
-
             newQuantity = Math.max(1, newQuantity);
-
             quanity.value = newQuantity;
             currentQuantity = newQuantity;
         }
     </script>
-
 @endsection

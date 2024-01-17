@@ -14,5 +14,6 @@ class VoucherController extends Controller
     function index() {
         $vouchers = $this->voucherService->getAllActiveVouchers();
         return view("vouchers/index", ["vouchers" => $vouchers]);
-    }     
+    }  
+
 }

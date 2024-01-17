@@ -213,23 +213,23 @@
                                         <select id="new" name="voucher_id" style="height: 40px;">
                                             <option value="0" selected disabled>Select a voucher</option>
                                             @foreach($vouchers as $voucher)
-                                                @if( $total < 1000 && $voucher->discount <= 3)
+                                                @if( $total > 0 && $total < 100000 && $voucher->discount <= 3)
                                                     <option value="{{ $voucher->discount }}">
                                                         {{ $voucher->description }}
                                                     </option>
-                                                @elseif( $total > 2000 && $voucher->discount <= 5)
+                                                @elseif( $total > 100000 && $total < 200000 && $voucher->discount <= 5)
                                                     <option value="{{ $voucher->discount }}">
                                                         {{ $voucher->description }}
                                                     </option>
-                                                @elseif($total > 3000 && $voucher->discount <= 8)
+                                                @elseif($total > 200000 && $total < 300000 && $voucher->discount <= 8)
                                                     <option value="{{ $voucher->discount }}">
                                                         {{ $voucher->description }}
                                                     </option>
-                                                @elseif($total > 6000 && $voucher->discount <= 10)
+                                                @elseif($total > 300000 && $total < 600000 && $voucher->discount <= 10)
                                                     <option value="{{ $voucher->discount }}">
                                                         {{ $voucher->description }}
                                                     </option>
-                                                @elseif( $total > 15000 && $voucher->discount <= 15)
+                                                @elseif( $total > 600000 && $voucher->discount <= 15)
                                                     <option value="{{ $voucher->discount }}">
                                                         {{ $voucher->description }}
                                                     </option>

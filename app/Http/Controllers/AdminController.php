@@ -7,20 +7,18 @@ use App\Services\Interfaces\IUserService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Services\Interfaces\IProductService;
-use App\Models\Payment_history;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
 
-    public function __construct(
+    public function __construct
+    (
         private IAdminService $AdminService,
         private IVoucherService $VoucherService,
         private IProductService $ProductService,
         private IUserService $UserService,
-        )
-    {}
+    ){}
 
     function productManagement()
     {
@@ -32,7 +30,6 @@ class AdminController extends Controller
         if ($role != "admin") {
             return redirect("/");
         }
-
         $product = $this->AdminService->getProduct();
         return view("pages.admin.product", ["products" => $product]);
     }
@@ -66,23 +63,18 @@ class AdminController extends Controller
     function statistics()
     {
         $sessionData = session()->get('user_data');
-        $userId = $sessionData['id'] ?? 0;
-        $role = $sessionData['role'];
-        if ($userId ===0){
+        if (!$sessionData || !isset($sessionData['id'])) {
             return view("pages.login.index");
         }
-        if ($role != "admin"){
+        $role = $sessionData['role'];
+        if ($role != "admin") {
             return redirect("/");
         }
-        $data = Payment_history::select(
-            DB::raw('DATE(created_at) as date'), 
-            DB::raw('COUNT(*) as order_count'), 
-            DB::raw('SUM(amount) as total_amount'))
-            ->groupBy('date')
-            ->get();
+        $data = $this->AdminService->getChart();
         return view("pages.admin.showchart",compact('data'));
     }
-    function create(Request $request){
+    function create(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'image' => 'required|url',
             'last_name' => 'required|string|max:255',
@@ -105,7 +97,6 @@ class AdminController extends Controller
         $this->AdminService->create($data);
         return redirect('/admin/user-management');
     }
-
     public function updateProfile(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -192,6 +183,14 @@ class AdminController extends Controller
     }
     function moreTable()
     {
+        $sessionData = session()->get('user_data');
+        if (!$sessionData || !isset($sessionData['id'])) {
+            return view("pages.login.index");
+        }
+        $role = $sessionData['role'];
+        if ($role != "admin") {
+            return redirect("/");
+        }
         $products = $this->ProductService->getProduct();
         $vouchers = $this->VoucherService->getAllActiveVouchers();
         $appliedVouchers = $this->AdminService->getProductVoucher();

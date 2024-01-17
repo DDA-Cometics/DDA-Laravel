@@ -3,7 +3,8 @@
 @section('libary')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-@endsection
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+    @endsection
 
 @section('content')
 <style>

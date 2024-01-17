@@ -119,7 +119,7 @@
                     </div>
                     <div class="size_product">
                         <select name="product_size" id="product_size">
-                            <option value="'.$size.'">'.$size .'ml</option>
+                            <option value="'.$size.'">'.$size .'</option>
                         </select>
                         <button class="user-label">Select the size</button>
                     </div>

@@ -74,4 +74,9 @@ use App\Http\Controllers\checkoutController;
             Route::delete('/more-table/payment-history-management-delete/{id}', [AdminController::class, "paymentHistoryManagementDelete"]);
         }
     );
+    Route::get('/clear-all-cache', function() {
+        Artisan::call('cache:clear');
+      
+        dd("Cache Clear All");
+    });
 ?>

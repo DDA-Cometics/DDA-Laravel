@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\Interfaces\IShopping_cartService;
+use Illuminate\Support\Facades\URL;
 
 class checkoutController extends Controller
 {
@@ -40,8 +41,8 @@ class checkoutController extends Controller
         $orderInfo =$request->user_name;
         $amount = ($request->amount);
         $orderId = time() . mt_rand(1000, 9999);
-        $redirectUrl = "http://127.0.0.1:8000/ordered";
-        $ipnUrl = "http://127.0.0.1:8000/ordered";
+        $redirectUrl = env("APP_URL")."/ordered";
+        $ipnUrl = env("APP_URL")."/ordered";
         $extraData = "";
         $partnerCode = $partnerCode;
         $accessKey = $accessKey;

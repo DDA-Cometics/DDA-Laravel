@@ -7,18 +7,18 @@
 
 @section('content')
 
-    @if(session('error'))
-    <div id="loginModal" class="modal">
-        <input type="checkbox" id="modalToggle" class="modal-toggle" checked> <!-- Thêm một checkbox để điều khiển hiển thị modal -->
-        <label for="modalToggle" class="modal-overlay"></label> <!-- Label sẽ đóng vai trò làm nền đen phía sau modal -->
-        <div class="modal-content">
-            <a href="" class="close text-danger ">x</a>
-            <center>
-                <p id="error"> {{ session('error') }}</p>
-            </center>
-        </div>
+@if(request('error'))
+<div id="loginModal" class="modal">
+    <input type="checkbox" id="modalToggle" class="modal-toggle" checked>
+    <label for="modalToggle" class="modal-overlay"></label>
+    <div class="modal-content">
+        <a href="/login" class="close text-danger ">x</a>
+        <center>
+            <p id="error"> {{ urldecode(request('error')) }}</p>
+        </center>
     </div>
-    @endif
+</div>
+@endif
     <div class="container" id="containerLog">
         <div class="row">
             <div class="row">
@@ -63,13 +63,14 @@
                 <div class="col">
                 </div>
                 <div class="column" id="log2">
-                    @if(session('success'))
+                    @if(request('success'))
                     <div class="alert alert-success">
-                        {{ session('success') }}
+                        <center>
+                            <p id="success"> {{ urldecode(request('success')) }}</p>
+                        </center>
                     </div>
                     @endif
                     <h2>Create Account</h2>
-
                     <form action="/register" id="register" method="post">
                         @csrf
                         <br>
@@ -162,7 +163,7 @@
             var closeBtn = document.querySelector('.close');
             var modal = document.getElementById('loginModal');
             var overlay = document.querySelector('.modal-overlay');
-
+    
             closeBtn.addEventListener('click', function() {
                 modal.style.display = 'none';
                 overlay.style.display = 'none';

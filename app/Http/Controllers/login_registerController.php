@@ -30,7 +30,7 @@ class login_registerController extends Controller
     }
     function register(Request $request)
     {
-        // Validate the form input
+
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -38,31 +38,26 @@ class login_registerController extends Controller
             'confirm_email' => 'required|string|email|max:255|same:email',
             'password' => 'required|string|max:255',
             'confirm_password' => 'required|string|max:255|same:password',
-            'phone_number' => 'required|string',
+            'phone_number' => 'required|string|max:11',
             'date' => 'required|date',
             'account_name' =>'required|string|max:255',
             'address' => 'required|string|max:255',
-            'image' => 'required|string|min:1',
+            'image' => 'required|string|min:1|url',
         ]);
 
         if ($validator->fails()) {
-            return redirect('/login') // Điều hướng nếu dữ liệu không hợp lệ
-                ->withErrors($validator)
-                ->withInput();
+            $errorQueryParam = urlencode(json_encode($validator->errors()->all()));
+            return redirect('/register?error=Register Failed => '. $errorQueryParam);
         }
-
-        // Insert product into the database
         $data = $request->all();
-        // $this->userService->register($data);
         $data = $validator->validated();
-        $dataResgister = $this->userService->register($data); // Thực hiện đăng ký và trả về true nếu thành công
-        
+        $dataResgister = $this->userService->register($data);
         if (empty($dataResgister["errors"])) {
            
-            return redirect('/login')->with('success', 'Register Successful!');
+            return redirect('/register?success=Register Successful!');
         } else {
            
-            return redirect('/login')->with('error', 'Register Failed!' . json_encode($dataResgister["errors"]));
+            return redirect('/register?error=Register Failed => '. ($dataResgister["errors"]));
         }        
     }
     public function login(Request $request)
@@ -88,6 +83,6 @@ class login_registerController extends Controller
             }
             return redirect('/');
         }
-        return redirect('/login')->with('error', 'Login Failed!');
+        return redirect('/login?error=Account information or password is incorrect!');
     }
 }

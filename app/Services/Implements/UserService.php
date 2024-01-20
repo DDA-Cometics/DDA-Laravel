@@ -27,19 +27,11 @@ class UserService implements IUserService
         $email=$data['email'];
         $checkEmail=$this->userRepository->findByEmail($email);
         if ($checkEmail){
-            return [
-                "errors" => [
-                    "email"=> "email existing",
-                ],
-                "user" => null
-            ];
+            return  ["errors" => "email existing"];
         }
         $data["password"] = Hash::make($data["password"]);
         $user =  $this->userRepository->create($data);
-        return [
-            "errors" => null,
-            "user" => $user
-        ];
+        return  $user;
     }
     function find($userIdToUpdate)
     {
